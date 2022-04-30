@@ -1,0 +1,84 @@
+<app-header></app-header>
+ <app-sidenav></app-sidenav>
+ <div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+    <div class="top">
+      <div class="row t-main">
+        <div class="col-sm-6 col-xs-12 t-main-1">
+          <h4 class="m-n  t-main1">Role & Permission View List</h4>
+        </div>
+        <div class="col-sm-6 text-right poppins">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb t-main" style="cursor: pointer;">
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard</li>
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Role & Permission</li>
+
+              
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">Role & Permission View List</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+         
+    </div>
+ <kendo-grid
+    [kendoGridBinding]="gridView"
+    kendoGridSelectBy="id"
+    [selectedKeys]="mySelection"
+    [pageSize]="20"
+    [pageable]="true"
+    [sortable]="true"
+    [reorderable]="true"
+    [resizable]="true"
+    [height]="500"
+    [columnMenu]="{ filter: true }"
+  >
+    <ng-template kendoGridToolbarTemplate>
+      <input
+        placeholder="Search in all columns..."
+        kendoTextBox
+        (input)="onFilter($event)"
+        />
+      <kendo-grid-spacer></kendo-grid-spacer>
+      <button *ngIf="this.userPermission.rolecreate"  class="button"> <a routerLink="/role-permission">Create New Role</a></button>
+      
+    </ng-template>
+   
+    
+      <kendo-grid-column field="role_name" title="Role Name" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          
+          <div class="customer-name" style="color: red;">{{ dataItem.role_name.toUpperCase() }}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="description" title="Description" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div>{{dataItem.description.toUpperCase()}}</div>
+        </ng-template>
+      </kendo-grid-column>
+
+    
+       <kendo-grid-column
+        title="Action"
+        [width]="100"
+        [class]="{ 'text-center': true }"
+        [resizable]="false"
+        [filterable]="false"
+        
+      >
+        <ng-template kendoGridCellTemplate let-role>
+       
+          <kendo-menu>
+            <kendo-menu-item icon="gear">
+              <kendo-menu-item icon="edit"  url="/role-edit/{{role._id}}"  text="Edit" > </kendo-menu-item>
+              
+            </kendo-menu-item>
+          </kendo-menu> 
+
+        </ng-template>
+      </kendo-grid-column>
+   
+  
+  </kendo-grid>
+  </div>
+  </div>

@@ -1,0 +1,17 @@
+.k-grouping-header
+{
+    display: none !important;
+}
+
+
+.selected-item{
+    border: unset !important;
+    margin-right: 4px;
+    background: unset !important;
+    padding: 0 5px !important;
+    color: unset !important;
+    border-radius: 2px;
+    float: left;
+    display: flex;
+     max-width: unset !important;
+}

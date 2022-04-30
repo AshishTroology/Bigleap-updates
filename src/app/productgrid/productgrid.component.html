@@ -1,0 +1,76 @@
+<div>
+  <section class="topRow">
+    <div class="topRowCont">
+      <h5>Quote Products</h5>
+    </div>
+    <div class="topRowCont">
+
+    </div>
+
+    <div class="topRowCont">
+      <div class="date_icon">
+        <i class="fa fa-calendar"></i>
+        <h5>Date: 12-03-2022</h5>
+      </div>
+      <button  (click)="closepop()">Submit</button>
+      <button class="closeBtn" (click)="closepop()">Close</button>
+    </div>
+  </section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 left">
+        <h2 class="Sec_heading">Select Product to Add in Quotation</h2>
+        <div class="searchBtn">
+          <ng-multiselect-dropdown class="select_product_Sec" [placeholder]="'Select Product'"
+            [settings]="dropdownSettings" [data]="view" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)" (onFilterChange)="onFilterChange($event)">
+
+          </ng-multiselect-dropdown>
+          <div class="">
+            <button class="AddNewGroupBtn" (click)="addProduct()"><i class="fa fa-plus"></i> New Product</button>
+            <button kendoButton (click)="addGroup()" class="AddNewGroupBtn"><i class="fa fa-plus"></i>Add New
+              Group</button>
+
+          </div>
+        </div>
+
+        <kendo-treeview [nodes]="data" textField="productname" kendoTreeViewHierarchyBinding childrenField="products"
+          kendoTreeViewExpandable expandBy="id" [expandedKeys]="[1]" kendoTreeViewDragAndDrop
+          kendoTreeViewDragAndDropEditing (selectionChange)="onSelectionChange($event)" (addItem)="onAddItem($event)"
+          (removeItem)="onRemoveItem($event)" (nodeDragStart)="onNodeDragStart($event)"
+          (nodeDragEnd)="onNodeDragEnd($event)" (nodeDrag)="onNodeDrag($event)" (nodeDrop)="onNodeDrop($event)"
+          (nodeClick)="onNodeClick($event)" (nodeDblClick)="onNodeDblClick($event)" [allowCopy]="allowCopy"
+          (nodeDrop)="handleDrop($event)" kendoTreeViewSelectable selectBy="id" kendoTreeViewCheckable checkBy="id"
+          [(selectedKeys)]="selectedKeys" [kendoTreeViewCheckable]="{ mode: 'single' }" [(checkedKeys)]="checkedKeys">
+          <ng-template kendoTreeViewNodeTemplate let-dataItem>
+            <div class="row">
+              <div class="col-sm-7" title="Product Name & Part Number" >
+                <span [ngClass]="iconClass(dataItem)"></span>
+                {{ (dataItem.productname).substring(0, 60) }}
+              </div>
+              <div class="col-sm-2"><i class="fa fa-rupee"></i> {{ dataItem.UnitPrice| number : '1.2'  }}</div>
+              <div class="col-sm-1">{{ dataItem.GST }}</div>
+              <div class="col-sm-1">{{ dataItem.quantity }}</div>
+              <div class="col-sm-1"> {{ dataItem.discount }}</div>
+            </div>
+          </ng-template>
+          <ng-template kendoTreeViewDragClueTemplate let-action="action" let-destinationItem="destinationItem"
+            let-text="text">
+            <span class="k-drag-status k-icon" [ngClass]="getDragStatus(action, destinationItem)"></span>
+            <span>{{ text }}</span>
+          </ng-template>
+        </kendo-treeview>
+
+      </div>
+      <div class="col-md-4 border">
+        <app-child-element *ngIf="this.childShow" [itemdata]="this.childData"
+          (formChanged)="formChangedHandler($event)" (deleteProduct)="deleteProductHandler($event)">
+        </app-child-element>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>

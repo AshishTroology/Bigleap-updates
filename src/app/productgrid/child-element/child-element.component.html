@@ -1,0 +1,60 @@
+<div class="right_sec">
+  <h2 class="Sec_heading">Product View</h2>
+  <div class="example-wrap">
+    <form class="k-form" [formGroup]="registerForm">
+      <input type="hidden" formControlName="type" />
+      <fieldset class="k-form-fieldset">
+        <kendo-formfield>
+          <kendo-label [for]="productname" text="Product Name"></kendo-label>
+          <input class="Product_Area" formControlName="productname" kendoTextBox #productname required />
+          <kendo-formerror>Error: Product name is required</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label [for]="PartNo" text="Part No."></kendo-label>
+          <input class="Product_Area" formControlName="PartNo" kendoTextBox #PartNo required />
+          <kendo-formerror>Error: Part No is required</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label [for]="hsn" text="HSN Code"></kendo-label>
+          <input class="Product_Area" formControlName="HSNCode" kendoTextBox #hsn required />
+          <kendo-formerror>Error: HSN Code is required</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label [for]="GST" text="GST"></kendo-label>
+          <input class="Product_Area" formControlName="GST" type="text"  kendoTextBox #GST required />
+          <kendo-formerror>Error: GST is required</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label [for]="UnitPrice" text="Unit Price"></kendo-label>
+          <input class="Product_Area" formControlName="UnitPrice" type="number" [min]="1" kendoTextBox #UnitPrice required />
+          <kendo-formerror>Error: Unit Price is required</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label [for]="UOM" text="UOM"></kendo-label>
+          <input class="Product_Area" formControlName="UOM" kendoTextBox #UOM required />
+          <kendo-formerror>Error: UOM is required</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label [for]="qty" text="Quantity"></kendo-label>
+          <input class="Product_Area" formControlName="quantity" type="number" value="1" [min]="1" kendoTextBox #qty required />
+          <kendo-formerror>Error: Quantity is required</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label [for]="discount" text="Discount"></kendo-label>
+          <input class="Product_Area" formControlName="discount" type="number" [min]="0" kendoTextBox #discount required />
+          <kendo-formerror>Error: Discount is required</kendo-formerror>
+        </kendo-formfield>
+
+
+
+        <div class="k-form-buttons">
+          <button class="closeBtn" kendoButton themeColor="primary" (click)="submitForm()">
+            Submit
+          </button>
+          <button class="closeBtn Clear" kendoButton (click)="clearForm()">Cancel</button>
+          <button class="closeBtn Clear" kendoButton (click)="deleteHandler()">Delete</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

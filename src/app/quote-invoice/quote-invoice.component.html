@@ -1,0 +1,631 @@
+  <style>
+    body {
+      color: black !important;
+      background-color: #fff;
+    }
+
+    p {
+      margin: 0 0 0px;
+    }
+
+    .table-cls tr td {
+      padding: 2px !important;
+    }
+
+    .table-cls tr td {
+      padding: 5px;
+      font-weight: bold !important;
+
+    }
+
+    .table-cls-IR img {
+      width: 100%;
+    }
+
+    .table-cls-xs tr td {
+      padding: 3px;
+    }
+
+    td {
+      font-size: 11px;
+    }
+
+    .custom-name td {
+      font-weight: bold
+    }
+
+    .pnumatic-impact td {
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+      border-left: 1px solid black;
+    }
+
+    .terms-conditions td {
+      border: none;
+      border-bottom: 1px solid black;
+    }
+
+    .page-header,
+    .page-header-space {
+      height: 145px;
+      padding-bottom: 0px;
+      border-bottom: none;
+      margin: 40px 0px 0px;
+    }
+
+    .page-footer,
+    .page-footer-space {
+      height: 50px;
+    }
+
+    .page-footer {
+      display: none;
+      position: fixed;
+      bottom: 25px;
+
+    }
+
+    .page-header {
+      position: fixed;
+      top: 0mm;
+      clear: both;
+    }
+
+    .page {
+      page-break-after: always;
+      margin-top: 0px;
+    }
+
+    table {
+      page-break-inside: auto;
+    }
+
+    tr {
+      page-break-inside: avoid;
+      page-break-after: auto;
+    }
+
+    thead {
+      display: table-header-group;
+    }
+
+    tfoot {
+      display: table-footer-group;
+    }
+
+    @media print {
+
+      .page-header,
+      .page-header-space {
+        height: 185px;
+        padding-bottom: 0px;
+        border-bottom: none;
+        margin: 40px 0px 0px;
+      }
+
+      .page-footer,
+      .page-footer-space {
+        height: 75px;
+        margin-top: 5px;
+      }
+
+      .page-footer {
+        display: block;
+      }
+
+      .page-footer table {
+        border: 1px solid #000;
+      }
+
+
+
+      .table-cls tr td {
+        padding: 2px !important;
+      }
+
+      .quation {
+        background: rgb(180, 180, 180) !important;
+        border-top: none !important;
+      }
+
+      .bg-C {
+        background: rgb(180, 180, 180) !important;
+        border: 1px solid #000 !important;
+      }
+
+      .Bill-From {
+        border: 1px solid #000 !important;
+      }
+
+      .contact-person {
+        border: 1px solid #000 !important;
+      }
+
+      .mail-id {
+        border: 1px solid #000;
+      }
+
+      .name-border {
+        border: 1px solid #000;
+      }
+
+      .contact-border {
+        border: 1px solid #000 !important;
+      }
+
+      .table-bordeblack>tbody>tr>td,
+      .table-bordeblack>thead>tr>th {
+        border: 1px solid #000 !important;
+      }
+
+      p.head-contact {
+        font-size: 10px;
+      }
+
+      td.rupees-word {
+        font-size: 10px !important;
+        color: #ffffff !important;
+      }
+
+      td.price-gst {
+        font-size: 10px !important;
+      }
+
+      td.computer-generated {
+        font-size: 10px !important;
+      }
+
+      table>tbody>tr>td {
+        font-size: 15px !important;
+      }
+
+      .print-btn-none {
+        display: none !important;
+      }
+
+      .footer-repeat {
+        display: table-footer-group;
+      }
+
+      .border-bottom {
+        border-bottom: 1px solid #eee !important;
+      }
+
+      .table>tbody>tr>td {
+        border: none;
+      }
+
+      .spacer-print-40 {
+        height: 40px;
+      }
+
+      .pagebreak {
+        page-break-before: always;
+      }
+
+      * {
+        color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      hr {
+        border-top: 1px solid;
+        border-color: #0000;
+        border-width: 1px;
+        margin-bottom: 43px;
+      }
+
+      .print-btn-none {
+        display: none !important;
+      }
+
+    }
+  </style>
+  <div id="wrapper" style="width: 650px;  margin: 0px auto;">
+    <button kendoButton (click)="pdf.saveAs('image-resolution.pdf')" class="btn btn-primary no-print print-btn-none"
+      style="margin-right: 5px;"><i class="fa fa-print" aria-hidden="true"></i> Print</button>
+    <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
+    <tr>
+      <td></td>
+      <td><button [routerLink]="['/quote']" class="btn btn-danger  no-print print-btn-none">Back</button></td>
+    </tr>
+
+    <div class="page-header">
+      <table class="table  table-cls "
+        style="width: 650px; border: 1px solid black; margin: 5px 0px auto; background-color: #fff;">
+
+        <tr>
+          <td colspan="2" style="width: 100%;"><img src="assets/img/DIYA.PNG" /></td>
+          <td colspan="2" style="width: 100%; border-right: 1px solid #000;">
+            <table style="width: 100%; text-align: right;">
+              <tr>
+                <td>Quote Reference No.:</td>
+                <td>{{this.quoteData?.quote_id}}</td>
+              </tr>
+              <tr>
+                <td>Date:</td>
+                <td>{{this.quoteData?.created_date_time |date:'dd-MM-yyyy'}}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="Bill-From" colspan="1" style="width: 10%; color: black;">Bill From:</td>
+          <td class="Bill-From" colspan="7" style="width: 50%; color: black;">{{this.branchData?.branch_name}}</td>
+
+        </tr>
+        <tr>
+
+          <td class="Bill-From" colspan="1" style="width: 10%; color: black;">Address:</td>
+          <td class="Bill-From" colspan="1" style="width: 50%; color: black; font-size:10px;">
+            {{this.branchData?.address1}}
+            {{this.branchData?.address2}} {{this.branchData?.address3}} {{this.branchData?.state}}
+            {{this.branchData?.country}} {{this.branchData?.zipcode}}</td>
+          <td class="bg-C contact-border" colspan="6"
+            style="width: 40%;  border: 1px solid black;  font-weight: bold; background-color: #bfbfbf; color: black; border-right: none;">
+            Contact person for this Offer:</td>
+        </tr>
+
+        <tr>
+          <td class="Bill-From" colspan="1" style="width: 10%;">E-Mail:</td>
+          <td class="Bill-From" colspan="1" style="width: 50%;">info@diyatechnologies.co.in</td>
+          <td class="name-border" colspan="1"
+            style="width: 10%; border-left: 1px solid black; border-right: 1px solid black;">Name</td>
+          <td colspan="6" style="width: 30%; border-bottom: none;  ">{{this.salesPersonData?.username}}</td>
+
+        </tr>
+        <tr>
+          <td class="Bill-From" colspan="1" style="width: 10%;">GSTN:</td>
+          <td class="Bill-From" colspan="1" style="width: 50%;">{{this.branchData?.branch_gst}}</td>
+          <td colspan="1" style="width: 10%; border-left: 1px solid black; border-right: 1px solid black;">Mail-ID</td>
+          <td colspan="6" style="width: 30%;   ">{{this.salesPersonData?.email}}</td>
+        </tr>
+        <tr>
+          <td class="Bill-From" colspan="1" style="width: 10%;">Website:</td>
+          <td class="Bill-From" colspan="1" style="width: 50%;">www.diyatechnologies.in</td>
+          <td colspan="1" style="width: 10%; border-left: 1px solid black;  border-right: 1px solid black;">Mobile.no
+          </td>
+          <td colspan="6" style="width: 30%;   ">{{this.salesPersonData?.phone}}</td>
+        </tr>
+      </table>
+    </div>
+    <!-------------------------End Header--------------------------------->
+    <!-------------------------Footer--------------------------------->
+
+    <div class="page-footer">
+
+      <table class="table table-bordeblack table-cls-IR"
+        style="width: 650px; border: 1px solid black; margin: 0px auto;">
+        <tr style="border: 1px solid #000;">
+          <td colspan="3" style="width: 100%; font-weight: bold; text-align: left; ">Authorized Dealers:</td>
+
+
+        </tr>
+        <tr style="border: 1px solid #000;">
+          <td><img class="Logo-Img Logo-Img-1" src="assets/img/IR.PNG" /></td>
+          <td><img class="Logo-Img Logo-Img-2" src="assets/img/URYU.PNG" /></td>
+          <td><img class="Logo-Img Logo-Img-3" src="assets/img/TOH.PNG" /></td>
+
+
+        </tr>
+      </table>
+    </div>
+    <!-------------------------End Footer--------------------------------->
+
+    <table>
+      <thead>
+        <tr>
+          <td>
+            <!--place holder for the fixed-position header-->
+            <div class="page-header-space"></div>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="page">
+
+              <table class="table table-bordeblack table-cls-xs naaz"
+                style="width: 650px; border: 1px solid black; margin: 0px auto; border-top: none;">
+                <tr>
+                  <td class="quation" colspan="4"
+                    style="width: 100%; text-align: center; font-weight: bold;  border-bottom: 1px solid black; background-color: #bfbfbf;">
+                    QUOTATION</td>
+
+                </tr>
+
+                <tr class="custom-name">
+                  <td colspan="1"
+                    style="width: 20%; font-weight: bold; border-right: 1px solid black; border-top:1px solid black">
+                    Customer Name:</td>
+                  <td colspan="3" style="width: 80%;  border-top:1px solid black; ">{{this.companyData?.company_name}}
+                  </td>
+
+                </tr>
+                <tr class="custom-name">
+                  <td colspan="1"
+                    style="width: 20%; font-weight: bold; border-right: 1px solid black; border-top:1px solid black">
+                    Customer Address: </td>
+                  <td colspan="3" style="width: 80%;  border-top:1px solid black; ">{{this.companyData?.address1}}
+                    {{this.companyData?.address2}} {{this.companyData?.address3}} {{this.companyData?.country}}
+                    {{this.companyData?.zip_code}} </td>
+
+                </tr>
+                <tr class="custom-name">
+                  <td colspan="1"
+                    style="width: 20%; font-weight: bold; border-right: 1px solid black; border-top:1px solid black">
+                    Buyer Name:</td>
+                  <td colspan="1" style="width: 50%;  border-top:1px solid black; border-right:1px solid black">
+                    {{this.contactData?.contact_name}}</td>
+                  <td colspan="1"
+                    style="width: 15%; font-weight: bold;  border-top:1px solid black; border-right: 1px solid black;">
+                    Contact
+                    No.:</td>
+                  <td colspan="1" style="width: 15%; border-top:1px solid black;">{{this.contactData?.mobile_no}}</td>
+
+                </tr>
+                <tr class="custom-name">
+                  <td colspan="1"
+                    style="width: 30%; font-weight: bold; border-right: 1px solid black; border-top:1px solid black">
+                    Application / Project: </td>
+                  <td colspan="3" style="width: 70%;  border-top:1px solid black;">{{this.quoteData?.quote_title}}</td>
+                </tr>
+
+              </table>
+              <table class="table table-bordeblack table-cls"
+                style="width: 100%; border: 1px solid black; margin: 0px auto; border-top: none;">
+                <tr>
+                  <td class="bg-C"
+                    style="width: 5%; border-top: none; background-color: #bfbfbf; padding: 5px; border-bottom: 1px solid black;">
+                    Sr No</td>
+                  <td class="bg-C"
+                    style="width: 25%;border-top: none; border-left:1px solid black; background-color: #bfbfbf; border-bottom: 1px solid black;">
+                    Product Description</td>
+                  <td class="bg-C"
+                    style="width: 10%;  border-top: none; border-left: 1px solid black; background-color: #bfbfbf; border-bottom: 1px solid black;text-align: center;">
+                    GST %</td>
+                  <td class="bg-C"
+                    style="width: 5%;  border-top: none; border-left: 1px solid black; background-color: #bfbfbf;border-bottom: 1px solid black; text-align: center;">
+                    Qty</td>
+
+                  <td class="bg-C"
+                    style="width: 10%;  border-top: none; border-left: 1px solid black; background-color: #bfbfbf; border-bottom: 1px solid black; text-align: center;">
+                    UOM</td>
+                  <td class="bg-C"
+                    style="width: 10%;  border-top: none; border-left: 1px solid black; background-color: #bfbfbf; border-bottom: 1px solid black; text-align: center;">
+                    Unit Rate</td>
+                  <td class="bg-C"
+                    style="width: 10%;  border-top: none; border-left: 1px solid black; background-color: #bfbfbf; border-bottom: 1px solid black; text-align: center;">
+                    Disc</td>
+                  <td class="bg-C"
+                    style="width: 15%;  border-top: none;  border-left: 1px solid black;background-color: #bfbfbf;border-bottom: 1px solid black; text-align: center;">
+                    Net Unit Rate</td>
+                  <td class="bg-C"
+                    style="width: 10%;  border-top: none;  border-left: 1px solid black;background-color: #bfbfbf; border-bottom: 1px solid black; text-align: center;">
+                    Amount</td>
+                </tr>
+                <tr *ngFor="let prod of this.quoteData?.product_services,index as i" class="pnumatic-impact">
+                  <td
+                    style="width: 5%;  border: none;  padding: 5px; text-align: center; border-bottom: 1px solid black;">
+                    {{i+1}}
+                  </td>
+                  <td style="width: 25%; border-top: none; ">
+                    <p>Part No : {{prod.PartNo}}</p>
+                    <p><b>{{prod.productname}}</b></p>
+
+                    <!-- <p>{{prod.productname}}</p> -->
+                    <p>HSN Code.: {{prod.HSNCode}}</p>
+                    <!-- (2235TiMAX) -->
+                    <!-- HSN Code.: 84671190</td> -->
+                  <td style="width: 10%;  border-top: none; text-align: center; ">
+
+                    {{(prod.GST.split("%").join("\n"))}} <br>
+                  </td>
+                  <td style="width: 5%;  border-top: none; text-align: center;">{{prod.quantity}}</td>
+
+                  <td style="width: 10%; border-top: none;text-align: center; ">{{(prod.UOM)}}</td>
+                  <td style="width: 10%;  border-top: none; text-align: right"> {{decimalFormat(prod.UnitPrice)| number
+                    : '1.2'}}</td>
+                  <td style="width: 10%; border-top: none; text-align: center;">{{(prod.discount)}}% </td>
+                  <td style="width: 15%;  border-top: none; text-align: right">
+                    {{decimalFormat(prod.type!='Group'?(prod.UnitPrice*(1-(prod.discount/100))):prod.amount)| number :
+                    '1.2'}}</td>
+                  <td style="width: 10%;  border-top: none; text-align: right;">{{decimalFormat(prod.amount)| number :
+                    '1.2'}}<br>
+                    <!-- {{(prod.amount+(prod.GST*prod.amount/100))}} -->
+
+                  </td>
+                </tr>
+
+
+                <tr class="pnumatic-impact">
+                  <td colspan="1" style="width: 5%;  border: none;  padding: 5px; border-bottom:1px solid black;"></td>
+                  <td colspan="1"
+                    style="width: 25%;  border-top: none; text-align: right; font-weight: bold; border-bottom:1px solid black;">
+                    TOTAL</td>
+                  <td colspan="1" style="width: 10%;  border-top: none; border-bottom:1px solid black;"></td>
+                  <td colspan="1"
+                    style="width: 5%;  border-top: none; border-bottom:1px solid black; text-align: center;">
+                    {{this.quantity}}</td>
+
+                  <td colspan="1" style="width: 10%;  border-top: none; "></td>
+                  <td colspan="1" style="width: 10%;  border-top: none; "> </td>
+                  <td colspan="1" style="width: 10%;  border-top: none; "></td>
+                  <td colspan="1" style="width: 15%;  border-top: none; "> </td>
+                  <td colspan="1" style="width: 10%;  border-top: none; text-align: right;">
+                    {{decimalFormat(this.totalAmount)| number : '1.2'}}</td>
+                </tr>
+
+
+
+              </table>
+              <table class="table table-bordeblack table-cls"
+                style="width: 650px; border: 1px solid black; margin: 0px auto; border-top: none;">
+                <tr>
+                  <td colspan="5" style="width: 60%;   border-right: 1px solid black;"></td>
+                  <td colspan="3"
+                    style="width: 30%;   border-right: 1px solid black; font-weight: bold; color: black; text-align: right;">
+                    Total
+                    Taxable Amount</td>
+                  <td colspan="1" style="width: 0%; text-align: right;  font-weight: bold; color: black;">
+                    {{decimalFormat(this.totalAmount)| number : '1.2'}}</td>
+
+
+                </tr>
+                <tr>
+                  <td colspan="5" style="width: 60%;   border-right: 1px solid black;"></td>
+                  <td colspan="3"
+                    style="width: 30%;   border-right: 1px solid black; font-weight: bold; color: black; text-align: right;">
+                    GST
+                    Tax</td>
+
+                  <td colspan="1" style="width: 10%;  text-align: right;   font-weight: bold; color: black;">
+                    {{decimalFormat(getTaxableAmount())| number : '1.2'}}</td>
+
+
+                </tr>
+
+                <tr>
+                  <td colspan="5" style="width: 60%;   border-right: 1px solid black;"></td>
+                  <td colspan="3"
+                    style="width: 30%;   border-right: 1px solid black; font-weight: bold; color: black; text-align: right;">
+                    Total
+                    Amount</td>
+                  <td colspan="1" style="width: 10%;  text-align: right;   font-weight: bold; color: black;">
+                    {{decimalFormat(this.totalAmount+getTaxableAmount())| number : '1.2'}}</td>
+
+
+                </tr>
+
+              </table>
+              <div class="pageBreak"></div>
+              <table class="table table-bordeblack pageBreak table-cls"
+                style="width: 650px; border: 1px solid black; margin: 0px auto; border-top: none;">
+                <tr>
+                  <td class="bg-C" colspan="3"
+                    style="width: 100%; background-color: #bfbfbf; border-bottom: 1px solid black;">
+                    Terms & Conditions</td>
+                </tr>
+                <tr class="terms-conditions">
+                  <td colspan="1"
+                    style="width:5%;  border-top: none; text-align: center; border-right: 1px solid black;">1</td>
+                  <td colspan="1" style="width:20%;  border-top: none; border-right: 1px solid black; ">INCO Terms:</td>
+                  <td colspan="1" style="width:75%; border-top: none; ">
+                    <p>{{this.quoteData?.inco_terms}}</p>
+                  </td>
+                </tr>
+
+                <tr class="terms-conditions">
+                  <td colspan="1"
+                    style="width:5%; border-top: none; text-align: center; border-right: 1px solid black;">2</td>
+                  <td colspan="1" style="width:20%;  border-top: none; border-right: 1px solid black;">Payment Terms:
+                  </td>
+                  <td colspan="1" style="width:75%;  border-top: none;">
+                    <p>{{this.quoteData?.p_t}}</p>
+                  </td>
+                </tr>
+
+                <tr class="terms-conditions">
+                  <td colspan="1"
+                    style="width:5%; border-top: none; text-align: center; border-right: 1px solid black;">3</td>
+                  <td colspan="1" style="width:20%;  border-top: none; border-right: 1px solid black;">P&F: </td>
+                  <td colspan="1" style="width:75%; border-top: none;"> {{this.quoteData?.p_f}}</td>
+                </tr>
+
+                <tr class="terms-conditions">
+                  <td colspan="1"
+                    style="width:5%;  border-top: none; text-align: center;border-right: 1px solid black;">4</td>
+                  <td colspan="1" style="width:20%; border-top: none; border-right: 1px solid black;">Freight: </td>
+                  <td colspan="1" style="width:75%; border-top: none;"> {{this.quoteData?.freight}}</td>
+                </tr>
+
+                <tr class="terms-conditions">
+                  <td colspan="1"
+                    style="width:5%; border-top: none; text-align: center; border-right: 1px solid black;">5</td>
+                  <td colspan="1" style="width:20%;  border-top: none; border-right: 1px solid black;">Other Charges:
+                  </td>
+                  <td colspan="1" style="width:75%;  border-top: none;"> {{this.quoteData?.other_charges}}</td>
+                </tr>
+
+                <tr class="terms-conditions">
+                  <td colspan="1"
+                    style="width:5%;  border-top: none; text-align: center; border-right: 1px solid black;">6</td>
+                  <td colspan="1" style="width:20%;  border-top: none; border-right: 1px solid black;">Delivery Period:
+                  </td>
+                  <td colspan="1" style="width:75%;  border-top: none;"> {{this.quoteData?.delivery}}</td>
+                </tr>
+
+                <tr class="terms-conditions">
+                  <td colspan="1"
+                    style="width:5%;  border-top: none; text-align: center; border-right: 1px solid black;">7</td>
+                  <td colspan="1" style="width:20%;  border-top: none; border-right: 1px solid black;">Warranty: </td>
+                  <td colspan="1" style="width:75%;  border-top: none;">
+                    {{this.quoteData?.warrenty}}</td>
+                </tr>
+
+                <tr class="terms-conditions">
+                  <td colspan="1"
+                    style="width:5%; border-top: none; text-align: center; border-right: 1px solid black;">8</td>
+                  <td colspan="1" style="width:35%; border-top: none; border-right: 1px solid black;">Quote Validity
+                    (days)</td>
+                  <td colspan="1" style="width:60%;  border-top: none;">{{this.quoteData?.deal_validity}}</td>
+                </tr>
+
+                <tr class="terms-conditions">
+                  <td colspan="1"
+                    style="width:5%;  border-top: none; text-align: center; border-right: 1px solid black;">9</td>
+                  <td colspan="1" style="width:20%;  border-top: none; border-right: 1px solid black;">Not Valid After:
+                  </td>
+                  <td colspan="1" style="width:75%; border-top: none;">{{this.validDate}}</td>
+                </tr>
+                <tr class="terms-conditions">
+                  <td colspan="1"
+                    style="width:5%;  border-top: none; text-align: center; border-right: 1px solid black; border-bottom: none;">
+                    10</td>
+                  <td colspan="1"
+                    style="width:20%; border-bottom: none; border-top: none; border-right: 1px solid black;">Other
+                    Remarks: </td>
+                  <td colspan="1" style="width:75%;  border-top: none; border-bottom: none;">{{this.quoteData?.remark}}
+                  </td>
+                </tr>
+
+              </table>
+              <table class="table table-bordeblack table-cls"
+                style="width: 650px; border: 1px solid black; margin: 0px auto; border-top: none;">
+                <tr>
+                  <td colspan="9" style="width: 100%; height: 50px; border-top: none;"></td>
+
+
+                </tr>
+                <tr>
+                  <td colspan="9" style="width: 100%; font-weight: bold; border-top: none;">E&OE</td>
+
+
+                </tr>
+                <tr>
+                  <td colspan="9" style="width: 100%; font-weight: bold;">Deliveries subject to Force Majeure.</td>
+
+
+                </tr>
+                <tr>
+                  <td colspan="9" style="width: 100%; font-weight: bold; border-top: 1px solid black;
+	text-align: center; padding: 5px;">Note: This is a computer generated quotation and does not require any signature
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </td>
+        </tr>
+      <tbody>
+      <tfoot class="footer-repeat">
+        <tr>
+          <td>
+            <div class="page-footer-space"></div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    </kendo-pdf-export>
+  </div>

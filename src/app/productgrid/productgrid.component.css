@@ -1,0 +1,107 @@
+ /* .drop-hint {
+        width: 160px;
+        height: 1px;
+        background: #333;
+      }
+
+      kendo-dropdownlist {
+        width: 170px;
+      }
+
+      .k-dialog{
+        position: static !important;
+      } */
+      .drop-hint {
+  width: 160px;
+  height: 1px;
+  background: #333;
+}
+kendo-dropdownlist {
+  width: 170px;
+}
+.k-dialog{
+  position: static !important;
+}
+.AddNewGroupBtn {
+  border: 2px solid #f60002;
+    border-radius: 5px;
+    padding: 6px 12px;
+    color: #f60002;
+    font-size: 1.3rem;
+    margin-left: 10px;
+    background: none;
+}
+.topRow {
+  display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4rem;
+    background: #e5e5e5;
+}
+.topRowCont {
+  display: flex;
+  align-items: center;
+}
+.date_icon {
+  display: flex;
+  padding-right: 3rem;
+}
+.topRowCont .date_icon .fa-calendar {
+  color: #000;
+    margin: 4px 9px 0 0;
+}
+.topRowCont h5 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0;
+  color: #000;
+}
+.topRowCont img {
+  width: 18px;
+  margin-right: 1rem;
+}
+.topRowCont button {
+  border: none;
+  border-radius: 5px;
+  padding: 6px 12px;
+  color: #fff;
+  font-size: 1.3rem;
+  margin: 1rem 1rem 1rem 0;
+  background: #f60002;
+}
+.topRowCont .closeBtn {
+  background: #2f2f2f;
+}
+.searchBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.searchBtn ng-multiselect-dropdown {
+  width: 55%;
+}
+.left {
+  /* border-right: 1px solid #b3b0b0; */
+  padding: 2rem 3.5rem;
+    /* overflow: scroll; */
+    /* height: 93.5vh; */
+    margin-top: 4rem;
+}
+.Sec_heading {
+  color: #000;
+}
+kendo-treeview {
+  overflow: auto;
+  height: 450px;
+  overflow-x: hidden;
+}
+.border {
+  border-left: 1px solid #c3c2c2;
+  height: 100vh;
+}
+
+

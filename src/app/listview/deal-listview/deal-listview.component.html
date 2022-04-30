@@ -1,0 +1,200 @@
+<app-header></app-header>
+ <app-sidenav></app-sidenav>
+ <div id="content" class="app-content"  role="main">
+  <div class="app-content-body ">
+ <div class="top">
+  <div class="row t-main">
+    <div class="col-sm-6 col-xs-12 t-main-1">
+      <h4 class="m-n  t-main1">Deal View List </h4>
+    </div>
+    <div class="col-sm-6 text-right poppins">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb t-main" style="cursor: pointer;">
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard</li>
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Deal</li>
+
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">Deal View List</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+</div>
+<kendo-grid [kendoGridBinding]="gridView" [pageSize]="10" [pageable]="true" [sortable]="false" [sort]="sort"
+  [reorderable]="true" [resizable]="true" [height]="620" [filterable]="false">
+    <ng-template kendoGridToolbarTemplate>
+      <input
+        placeholder="Search in all columns..."
+        kendoTextBox
+        (input)="onFilter($event)"
+        />
+      <kendo-grid-spacer></kendo-grid-spacer>
+      <button class=" button" style="background-color: #7266BA;border:1px solid #7266BA;"> <a routerLink="/t-deal"><i _ngcontent-suu-c437="" class="fa fa-bars"></i>
+        T - view</a></button>
+      <button *ngIf="userPermission?.dealcreate" class="button" > <a routerLink="/create-deal">Create New Deal</a></button>
+
+    </ng-template>
+
+
+      <kendo-grid-column field="deal_id" title="ID" [width]="100" [locked]="true">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name" style="color: red;">{{ dataItem.deal_id }}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="created_date_time" title="Created" [width]="130">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name" style="color:green;"><i class="fa fa-calendar-check-o"  aria-hidden="true"></i>  {{
+            dataItem.created_date_time }}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="modified_date_time" title="Modified" [width]="130">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name" style="color:red;"><i class="fa fa-calendar-plus-o"  aria-hidden="true"></i>  {{
+            dataItem.modified_date_time }}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="aging" title="Aging" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name">{{ dataItem.aging }}</div>
+        </ng-template>
+      </kendo-grid-column>
+
+
+      <kendo-grid-column field="company_name" title="Account" [width]="300">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name" style="color: red;">{{ dataItem.company_name }}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="contact_name" title="Contact" [width]="200">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name">{{ dataItem.contact_name}}</div>
+        </ng-template>
+      </kendo-grid-column>
+
+
+      <kendo-grid-column field="deal_owner" title="Deal Owner" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+
+          <div class="customer-name" >{{ dataItem.deal_owner[0].username }}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="deal_title" title="Deal Title" [width]="200">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name" >{{ dataItem.deal_title }}</div>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column
+        field="deal_type"
+        title="Deal Type"
+        [width]="100"
+        [class]="{ 'text-center': true }"
+        [resizable]="false"
+      >
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div>{{dataItem.deal_type}}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column
+        field="deal_status_stage"
+        title="Deal Status"
+        [width]="200"
+        [class]="{ 'text-center': true }"
+        [resizable]="false"
+      >
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div>{{dataItem.deal_status_stage}}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column
+      field="deal_location"
+      title="Deal Location"
+      [width]="200"
+      [class]="{ 'text-center': true }"
+      [resizable]="false"
+    >
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <div>{{dataItem.deal_location[0].branch_name}}</div>
+    </ng-template>
+    </kendo-grid-column>
+
+      <kendo-grid-column
+      title="Approval"
+      [width]="120"
+      [class]="{ 'text-center': true }"
+      [resizable]="false"
+    >
+    <ng-template kendoGridCellTemplate let-dataItem>
+
+      <div class="customer-name" >  {{ dataItem?.approved_by?.username }}</div>
+
+    </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column title="Verified" [width]="120" [class]="{ 'text-center': true }" [resizable]="false">
+      <ng-template kendoGridCellTemplate let-dataItem>
+
+        <div class="customer-name"> {{ dataItem?.verified_by?.username
+          }}</div>
+
+      </ng-template>
+    </kendo-grid-column>
+
+      <kendo-grid-column
+        title="Action"
+        [width]="70"
+        [class]="{ 'text-center': true }"
+        [resizable]="false"
+        [filterable]="false"
+
+      >
+        <ng-template kendoGridCellTemplate let-quote>
+          <kendo-menu>
+            <kendo-menu-item icon="gear">
+              <kendo-menu-item icon="edit" *ngIf="userPermission?.dealedit">
+                <ng-template kendoMenuItemTemplate >
+                  <div [routerLink]="['/edit-deal',quote.deal_id]" style="width: 100%;">
+                    Edit
+                  </div>
+                </ng-template>
+              </kendo-menu-item>
+
+              <kendo-menu-item icon="check" *ngIf="userPermission?.dealverifier && !quote.verified" >
+                <ng-template kendoMenuItemTemplate >
+                  <div (click)="handleVerify(quote._id)" style="width: 100%;">
+                    Verify
+                  </div>
+                </ng-template>
+              </kendo-menu-item>
+
+
+              <kendo-menu-item  icon="track-changes-accept-all" *ngIf="userPermission?.dealapprover && !quote.aprroved">
+                <ng-template kendoMenuItemTemplate >
+                  <div  (click)="handleApprove(quote._id)" style="width: 100%;">
+                    Approve
+                  </div>
+                </ng-template>
+              </kendo-menu-item>
+
+
+              <kendo-menu-item  icon="eye" *ngIf="userPermission?.dealview && quote.aprroved">
+                <ng-template kendoMenuItemTemplate >
+                  <div >
+                    <a [routerLink]="['/view-deal',quote.deal_id]" target="_blank">
+
+                      View Quote
+                    </a>
+                  </div>
+                </ng-template>
+              </kendo-menu-item>
+
+            </kendo-menu-item>
+          </kendo-menu>
+
+
+        </ng-template>
+      </kendo-grid-column>
+
+
+  </kendo-grid>
+  </div>
+  </div>

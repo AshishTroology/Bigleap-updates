@@ -1,0 +1,258 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+    <div class="top">
+      <div class="row t-main">
+        <div class="col-sm-6 col-xs-12 t-main-1">
+          <h4 class="m-n  t-main1">Performance</h4>
+        </div>
+        <div class="col-sm-6 text-right poppins">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb t-main" style="cursor: pointer;">
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard
+              </li>
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Performance</li>
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;"
+                routerLink="/performance-list">Performance View List</li>
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">Create New
+                Performance </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper-md" ng-controller="FormDemoCtr5">
+      <form [formGroup]="Perform" (ngSubmit)="onFormSubmit()">
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-heading font-bold">Goal setting</div>
+              <div class="panel-body">
+
+                <div class="col-md-6">
+                  <label>Create Goal ID </label>
+
+                  <input type="text" class="form-control" formControlName="goal_id" value={{this.performanceId}}
+                    [attr.disabled]=true>
+                </div>
+
+                <div class="col-md-6 form-group mSelectD">
+                  <label>Industry </label>
+                  <!-- <ng-select
+          [items]="industrydata"
+          bindLabel="industry"
+          placeholder="Select Industry"
+          [multiple]="true">
+        </ng-select> -->
+                  <ng-multiselect-dropdown [placeholder]="'Select Your Item'" [settings]="dropdownSettings1"
+                    [data]="industrydata" formControlName="industry">
+                  </ng-multiselect-dropdown>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-6 form-group mSelectD">
+                  <label>Employee </label>
+                  <ng-multiselect-dropdown [placeholder]="'Select Your Item'" [settings]="dropdownSettings"
+                    [data]="userdata" formControlName="employee">
+                  </ng-multiselect-dropdown>
+                </div>
+
+
+
+
+                <div class="col-md-6 form-group">
+                  <label>Goal Type </label>
+                  <br>
+                  <!-- <select class="form-control" formControlName="goal_type">
+            <option value="" disabled> Select Goal Type</option>
+            <option value="Revenue">Revenue</option>
+            <option value="Learning">Learning</option>
+        </select>  -->
+
+                  <div
+                    [className]="type_revenue_btn ? 'btn btn-default col-sm-5 redClass' : 'btn btn-default col-sm-5 greyClass'"
+                    (click)="getGoalType('Revenue')">
+                    <img src="../../assets/img/Group1403.png"><br />Revenue
+                  </div>
+                  <div style="margin-left:10px;"
+                    [className]="type_learning_btn ? 'btn btn-default col-sm-5 redClass' : 'btn btn-default col-sm-5 greyClass'"
+                    (click)="getGoalType('Learning')">
+                    <img src="../../assets/img/Group1404.png"><br />Learning
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="col-md-6 form-group">
+                  <label>Goal Name </label>
+                  <input type="text" class="form-control" formControlName="goal_name">
+                </div>
+
+                <div class="col-md-6 form-group">
+                  <label>Weightage</label>
+                  <input type="text" class="form-control" formControlName="weightage">
+                </div>
+
+                <div class="clearfix"></div>
+
+
+
+                <div class="col-md-6 form-group">
+                  <label>Duration</label>
+                  <select class="form-control" formControlName="duration">
+                    <option value="" disabled> Select Duration</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Quarterly">Quarterly</option>
+                    <option value="Yearly">Yearly</option>
+                    <option value="Custom">Custom</option>
+                  </select>
+                </div>
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="panel panel-default">
+              <div class="panel-heading font-bold">Lead</div>
+              <div class="panel-body">
+
+                <div class="col-md-12 form-group">
+                  <label>Lead Quantity</label>
+                  <input type="number" class="form-control" formControlName="lead_quantity">
+                </div>
+
+                <div class="col-md-12 form-group">
+                  <label>Lead Value</label>
+                  <input type="number" class="form-control" formControlName="lead_value">
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-sm-4">
+            <div class="panel panel-default">
+              <div class="panel-heading font-bold">Quote</div>
+              <div class="panel-body">
+
+                <div class="col-md-12 form-group">
+                  <label>Quote Quantity</label>
+                  <input type="number" class="form-control" formControlName="quote_quantity">
+                </div>
+
+                <div class="col-md-12 form-group">
+                  <label>Quote Value</label>
+                  <input type="number" class="form-control" formControlName="quote_value">
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-sm-4">
+            <div class="panel panel-default">
+              <div class="panel-heading font-bold">Deal</div>
+              <div class="panel-body">
+
+                <div class="col-md-12 form-group">
+                  <label>Deal Quantity</label>
+                  <input type="number" class="form-control" formControlName="deal_quantity">
+                </div>
+
+                <div class="col-md-12 form-group">
+                  <label>Quote Value</label>
+                  <input type="number" class="form-control" formControlName="deal_value">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-heading font-bold">Add Learning Based Goal</div>
+              <div class="panel-body">
+
+
+      </div>
+      </div>
+      </div>
+
+
+
+
+
+
+
+  </div>   -->
+
+
+
+
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-heading font-bold">Add Learning Based Goal </div>
+              <div class="panel-body">
+
+
+                <div class="form-group  col-md-12 " style="display: flex;align-items: flex-end;">
+                  <div class="col-md-12">
+                    <div *ngFor="let  agoal of addgoal; index as i;" style="margin: 5px 0"
+                      class="col-md-12 input-group">
+                      <div class="col-sm-9">
+                        <input (blur)="handleBlurgoal($event,i)" type="text" class="form-control"
+                          placeholder="Enter Goal" (input)="valueInsert($event,'learn_based_goal',i)">
+                      </div>
+                      <div class="col-sm-3">
+                        <input (blur)="handleBlurgoal($event,i)" type="text" class="form-control"
+                          placeholder="Enter Weightage" (input)="valueInsert($event,'learn_based_weightage',i)">
+                      </div>
+                      <span (click)="handleDeletegoal(i)" style="cursor: pointer;border: 1px solid rgb(175, 170, 170);"
+                        class="input-group-addon">X</span>
+
+
+                    </div>
+                  </div>
+                  <div class="input-group-addon " (click)="handleAddgoal()"
+                    style="margin: 5px 0; color:red;font-size:20px;background:white;border-left: 1px solid #cfdadd; width: 35px;cursor: pointer;">
+                    +</div>
+                </div>
+
+
+
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
+        <div style="text-align: right; margin:10px 0px;margin-right:16px;">
+          <a href="/performance-list" class="btn btn-dark">Cancel</a>
+          <button type="submit" class="btn btn-danger" [disabled]="isValidbutton"
+            (click)="saveform('save')">Save</button>
+
+        </div>
+      </form>
+
+      <!-- End content3 -->
+    </div>
+
+
+  </div>

@@ -1,0 +1,1222 @@
+<app-header *ngIf="!this.checkProductGrid"></app-header>
+<app-sidenav *ngIf="!this.checkProductGrid"></app-sidenav>
+<app-productgrid *ngIf="this.checkProductGrid" (dataChanged)="dataChangedHandler($event)" [gridData]="this.data">
+</app-productgrid>
+<div id="content" class="app-content" role="main" *ngIf="!this.checkProductGrid">
+    <div class="app-content-body ">
+
+      <div class="top">
+        <div class="row t-main">
+          <div class="col-sm-6 col-xs-12 t-main-1">
+            <h4 class="m-n  t-main1">Create Deal </h4>
+          </div>
+          <div class="col-sm-6 text-right poppins">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb t-main" style="cursor: pointer;">
+                <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard</li>
+                <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Deal</li>
+                <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/deal">Deal View List</li>
+                <!-- <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;"> Account View List</li> -->
+                <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">Create New Deal</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+
+      </div>
+  <form  [formGroup]="dealForm">
+  <div class="wrapper-md" ng-controller="FormDemoCtrl">
+    <!-- <form class="form-horizontal" role="form" enctype="multipart/form-data" method="post" action='/deals/createdeal' > -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+        <div class="panel-heading"><b>Deal Information</b>  </div>
+          <!-- <div class="panel-heading font-bold">Add Slider</div> -->
+          <div class="panel-body">
+
+                    <div class="col-md-4 form-group">
+                      <label >Deal ID <span class="text-danger">*</span> </label>
+                        <input type="text" value={{this.dealId}} [attr.disabled]=true class="form-control" placeholder="Enter Your deal ID" formControlName="deal_id">
+                      </div>
+
+
+                      <div class="col-md-4 form-group">
+                        <label >Deal Owner <span class="text-danger">*</span>  </label>
+
+                          <!-- <input type="text" value={{this.currentUser}} [attr.disabled]=true class="form-control" placeholder="Enter Your deal ID" formControlName="deal_owner"> -->
+                          <ng-multiselect-dropdown
+                          [placeholder]="'Select a User'"
+                          [settings]="ownerDropdownSettings"
+                          [(ngModel)]="selectedUser"
+                          [data]="users"
+                          formControlName="deal_owner"
+                          (onSelect)="handleOwnerChange($event)"
+                          >
+                        </ng-multiselect-dropdown>
+                      </div>
+
+
+
+                      <div class="form-group  col-md-4 ">
+                        <label>Comapny Name<span class="text-danger">*</span></label>
+
+                          <div class="input-group">
+                            <span class="input-group-addon  " style="color:gray;font-size:20px;background:white; border-right:0px;"><i class="fa fa-building"></i></span>
+                            <!-- <select formControlName="company_name" id="company_name" class="form-control"  style="border-left:0px;"   >
+                              <option  selected disabled> Lead Owner </option>
+                              <option value=""></option>
+                              <option value=""></option>
+                              <option value=""></option>
+                              <option value=""></option>
+                              <option value=""></option>
+                            </select> -->
+                            <ng-multiselect-dropdown
+                            [placeholder]="'Select a Company'"
+                            [settings]="dropdownSettings"
+                            [data]="accountData"
+                            formControlName="company"
+                            (onSelect)="onItemSelect($event)"
+                            >
+                            </ng-multiselect-dropdown>
+                            <span class="input-group-addon " style="color:red;font-size:20px;background:white;border-radius: 0px;"><a routerLink="/create-account">+</a></span>
+                        </div>
+                        <div *ngIf="f.company.errors && f.company.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 errorcontrols">
+                            <div *ngIf="f.company.errors.required"><small>Company Name is required.</small></div>
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                      <div class="form-group  col-md-4 ">
+                        <label >Contact <span class="text-danger">*</span></label>
+
+                          <div class="input-group">
+                            <span class="input-group-addon  " style="color:gray;font-size:20px;background:white;border-radius: 0px; border-right:0px;"><i class="fa fa-user"></i></span>
+                            <ng-multiselect-dropdown
+                            [placeholder]="'Select a Contact'"
+                            [settings]="contactDropdownSettings"
+                            [data]="contactTempData"
+                            formControlName="contact"
+                            (onSelect)="onContactSelect($event)"
+                            >
+                            </ng-multiselect-dropdown>
+                            <span class="input-group-addon " style="color:red;font-size:20px;background:white;border-radius: 0px;"><a routerLink="/create-contact">+</a></span>
+                        </div>
+                        <div *ngIf="f.contact.errors && f.contact.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 errorcontrols">
+                            <div *ngIf="f.contact.errors.required"><small>Contact Name is required.</small></div>
+                          </div>
+                        </div>
+
+
+
+
+
+                      <div class="col-md-4 form-group">
+                        <label >Deal Source <span class="text-danger">*</span>  </label>
+
+                        <!-- <select formControlNam="deal_source" id="deal_source" class="form-control"  >
+                          <option  selected disabled> Deal Source </option>
+                          <option value=""></option>
+                        </select>  -->
+                        <select formControlName="deal_source" id="deal_source" class="form-control"  >
+                          <option value="" selected disabled> Deal Source </option>
+                          <option value="Inbound OEM">Inbound OEM</option>
+                          <option value="Inbound Direct Customer">Inbound Direct Customer</option>
+                          <option value="Inbound Advertisement">Inbound Advertisement</option>
+                          <option value="Outbound Cold Call">Outbound Cold Call</option>
+                          <option value="Outbound Routine">Outbound Routine</option>
+                          <option value="Website">Website</option>
+                          <option value="Others">Others</option>
+                        </select>
+                        <div *ngIf="f.deal_source.errors && f.deal_source.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 errorcontrols">
+                            <div *ngIf="f.deal_source.errors.required"><small>Deal source is required.</small></div>
+                          </div>
+                        </div>
+
+
+
+
+                      <div class="col-md-4 form-group">
+                        <label >Deal Title <span class="text-danger">*</span> </label>
+                          <input type="text" class="form-control" placeholder="Enter Deal Title" formControlName="deal_title">
+                          <div *ngIf="f.deal_title.errors && f.deal_title.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 errorcontrols">
+                            <div *ngIf="f.deal_title.errors.required"><small>Deal Title is required.</small></div>
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+
+
+
+
+
+                      <div class="col-md-4 form-group">
+                        <label >Deal Type <span class="text-danger">*</span> </label>
+
+                          <select formControlName="deal_type" id="deal_type" class="form-control"  >
+                            <option value="" selected disabled> Deal Type </option>
+                            <option value="Project">Project</option>
+                            <option value="Solution">Solution</option>
+                            <option value="Standard">Standard</option>
+                          </select>
+                          <div *ngIf="f.deal_type.errors && f.deal_type.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 errorcontrols">
+                            <div *ngIf="f.deal_type.errors.required"><small>Deal type is required.</small></div>
+                          </div>
+                        </div>
+
+
+                    <div class="col-md-4 form-group">
+                      <label >Referral  </label>
+
+                        <input type="text" class="form-control" placeholder="Enter Your Referral" formControlName="referral">
+                      </div>
+
+
+
+
+
+
+                    <!-- <div class="col-md-4 form-group">
+                        <label >Industry  <span class="text-danger">*</span>  </label>
+
+                          <select formControlName="industry" id="industry" class="form-control"  >
+                            <option value=""  selected disabled> Industry </option>
+                            <option value="Casting & Forging">Casting & Forging</option>
+                            <option value="Defence">Defence</option>
+                            <option value="Heavy - Power / Steel">Heavy - Power / Steel</option>
+                            <option value="Integrator">Integrator</option>
+                            <option value="MVI OEM">MVI OEM</option>
+                            <option value="MVI Vendor">MVI Vendor</option>
+                            <option value="Non MVI Assembly">Non MVI Assembly</option>
+                            <option value="Non MVI Process">Non MVI Process</option>
+                            <option value="Government /  Public Sector">Government /  Public Sector</option>
+                            <option value="Railways">Railways</option>
+                            <option value="Trader Misc">Trader Misc</option>
+                            <option value="Others">Others</option>
+                          </select>
+                          <div *ngIf="f.industry.errors && f.industry.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 errorcontrols">
+                            <div *ngIf="f.industry.errors.required"><small>Industry is required.</small></div>
+                          </div>
+                        </div> -->
+
+                        <div class="col-md-4 form-group">
+                          <label >Deal Estimated Value  </label>
+                          <input type="number" class="form-control" placeholder="Enter Your Estimated Value" formControlName="deal_estimated_value">
+                        </div>
+
+
+                        <div class="clearfix"></div>
+
+
+                    <div class="col-md-4 form-group">
+                        <label >Deal Status <span class="text-danger">*</span>  </label>
+
+                        <select formControlName="deal_status_stage" id="deal_status_stage" class="form-control"  >
+                          <option value="" selected disabled>Deal Status </option>
+                          <option value="Information Required">Information Required</option>
+                          <option value="Lost">Lost</option>
+                        </select>
+                        <div *ngIf="f.deal_status_stage.errors && f.deal_status_stage.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 errorcontrols">
+                            <div *ngIf="f.deal_status_stage.errors.required"><small>Deal status is required.</small></div>
+                          </div>
+                      </div>
+
+
+                    <div class="col-md-4 form-group">
+                      <label >Deal From -( DT Company Branch)  <span class="text-danger">*</span>  </label>
+
+                      <ng-multiselect-dropdown
+                      [placeholder]="'Select a Location'"
+                      [settings]="locationDropdownSettings"
+                      [(ngModel)]="selectedBranch"
+                      [data]="branchData"
+                      formControlName="deal_location"
+                      (onSelect)="handleLocationChange($event)"
+                      >
+                    </ng-multiselect-dropdown>
+
+                      <div *ngIf="f.deal_location.errors && f.deal_location.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 errorcontrols">
+                            <div *ngIf="f.deal_location.errors.required"><small>Deal from is required.</small></div>
+                          </div>
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                      <label>Select Sales Person:<span class="text-danger">*</span> </label>
+
+                      <ng-multiselect-dropdown
+                        [placeholder]="'Select a Sales Person'"
+                        [settings]="salesPersonDropdownSettings"
+                        [data]="salesPersonData"
+                        formControlName="sales_person"
+                        >
+                      </ng-multiselect-dropdown>
+
+                      <div *ngIf="f.sales_person.errors && f.sales_person.errors.required && isValidFormSubmitted"
+                      class="text-danger text-left mb-1 errorcontrols">
+                      <div *ngIf="f.sales_person.errors.required"><small>Quote From is required.</small></div>
+                    </div>
+                    </div>
+
+                  <div class="clearfix"></div>
+                  </div>
+                </div>
+
+                  <!-------start content2-->
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="panel panel-default">
+                      <div class="panel-heading font-bold">Account Information </div>
+                      <div class="panel-body">
+
+                        <div class="col-md-4 form-group">
+                          <label >Industry </label>
+
+
+
+                          <input type="text" value={{this.company_industry}} [attr.disabled]=true class="form-control" placeholder="Company Industry" >
+                        </div>
+
+
+                        <div class="col-md-4 form-group">
+                          <label>Country   </label>
+
+
+                          <input type="text" value={{this.company_country}} [attr.disabled]=true class="form-control" placeholder="Company Country" >
+                        </div>
+
+
+                        <div class="col-md-4 form-group">
+                          <label >State    </label>
+
+                          <!-- <select formControlNam="" id="" class="form-control"  >
+                            <option  selected disabled> Select State  </option>
+                            <option value="">drs</option>
+                            <option value="">vf</option>
+                            <option value=""></option>
+                          </select>  -->
+                          <input type="text" value={{this.company_state}} [attr.disabled]=true class="form-control" placeholder="Company State" >
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="col-md-4 form-group">
+                          <label >City    </label>
+
+                          <!-- <select formControlNam="" id="" class="form-control"  >
+                            <option  selected disabled> Select City </option>
+                            <option value="">drs</option>
+                            <option value="">vf</option>
+                            <option value=""></option>
+                          </select>  -->
+                          <input type="text" value={{this.company_city}} [attr.disabled]=true class="form-control" placeholder="Company City" >
+                        </div>
+
+
+                        <div class="col-md-4 form-group">
+                          <label >Location   </label>
+
+                            <input type="text" value={{this.company_location}} [attr.disabled]=true class="form-control" placeholder="Company Location">
+                          <!-- <input type="text"  class="form-control " placeholder="Enter Location" formControlNam="account_id"/> -->
+                        </div>
+
+
+                        <div class="col-md-4 form-group">
+                          <label>GST  </label>
+                            <input type="text" value={{this.company_gst}} [attr.disabled]=true class="form-control" placeholder="Company GST" >
+                          <!-- <input type="text"  class="form-control " placeholder="Enter GST" formControlNam="gst"/> -->
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="col-md-4 form-group">
+                          <label >PAN </label>
+
+                          <input type="text" value={{this.company_pan}} [attr.disabled]=true class="form-control" placeholder="Company PAN" >
+                          <!-- <input type="text"  class="form-control " placeholder="Enter GST" formControlNam="pan"/> -->
+                        </div>
+
+
+                        <div class="col-md-4 form-group">
+                          <label >TAN  </label>
+                          <input type="text" value={{this.company_tan}} [attr.disabled]=true class="form-control" placeholder="Company TAN" >
+                          <!-- <input type="text"  class="form-control " placeholder="Enter TAN" formControlNam="tan"/> -->
+                        </div>
+
+
+                        <div class="col-md-4 form-group">
+                          <label >CIN </label>
+
+                          <input type="text" value={{this.company_cin}} [attr.disabled]=true class="form-control" placeholder="Company CIN" >
+                          <!-- <input type="text"  class="form-control " placeholder="Enter CIN" formControlNam="tan"/> -->
+                        </div>
+                        <div class="clearfix"></div>
+
+              </div>
+              </div>
+            </div>
+          </div>
+              <!-------end content2-->
+                      <!-------start content3-->
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="panel panel-default">
+                    <div class="panel-heading font-bold">Contact Information</div>
+                    <div class="panel-body">
+
+                      <div class="col-md-4 form-group">
+                        <label >Role  </label>
+
+                          <input type="text" value={{this.contact_role}} [attr.disabled]=true class="form-control" placeholder="Contact Role" >
+                        <!-- <input type="text"  class="form-control " placeholder="" formControlNam=""/> -->
+                      </div>
+
+
+
+                      <div class="col-md-4 form-group">
+                        <label >Contact Name  </label>
+
+                        <!-- <select name="" id="" class="form-control"  >
+                          <option  selected disabled>   </option>
+                          <option value="">drs</option>
+                          <option value="">vf</option>
+                          <option value=""></option>
+                          <option value=""></option>
+                          <option value=""></option>
+                        </select>  -->
+                        <input type="text" value={{this.contact_name}} [attr.disabled]=true class="form-control" placeholder="Contact Name" >
+                      </div>
+
+
+
+                      <div class="col-md-4 form-group">
+                        <label >phone </label>
+
+                          <input type="text" value={{this.contact_phone}} [attr.disabled]=true class="form-control" placeholder="Contact Phone" >
+                        <!-- <input type="text"  class="form-control " placeholder="" name=""/> -->
+                      </div>
+                      <div class="clearfix"></div>
+
+                      <div class="col-md-4 form-group">
+                        <label >Mobile </label>
+
+                        <input type="text" value={{this.contact_mobile}} [attr.disabled]=true class="form-control" placeholder="Contact Mobile" >
+                        <!-- <input type="text"  class="form-control " placeholder="" name=""/> -->
+                      </div>
+
+
+                      <div class="col-md-4 form-group">
+                        <label >Email </label>
+                        <input type="text" value={{this.contact_email}} [attr.disabled]=true class="form-control" placeholder="Contact Email" >
+                        <!-- <input type="text"  class="form-control " placeholder="" name=""/> -->
+                      </div>
+                      <div class="clearfix"></div>
+
+            </div>
+            </div>
+          </div>
+        </div>
+        <!-- End content3 -->
+  <!---------start content4-->
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading font-bold">Remark </div>
+        <div class="panel-body">
+
+          <div class="col-md-12 form-group">
+
+              <input type="text" class="form-control" placeholder="remark" formControlName="remark">
+            </div>
+          </div>
+
+  </div>
+  </div>
+  </div>
+  <!---------end content4-->
+               <!-------start content5-->
+            <div class="row">
+              <div class="col-sm-12" >
+                <div class="panel panel-default">
+                <div class="panel-body">
+                  <div style="text-align: right;">
+                    <button class="add-group" (click)="setItem()">ADD Items</button>
+
+                  </div>
+                    <br>
+                  <div id="productListDropdown" class="example-wrapper">
+
+                    <kendo-treelist kendoTreeListExpandable [data]="data" [fetchChildren]="fetchChildren" [hasChildren]="hasChildren"
+                      [pageable]="true" [pageSize]="20" [sortable]="true" [sort]="sort" [navigable]="true">
+
+
+                      <kendo-treelist-column [width]="30">
+
+                        <ng-template kendoTreeListCellTemplate let-dataItem>
+                          <input type="checkbox" *ngIf='dataItem.type==="Group"' name="dataItem.id"
+                            (change)="selectProducts(dataItem,$event)">
+                        </ng-template>
+                      </kendo-treelist-column>
+
+                      <kendo-treelist-column [expandable]="true" field="productname" title="Product Name" [width]="270">
+                        <ng-template kendoTreeListCellTemplate let-dataItem>
+
+                          <span class="k-icon k-i-{{
+                                                                      dataItem.type === 'Group' ? 'folder' : 'file'
+                                                                    }}"></span>
+                          <b>{{ dataItem.PartNo }}</b> - {{ (dataItem.productname) }}
+                        </ng-template>
+                      </kendo-treelist-column>
+                      <kendo-treelist-column field="type" title="Type" [width]="70">
+                      </kendo-treelist-column>
+                      <kendo-treelist-column title="GST" [width]="100">
+                        <ng-template kendoTreeListCellTemplate let-product>
+                          {{product.GST==""?0:product.GST}}<br /> <span class="text-danger"><i class="fa fa-rupee"></i>
+                            {{decimalFormat(setGst(product.amount,product.GST))}}</span>
+                        </ng-template>
+                      </kendo-treelist-column>
+                      <kendo-treelist-column title="Unit Price" field="UnitPrice" [width]="100">
+                        <ng-template kendoTreeListCellTemplate let-amount>
+                          <div style="text-align: right;"><i class="fa fa-rupee"></i> {{amount.UnitPrice | number : '1.2'}}</div>
+                        </ng-template>
+                      </kendo-treelist-column>
+
+                      <kendo-treelist-column title="Quantity" field="quantity" [width]="70">
+
+                      </kendo-treelist-column>
+
+
+
+
+                      <kendo-treelist-column title="Discount(%)" field="discount" [width]="80">
+
+                      </kendo-treelist-column>
+
+                      <kendo-treelist-column title="Amount" [width]="100">
+                        <ng-template kendoTreeListCellTemplate let-amount>
+                          <div style="text-align: right;">{{amount.amount | number : '1.2'}}</div>
+                        </ng-template>
+                      </kendo-treelist-column>
+
+
+
+                    </kendo-treelist>
+
+
+                  <!-- <button type="button" (click)="checkMergeSelection()" >Merge</button> -->
+                  <div class="product_footer">
+                    <div>
+                  <div class="clearfix"></div>
+                  <p><span class="pull-left">Total Quantity : </span> <span class="pull-right fw600">{{this.totalQuantity}}</span></p>
+                  </div>
+
+
+                  <div class="totalSumValue">
+                    <p><span class="pull-left">Total:</span> <span class="pull-right"><i class="fa fa-rupee text-danger"></i>   {{this.totalAmount | number : '1.2'}}</span></p>
+                    <div class="clearfix"></div>
+                    <p><span class="pull-left">Taxable Amount:</span> <span class="pull-right"  *ngIf="this.taxableAmount != null"><i class="fa fa-rupee text-danger"></i>  {{this.taxableAmount | number : '1.2'}}</span></p>
+                    <!-- <div class="clearfix"></div>
+                    <p><span class="pull-left">Total Quantity:</span> <span class="pull-right">{{this.totalQuantity}}</span></p> -->
+                    <div class="clearfix"></div>
+                    <hr>
+                    <p><span class="pull-left fw600">Grand Total:</span> <span class="pull-right fw600" *ngIf="this.taxableAmount != null"><i class="fa fa-rupee text-danger"></i> {{this.totalAmount+this.taxableAmount | number : '1.2'}}</span></p>
+                    <div class="clearfix"></div>
+                  </div>
+
+                </div>
+
+
+                  <div id="myModalgroup2" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Add Group</h4>
+                        </div>
+                        <div class="modal-body">
+                         <!-- <input class="form-control" type="text" value={{this.groupName}} (input)="inputName($event)"> -->
+
+                         <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <!-- <input type="text" class="form-control  input-sm" placeholder="Enter HSN Code" formControlName="Enter HSN Code"> -->
+                              <input class="form-control" type="text" value={{this.groupName}} (input)="inputName($event)" placeholder="Enter Name">
+                            </div>
+                          </div>
+
+                        </div>
+
+                         <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <input type="text" class="form-control " placeholder="Enter HSN Code" formControlName="Enter HSN Code" value={{this.hsncode}} (input)="inputhsn($event)">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <input type="text" class="form-control " placeholder="Enter GST" type="number" value={{this.gst}} (input)="inputgst($event)">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Enter UOM"  value={{this.uom}} (input)="inputuom($event)">
+                            </div>
+                          </div>
+
+                        </div>
+
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                        <div class="modal-footer">
+                          <button type="button"  class="btn btn-default" id="closenameinp" data-dismiss="modal">Close</button>
+                          <button type="button"  class="btn btn-primary" (click)="checkAddGroup()" >Save</button>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+
+
+
+
+
+                  <input type="hidden" id="showmodal" data-toggle="modal" data-target="#myModal">
+
+                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="productLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="productLabel">Product Merge</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body " style="min-height: 200px;">
+                          <div class="col-md-12 form-group">
+                            <label>Enter Product Merge Name:</label>
+                            <input  (input)="inputName($event)" value={{this.groupName}} type="text" class="form-control">
+
+                          </div>
+                          <div class="col-md-12">
+                            <table class="table" >
+                              <thead>
+                                <tr>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Type</th>
+                                  <th scope="col">Price</th>
+                                  <th scope="col">Amount</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let prdc of selectedProduct">
+                                  <td>{{prdc.productname}}</td>
+                                  <td>{{prdc.type}}</td>
+                                  <td>{{prdc.UnitPrice}}</td>
+                                  <td>{{prdc.amount}}</td>
+                                </tr>
+                                  <tr >
+                                    <th></th>
+                                    <th>Group Part No</th>
+                                    <th>Group Price</th>
+                                    <th>Group Amount</th>
+                                  </tr>
+                                  <tr >
+                                    <th></th>
+                                    <td>{{this.groupPartNumber}}</td>
+                                    <td>{{this.groupSize}}</td>
+                                    <td>{{this.groupAmount}}</td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" id="closebtn" class="btn btn-dark" data-dismiss="modal">Close</button>
+                          <button type="button" (click)="mergeSelection()" class="btn btn-primary">Merge Selected Products</button>
+
+                          <!-- (click)="MergeProducts()" -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  </div>
+
+
+           </div>
+          </div>
+          </div>
+        </div>
+            <!-------end content5-->
+            <!------end content6-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="panel panel-default">
+                <div class="panel-heading font-bold">Note</div>
+                <div class="panel-body">
+
+
+                  <div class="col-md-12 form-group">
+
+                      <input type="text" class="form-control" placeholder="Enter Note" formControlName="note">
+                    </div>
+                  </div>
+
+        </div>
+        </div>
+      </div>
+        <!-- End content6 -->
+         <!------end content7-->
+         <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+
+              <div class="panel-body">
+                <div class="col-md-12">
+                  <div class="col-md-10 ">
+                 <b> Attachment</b>
+                 </div>
+                 <div  style="text-align: right;padding-right:18px;">
+                  <b onclick="$('#file').click()" style="cursor: pointer;">Attach <i class="fa fa-paperclip " aria-hidden="true"></i></b>
+                      <input accept="application/pdf,image/*" type="file" (change)="handleAttachmentUpload($event)" multiple encType="multipart/form-data" class="form-control " placeholder="Uplode your Company Logo" id="file" formControlName="attachments" style="font-size:12px; border-right:0px;display: none;" >
+                  </div>
+                 </div>
+                <br>
+                <br>
+                <div class="row">
+                <div class="col-md-12"  style="padding:0px;">
+                 <table class="table">
+                 <thead>
+                                  <tr style="background:#FFE5E5; ">
+                                      <th>File Name</th>
+                                      <th>Attach By </th>
+                                      <th>Date added</th>
+                                      <th>Size</th>
+                                      <th></th>
+
+                                  </tr>
+                                  <tr *ngFor="let file of files_url,index as i"><th>
+                                    <!-- <a href="" style="color:blue">{{file.name}}</a></th> -->
+                                    <p  style="color:blue"><a href="{{file.img_url}}" target="_blank">{{file.name}}</a></p></th>
+                                    <th>{{file.attached_by}} </th>
+                                      <th>{{file.upload_date}}</th>
+                                      <th>{{file.size}}</th>
+                                      <th><i (click)="removeAttachment(i)" style="cursor:pointer;" class="fa fa-trash" aria-hidden="true"></i></th>
+                                      </tr>
+                              </thead>
+                 </table>
+                </div>
+                </div>
+                </div>
+      </div>
+      </div>
+    </div>
+    <!--end -->
+  <!------end content8-->
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading font-bold">Sales Order No <span class="text-danger">*</span></div>
+        <div class="panel-body">
+
+
+          <div class="col-md-12 form-group">
+
+              <input type="text" class="form-control" placeholder="Enter Order Sales number" formControlName="sales_order_no">
+              <div *ngIf="f.sales_order_no.errors && f.sales_order_no.errors.required && isValidFormSubmitted"
+            class="text-danger text-left mb-1 errorcontrols">
+            <div *ngIf="f.sales_order_no.errors.required"><small>Sales Order No is required.</small></div>
+          </div>
+            </div>
+
+          </div>
+
+  </div>
+  </div>
+  </div>
+  <!-- End content8 -->
+         <!----content9----->
+    <!-- <div class="row">
+      <div class="col-sm-12">
+      <div class="panel panel-default">
+
+      <div class="panel-body">
+      <div class="col-md-12">
+      <div class="col-md-9 ">
+     <b>Open activity</b>
+     </div>
+     <div  style="text-align: right;">
+      <button  type="button"  class="c-btn">+Task </button>
+      <button  type="button"  class="c-bt">+Metting </button>
+      <button  role="button"class="c-btn">+call</button>
+      </div>
+     </div>
+    <br>
+    <br>
+    <div class="row " >
+    <div class="col-md-12 "  style="padding:0px;">
+     <table class="table">
+     <thead>
+                      <tr style="background:#FFE5E5;">
+                          <th>Subject</th>
+                          <th>Activity Type </th>
+                          <th>status</th>
+                          <th>Due Date</th>
+                          <th>Form</th>
+                          <th>to</th>
+                          <th>Call start Time</th>
+                          <th>Activity Owner</th>
+                          <th>Modified Time</th>
+
+                      </tr>
+                      <tr><th>
+                        <a href="" style="color:blue">task</a></th>
+                          <th> </th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+
+                          </tr>
+                  </thead>
+     </table>
+    </div>
+   </div>
+      </div>
+     </div>
+     </div>
+     </div> -->
+     <!---- end content9----->
+                      <!----content10----->
+                      <!-- <div class="row">
+                        <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"> <b>Close activity</b></div>
+                        <div class="panel-body">
+
+
+                        </div>
+                       </div>
+                        </div>
+                      </div>  -->
+                       <!---- end content10----->
+  <!------end content11-->
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading font-bold">INCO Terms <span class="text-danger">*</span></div>
+        <div class="panel-body">
+
+          <!-- <div  class="form-group  col-md-12 " style="display: flex;align-items: flex-end;">
+              <div class="col-md-12" >
+                <div *ngFor="let term of incoTerm; index as i;" style="margin: 5px 0" class="col-md-12 input-group">
+
+                  <input  (blur)="handleBlurIncoTerm($event,i)"  value={{term.value}} type="text" class="form-control" placeholder="Input Term" >
+                  <span (click)="handleDeleteIncoTerm(i)" style="cursor: pointer;" class="input-group-addon">X</span>
+                </div>
+              </div>
+              <div class="input-group-addon "  (click)="handleAddIncoTerm()"   style="margin: 5px 0; color:red;font-size:20px;background:white;border-left: 1px solid #cfdadd; width: 35px;cursor: pointer;">+</div>
+            </div> -->
+            <div class="col-md-12 form-group">
+
+              <select  formControlName="p_f" id="p_f" class="form-control"  >
+                <option value="" selected disabled>Select INCO TERMS   </option>
+                <option value="DOD - Door delivery to your plant">DOD - Door delivery to your plant</option>
+                <option value="FOB Lucknow">FOB Lucknow</option>
+                <option value="FOB Rudrapur">FOB Rudrapur</option>
+                <option value="Others">Others</option>
+              </select>
+              <div *ngIf="f.p_f.errors && f.p_f.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 errorcontrols">
+                            <div *ngIf="f.p_f.errors.required"><small>INCO Terms is required.</small></div>
+                          </div>
+            </div>
+          </div>
+
+
+  </div>
+  </div>
+  </div>
+
+  <!-- End content11-->
+
+  <!------end content12-->
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading font-bold">Payment Terms <span class="text-danger">*</span></div>
+        <div class="panel-body">
+
+
+
+            <div class="col-md-12 form-group">
+
+              <select formControlName="p_t" id="p_t" class="form-control"  >
+                <option value="" selected disabled>Select Payment Terms    </option>
+
+                <option value="100% within 30 days of GR">100% within 30 days of GR</option>
+                <option value="100% within 7 days of GR">100% within 7 days of GR</option>
+                <option value="100% immediately against delivery">100% immediately against delivery</option>
+                <option value="100% against delivery on COD Basis">100% against delivery on COD Basis</option>
+                <option value="100% against Pro forma Invoice before dispatch">100% against Pro forma Invoice before dispatch</option>
+                <option value=" 90% within 30 days of GR 10% after I&C & Others"> 90% within 30 days of GR 10% after I&C & Others</option>
+
+              </select>
+              <div *ngIf="f.p_t.errors && f.p_t.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 errorcontrols">
+                            <div *ngIf="f.p_t.errors.required"><small>Payment Terms  is required.</small></div>
+                          </div>
+
+            </div>
+          </div>
+
+          </div>
+
+  </div>
+  </div>
+  <!-- End content12-->
+  <!-- start content13-->
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading font-bold">Terms & Conditions</div>
+        <div class="panel-body">
+
+          <div class="col-md-12 form-group">
+            <label  >P&F <span class="text-danger">*</span></label>
+
+              <select formControlName="inco_terms" id="inco_terms" class="form-control"  >
+                <option value="" selected disabled>Select P&F   </option>
+                <option value="Not applicable">Not applicable</option>
+                <option value="Inclusive">Inclusive</option>
+                <option value="Extra @2%">Extra @2%</option>
+                <option value="Extra  @3%">Extra  @3%</option>
+
+              </select>
+              <div *ngIf="f.inco_terms.errors && f.inco_terms.errors.required && isValidFormSubmitted"
+                            class="text-danger text-left mb-1 errorcontrols">
+                            <div *ngIf="f.inco_terms.errors.required"><small>P&F is required.</small></div>
+                          </div>
+            </div>
+
+
+          <div class="col-md-12 form-group">
+            <label >Freight <span class="text-danger">*</span> </label>
+
+              <select formControlName="freight" id="freight" class="form-control"  >
+                <option value="" selected disabled>Select Freight   </option>
+                <option value="Not applicable">Not applicable</option>
+                <option value="Inclusive">Inclusive</option>
+                <option value="Extra as per actuals to  your account">Extra as per actuals to  your account</option>
+                <option value="Dispatch  on 'To Pay' basis">Dispatch  on 'To Pay' basis</option>
+                <option value="Others">Others</option>
+
+              </select>
+              <div *ngIf="f.freight.errors && f.freight.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.freight.errors.required"><small>Freight is required.</small></div>
+            </div>
+          </div>
+          <div class="col-md-12 form-group">
+            <label >Taxes <span class="text-danger">*</span></label>
+
+              <select formControlName="taxes" id="taxes" class="form-control"  >
+                <option value="" selected disabled>Select Taxes  </option>
+                <option value="Extra as applicable">Extra as applicable</option>
+                <option value="Others">Others</option>
+
+              </select>
+              <div *ngIf="f.taxes.errors && f.taxes.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.taxes.errors.required"><small>Taxes is required.</small></div>
+            </div>
+            </div>
+
+          <div class="col-md-4 form-group">
+            <label >Other  </label>
+              <!-- <select formControlName="other_charges" id="other_charges" class="form-control"  >
+                <option  selected disabled>Select Other  </option>
+                <option value="">drs</option>
+
+              </select> -->
+              <input type="text" class="form-control" placeholder="Enter Others" formControlName="other_charges" >
+
+
+            </div>
+
+
+          <div class="col-md-4 form-group">
+            <label >Delivery <span class="text-danger">*</span></label>
+
+            <select formControlName="delivery" id="delivery" class="form-control"  >
+              <option value="" selected disabled> Select Delivery  </option>
+              <option value="1-2 weeks">1-2 weeks</option>
+              <option value="3-4 weeks">3-4 weeks</option>
+              <option value="4-6 weeks">4-6 weeks</option>
+              <option value="6-8 weeks">6-8 weeks</option>
+              <option value="8-10 weeks">8-10 weeks</option>
+              <option value="10-12 weeks">10-12 weeks</option>
+              <option value="12-16 weeks">12-16 weeks</option>
+              <option value="Others">Others</option>
+            </select>
+            <div *ngIf="f.delivery.errors && f.delivery.errors.required && isValidFormSubmitted"
+            class="text-danger text-left mb-1 errorcontrols">
+            <div *ngIf="f.delivery.errors.required"><small>Delivery is required.</small></div>
+          </div>
+          </div>
+
+
+
+
+
+          <div class="col-md-4 form-group">
+            <label >Warranty <span class="text-danger">*</span> </label>
+
+            <select formControlName="warranty" id="warranty" class="form-control"  >
+              <option value="" selected disabled> Select  Warranty </option>
+              <option value="Not Applicable">Not Applicable</option>
+              <option value="6 months (from date of  sale)">6 months (from date of  sale)</option>
+              <option value="12 months (from  date of sale)">12 months (from  date of sale)</option>
+              <option value="Others">Others </option>
+            </select>
+            <div *ngIf="f.warranty.errors && f.warranty.errors.required && isValidFormSubmitted"
+            class="text-danger text-left mb-1 errorcontrols">
+            <div *ngIf="f.warranty.errors.required"><small>Warranty is required.</small></div>
+          </div>
+          </div>
+        <div class="clearfix"></div>
+
+
+          <div class="col-md-12 form-group">
+            <label >Deal Validity </label>
+          </div>
+          <div class="col-md-12 form-group">
+            <div class="col-md-2 deal_div" style="border: 1px solid black;">
+              <input type="radio"  name="validity" (click)="handleCheckbox('7 Days')" style="font-size:12px;"/> 7 Days
+            </div>
+            <div class="col-md-2 deal_div" style="border: 1px solid black;">
+              <input type="radio" name="validity" (click)="handleCheckbox('15 Days')" style="font-size:12px;"/> 15 Days
+            </div>
+            <div class="col-md-2 deal_div" style="border: 1px solid black;">
+              <input type="radio" name="validity"  (click)="handleCheckbox('30 Days')"  style="font-size:12px;"/> 30 Days
+            </div>
+            <div class="col-md-2 deal_div" style="border: 1px solid black;">
+              <input type="radio" name="validity" (click)="handleCheckbox('60 Days')" style="font-size:12px;"/> 60 Days
+            </div>
+            <div class="col-md-2  deal_div" style="border: 1px solid black;">
+              <input type="radio" name="validity"  (click)="handleCheckbox('90 Days')" style="font-size:12px;"/> 90 Days
+            </div>
+            <div class="col-md-2 deal_div" style="border: 1px solid black;">
+              <input type="radio" name="validity"  (click)="handleCheckbox('Other')" style="font-size:12px;"/> Other
+            </div>
+            <div class="col-md-1 deal_div" style="border: 1px solid black;">
+              <!-- <input type="datetime-local"> -->
+              {{dt}}
+            </div>
+            </div>
+
+  </div>
+
+  </div>
+  <!-- end content13-->
+
+
+
+
+
+                      <div class="row">
+                        <div class="col-sm-12">
+          <div >
+          <div  style="text-align: right; margin:10px 0px;" >
+          <button (click)="handleBack()" class="btn btn-dark" >Cancel</button>
+          <button (click)="submitForm()" class="btn btn-danger">Save</button>
+
+          </div>
+
+  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+      </div>
+      </div>
+      </div>
+    </form>
+
+
+    <!-- model -->
+
+    <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close  m-t-xs" data-dismiss="modal"><span>⤬</span></button>
+          <span class="modal-title  font-weight-600 text-20">Add Product</span>
+        </div>
+        <div class="modal-body">
+          <div class="details">
+          <form  [formGroup]="productForm">
+            <div class="row">
+              <!-- <div class="col-md-6">
+                <div class="form-group">
+                  <label>Type</label> -->
+
+                  <input type="hidden"  formControlName="type" value="Product">
+                    <!-- <select formControlName="type" class="form-control">
+                      <option value="" disabled>Select Type</option>
+                        <option value="Product">Product</option>
+                        <option value="Service">Service</option>
+                    </select> -->
+
+                  <!-- </div>
+                </div> -->
+
+
+              <div class="col-md-12">
+                  <div class="form-group">
+                    <label >Product/Service Name <span class="text-danger">*</span></label>
+                    <input formControlName="productname" type="text" class="form-control" placeholder="" >
+                    <div *ngIf="fm.productname.errors && fm.productname.errors.required && isValidFormSubmittedmodel"
+                    class="text-danger text-left mb-1 errorcontrols">
+                    <div *ngIf="fm.productname.errors.required"><small>Product Name  is
+                        required.</small></div>
+                  </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Part No <span class="text-danger">*</span></label>
+                  <input formControlName="PartNo" type="text" class="form-control" placeholder="" >
+                  <div *ngIf="fm.PartNo.errors && fm.PartNo.errors.required && isValidFormSubmittedmodel"
+                  class="text-danger text-left mb-1 errorcontrols">
+                  <div *ngIf="fm.PartNo.errors.required"><small>Part No  is
+                      required.</small></div>
+                </div>
+                </div>
+                </div>
+
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <label> CCN No</label>
+                    <input formControlName="CCNNo" type="text" class="form-control" placeholder="" >
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Unit Price <span class="text-danger">*</span></label>
+                  <input formControlName="UnitPrice" type="Number"class="form-control" placeholder="" >
+                  <div *ngIf="fm.UnitPrice.errors && fm.UnitPrice.errors.required && isValidFormSubmittedmodel"
+  class="text-danger text-left mb-1 errorcontrols">
+  <div *ngIf="fm.UnitPrice.errors.required"><small>Unit Price is
+      required.</small></div>
+</div>
+                </div>
+                </div>
+
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <label> UOM <span class="text-danger">*</span></label>
+                    <input formControlName="UOM" type="text" class="form-control" placeholder="" >
+                    <div *ngIf="fm.UOM.errors && fm.UOM.errors.required && isValidFormSubmittedmodel"
+                    class="text-danger text-left mb-1 errorcontrols">
+                    <div *ngIf="fm.UOM.errors.required"><small>UOM Price is
+                        required.</small></div>
+                  </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label> Category</label>
+                   <input formControlName="Category" type="text" class="form-control" placeholder="" >
+                  </div>
+                </div>
+
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <label>OEM</label>
+                    <input formControlName="OEM" type="text" class="form-control" placeholder="" >
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label> OEM Product Code</label>
+                  <input formControlName="OEMProductCode" type="text" class="form-control" >
+                  </div>
+                </div>
+
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <label> HSN Code</label>
+                    <input  formControlName="HSNCode" type="text" class="form-control" placeholder="" >
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label> GST %</label>
+                  <input formControlName="GST" type="Number" class="form-control" placeholder="" >
+                  </div>
+                </div>
+
+
+            </div>
+
+
+              <div class="row">
+                <div class="col-md-6">
+                  <label class="control-label font-weight-600">&nbsp;</label>
+                  <div class="form-group">
+                      <button type="button"  class="btn btn-dark"  id="closemodal" data-dismiss="modal">Cancel</button>
+                      <button class="btn btn-danger" (click)="handleSubmit()">Save</button>
+                  </div>
+                </div>
+              </div>
+
+
+
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

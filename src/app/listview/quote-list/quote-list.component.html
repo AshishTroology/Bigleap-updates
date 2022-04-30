@@ -1,0 +1,178 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+
+    <div class="top">
+      <div class="row t-main">
+        <div class="col-sm-6 col-xs-12 t-main-1">
+          <h4 class="m-n  t-main1">Quote View List </h4>
+        </div>
+        <div class="col-sm-6 text-right poppins">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb t-main" style="cursor: pointer;">
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard
+              </li>
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Quote</li>
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">Quote View List
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+    </div>
+    <kendo-grid id="tableExecl" [kendoGridBinding]="gridView"  [pageSize]="10"
+      [pageable]="true" [sortable]="false" [sort]="sort" [reorderable]="true" [resizable]="true" [height]="620" [filterable]="false">
+      <ng-template kendoGridToolbarTemplate>
+        <input placeholder="Search in all columns..." kendoTextBox (input)="onFilter($event)" />
+        <kendo-grid-spacer></kendo-grid-spacer>
+        <button type="button" class="button" (click)="exportexcel()" icon="file-excel" style="background-color: #9d0707;border:1px solid #9d0707;color:white;">
+          Export to Excel
+        </button>
+        <button class=" button" style="background-color: #7266BA;border:1px solid #7266BA;"> <a routerLink="/t-quote"><i
+              _ngcontent-suu-c437="" class="fa fa-bars"></i>
+            T - view</a></button>
+        <button *ngIf="userPermission?.quotecreate" class="button"> <a routerLink="/create-quote">Create New
+            Quote</a></button>
+
+      </ng-template>
+
+
+      <kendo-grid-column field="quote_id" title="ID" [width]="120" [locked]="true">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name" style="color: red;">{{ dataItem.quote_id }}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="created_date_time" title="Created" [width]="150">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name" style="color:green;"><i class="fa fa-calendar-check-o"  aria-hidden="true"></i> {{
+            dataItem.created_date_time }}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="modified_date_time" title="Modified" [width]="150">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name" style="color:red;" ><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> {{
+            dataItem.modified_date_time}}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="aging" title="Aging(Days)" [width]="120" [sortable]="true">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name">{{ dataItem.aging }}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column title="Account" [width]="300">
+        <ng-template kendoGridCellTemplate let-data>
+          <div class="text-theme">{{data.company_name}}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="contact_name" title="Contact" [width]="180">
+        <ng-template kendoGridCellTemplate let-data>
+          <div>{{data.contact_name}}</div>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="quote_owner" title="Quote Owner" [width]="200">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name">{{ dataItem.quote_owner[0].username }}</div>
+        </ng-template>
+      </kendo-grid-column>
+
+
+      <kendo-grid-column title="Quote Title" [width]="200">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name">{{ dataItem.quote_title }}</div>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="quote_source" title="Quote Source" [width]="200" [class]="{ 'text-center': true }">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div>{{dataItem.quote_source}}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="quote_status" title="Quote Status" [width]="200" [class]="{ 'text-center': true }">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div>{{dataItem.quote_status}}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column title="Quote Location" [width]="180" [class]="{ 'text-center': true }">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name">{{ dataItem.quote_location[0].branch_name }}</div>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column title="Approval" [width]="150" [class]="{ 'text-center': true }" [resizable]="false">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name">{{ dataItem?.approved_by?.username }}</div>
+
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column title="Verified" [width]="150" [class]="{ 'text-center': true }" [resizable]="false">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name">{{ dataItem?.verified_by?.username }}</div>
+
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column title="Action" [width]="100" [class]="{ 'text-center': true }" [resizable]="false"
+        [filterable]="false">
+
+
+
+
+        <ng-template kendoGridCellTemplate let-quote>
+
+
+          <kendo-menu>
+            <kendo-menu-item icon="gear">
+              <kendo-menu-item icon="edit" *ngIf="userPermission?.quoteedit">
+                <ng-template kendoMenuItemTemplate>
+                  <div [routerLink]="['/edit-quote',quote.quote_id]" style="width: 100%;">
+                    Edit
+                  </div>
+                </ng-template>
+              </kendo-menu-item>
+
+              <kendo-menu-item icon="check" *ngIf="userPermission?.quoteverifier && !quote.verified">
+                <ng-template kendoMenuItemTemplate>
+                  <div style="width: 100%;" (click)="handleVerify(quote._id)">
+                    Verify
+                  </div>
+                </ng-template>
+              </kendo-menu-item>
+
+
+              <kendo-menu-item icon="track-changes-accept-all" *ngIf="userPermission?.quoteapprover && !quote.aprroved">
+                <ng-template kendoMenuItemTemplate>
+                  <div style="width: 100%;" (click)="handleApprove(quote._id)">
+                    Approve
+                  </div>
+                </ng-template>
+              </kendo-menu-item>
+
+              <kendo-menu-item icon="change-manually" *ngIf="quote.aprroved && userPermission?.convertquotetodeal">
+                <ng-template kendoMenuItemTemplate>
+                  <div style="width: 100%;" [routerLink]="['/edit-quote',quote.quote_id]">
+                    Convert to Deal
+                  </div>
+                </ng-template>
+              </kendo-menu-item>
+
+              <kendo-menu-item icon="preview" *ngIf="userPermission?.quoteview && quote.aprroved">
+                <ng-template kendoMenuItemTemplate>
+                  <div>
+                    <a href="/view-quote/{{quote.quote_id}}" target="_blank">View Quote</a>
+                  </div>
+                </ng-template>
+              </kendo-menu-item>
+                </kendo-menu-item>
+          </kendo-menu>
+
+        </ng-template>
+      </kendo-grid-column>
+
+
+    </kendo-grid>
+  </div>
+</div>

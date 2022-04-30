@@ -1,0 +1,231 @@
+
+  
+<style>
+    @media only screen and (max-width: 600px) {
+      body {
+        background-color: lightblue;
+      }
+    }
+    .outer{
+        min-height:30%;
+       background: #F5F5F5;
+        margin:2% auto;
+    }
+    
+    .app-content{
+        background-color: #F9F9F9;
+        
+    }
+    .outer{
+        margin-top:50px;
+        background-color: #F9F9F9;
+        margin-top: 50px;
+       
+    }
+    .top-img img{
+        height:80px;
+    
+    }
+    .mid{
+        margin-top:5%;
+        padding: 0px;
+        margin: 0px;
+    }
+    .mid1 {
+    color: black;
+    font-size:30px;
+    }
+    .mid2 img{
+        padding: 0px;
+        margin-left: 13px;
+        position: absolute;
+      
+    left:-100px;
+    height:180px;
+    top:-50px;
+    
+    }
+    .box{
+        margin-left: 100px;
+        
+    }
+    .box1{
+        height: 60px;
+        background: white;
+        border-radius: 10px;
+    }
+    .box1 img{
+        height:50px;
+        margin-top: 4px;
+        margin-left:13px;
+        width:120px;
+    }
+    .box12{
+        background: white;
+        min-height:360px;
+        margin-top:25px;
+        border-radius: 10px;
+        padding:4%;
+    }
+    .box12 img{
+    width:40px;
+    height:25px;
+    }
+    
+    .icon {
+    
+        position: absolute;
+        left: 180px;
+        font-size: 10px;
+    
+    
+      }
+    
+      .icon img {
+        height: 12px;
+      }
+    
+    .iconimg{
+        padding: 0px;
+        margin: 0px;
+        margin-top: -30px;
+    }
+    
+    .divl{
+        height: 25px;
+        border:1px solid gray;
+        background:white;
+        margin-top: 10%;
+        text-align: center;
+        border-radius: 8px;
+        color: gray;
+        padding-top: .4%;
+        font-size:14px;
+    }
+    
+      
+      
+    
+      .robot {
+        min-height: 50px;
+        border: solid 1px #D6D6D6;
+        margin: 0px 5%;
+       
+        margin-bottom: 6%;
+        padding-top: 4%;
+      }
+    
+    </style>
+    <body >
+    <!-- content1 -->
+    <div class="container-fluid " style="background: #F9F9F9;">
+    <div class="container outer">
+    
+      <div class="col-sm-6">
+        <div class="col-sm-4 top-img"><img src="assets/asset/img/Group 458.png" ></div>
+      
+      <div class="col-sm-12 mid">
+        <div class="col-sm-10 mid1"><p style="font-size: 40px;font-weight: bold;">WELCOME BACK !</p>
+        <p>Experience the all new digital transformation</p></div>
+        <div class="col-sm-2 mid2"><img src="assets/asset/img/Group 560.png" ></div>
+      
+      </div>
+      <div class="col-sm-12" style="padding: 0px; margin-top:25%">
+      
+        <div class="col-sm-3 slogo" style="padding: 0px;margin:0px;">
+          <img src="assets/asset/img/red.png" height="50px" width="150px" >
+        </div>
+        <div class="col-sm-1"><img src="assets/asset/img/Line 1.png"  height="60px" style="margin-left:14px;"></div>
+        <div class="col-sm-6 icon" >
+          
+          <img src="assets/asset/img/Icon awesome-info-circle.png" > info@troology.com<br>
+          <img src="assets/asset/img/Icon ionic-md-help-circle.png" > Support@troology.com<br>
+          <img src="assets/asset/img/Icon awesome-headset.png" >1800 11 123
+          <br> <img src="assets/asset/img/Path 48.png" > www.troology.com
+        </div>
+      
+      </div>
+      <div class="col-sm-12 divl">COPYRIGHT &copy; 2021 TROOLOGY TECHNOLOGIES .ALL RIGHTS RESERVED</div>
+      
+      </div>
+      <div class="col-sm-6">
+        <div class="col-sm-12 box">
+          <div class="col-sm-4 box1"><img src="assets/asset/img/colour-logo-.png" ></div>
+       <div class="col-sm-12 " style="padding: 0px;margin: 0px;">
+        
+           <div class="col-sm-8 box12 " >
+            <div class="col-sm-12"  style="padding: 0px;margin: 0px;" ><p style="font-size: 22px;font-weight: bold;color: black;">Forget Password</p>
+              </div>
+         
+            <div class="col-sm-12" style="padding: 0px;margin: 0px;"><p style="font-size: 14px;"> This is secure system and you will need to provide your login details to access.</p></div>
+            
+           
+           <form > 
+            <div class="row">
+           
+            <div class="col-md-12 form-group" >
+              <input type="email"  class="form-control " placeholder="Enter Email" formControlName="email" style="border-radius: 6px; background:#F5F5F5 ; height: 45px ;">
+            </div>
+            <div class="col-md-12 form-group" >
+              <input type="number" class="form-control " placeholder="otp" formControlName="otp" style="border-radius: 6px; background:#F5F5F5 ; height: 45px ;">
+            </div>
+            <div class="col-md-12 form-group" style="display:flex;justify-content:space-between; margin-top: 1%;">
+              <span style="visibility: hidden;"><input type="checkbox"> Remember me</span>
+              <span routerLink="/forget-password"  style="cursor: pointer;">Forgot Password</span>
+            </div>
+            <!-- <div class="col-md-11 form-group robot" style="display:flex;justify-content:space-between;">
+              <span><input type="checkbox"> I'am not robot</span>
+              <span></span>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div class="captcha">
+                    <div id="recaptcha_image"></div>
+                  </div>
+                </div>
+                
+              </div>
+            </div> -->
+            
+            <div class="col-md-6 form-group" >
+              <button  type="submit" class="form-control " 
+                style="font-size: 12px; background:white;color:red;border:1px solid red;border-radius: 5px;">
+                Login Via Password
+                </button>
+                <button hidden [swal]="['yeahhh!', 'clicked ', 'success']">Click me</button>
+            </div>
+            <!-- <div class="col-md-6 form-group"  *ngIf="!display">
+              <button   (click)="CheckEmail('otp')" class="form-control " 
+                style="font-size: 13px;background:white;color:red;border:1px solid red;border-radius: 5px;">
+                Login Via OTP
+              </button>
+            </div> -->
+            <div class="col-md-6 form-group"  >
+              <button  type="button" class="form-control "
+                style="font-size: 13px;background:white;color:red;border:1px solid red;border-radius: 5px;">
+              Submit
+              </button>
+            </div>
+            <div class="col-md-6 form-group" >
+              <button  type="button" class="form-control "
+                style="font-size: 13px;background:white;color:red;border:1px solid red;border-radius: 5px;">
+              Submit Otp
+              </button>
+            </div>
+          </div>
+          </form>
+      
+            </div> 
+           
+    
+        </div> 
+       
+      </div>
+      <!-- <p style="text-align:center;">Are you a new user?<a href="#" style="color:red;"><u>Register Now!</u></a></p> -->
+      </div>
+      </div>
+    </div>
+    
+    
+    </body>
+    
+    

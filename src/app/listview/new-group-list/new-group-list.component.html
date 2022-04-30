@@ -1,0 +1,104 @@
+<app-header></app-header>
+ <app-sidenav></app-sidenav>
+ <div id="content" class="app-content"  role="main">
+  <div class="app-content-body ">
+ <div class="top">
+  <div class="row t-main">
+    <div class="col-sm-6 col-xs-12 t-main-1">
+      <h4 class="m-n  t-main1">Products View List</h4>
+    </div>
+    <div class="col-sm-6 text-right poppins">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb t-main" style="cursor: pointer;">
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard</li>
+          <!-- <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Products</li> -->
+          <!-- <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Leads View List</li>  -->
+          <!-- <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;"> Account View List</li> -->
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">Products View List</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+     
+</div>
+ <kendo-grid
+    [kendoGridBinding]="gridView"
+    kendoGridSelectBy="id"
+    [selectedKeys]="mySelection"
+    [pageSize]="20"
+    [pageable]="true"
+    [sortable]="true"
+    [reorderable]="true"
+    [resizable]="true"
+    [height]="500"
+    [columnMenu]="{ filter: true }"
+  >
+    <ng-template kendoGridToolbarTemplate>
+      <input
+        placeholder="Search in all columns..."
+        kendoTextBox
+        (input)="onFilter($event)"
+        />
+        
+        <kendo-grid-spacer></kendo-grid-spacer>
+      <!-- <button  class="button" > <a routerLink="/create-lead">Create New Lead</a></button> -->
+     
+    </ng-template>
+   
+    <kendo-grid-column field="id" title="ID" [width]="100">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="customer-name" style="color: red;">{{ dataItem.id }}</div>
+        <!-- <div class="customer-name" ><i class="fa fa-calendar-check-o" style="color:green;" aria-hidden="true"></i> : {{ dataItem.created_date_time }}</div>
+        <div class="customer-name" ><i class="fa fa-calendar-plus-o" style="color:red;" aria-hidden="true"></i> : {{ dataItem.modified_date_time }}</div>
+        <div class="customer-name" >Aging :{{ dataItem.aging }}</div> -->
+      </ng-template>
+    </kendo-grid-column>
+
+
+    <kendo-grid-column field="product_name" title="Product Name" [width]="100">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="customer-name" style="color: red;">{{dataItem.productname}}</div>
+
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="type" title="Type" [width]="100">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="customer-name" style="color: red;">{{dataItem.type}}</div>
+
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="UnitPrice" title="Total Amount" [width]="100">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="customer-name" >{{ dataItem.amount }}</div>
+      </ng-template>
+    </kendo-grid-column>
+
+      <kendo-grid-column field="GST" title="GST" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+ <div class="customer-name">{{ dataItem.GST }}</div>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="Category" title="Category" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name" >Type : {{ dataItem.Category }}</div>
+          <!-- <div class="customer-name" >Industry:{{ dataItem.industry}}</div> -->
+                 </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column
+        field="PartNo"
+        title="Part No"
+        [width]="100"
+        [class]="{ 'text-center': true }"
+        [resizable]="false"
+      > 
+      </kendo-grid-column>
+   
+  </kendo-grid>
+
+
+
+  </div>
+  </div>

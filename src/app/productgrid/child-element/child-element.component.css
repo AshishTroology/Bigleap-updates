@@ -1,0 +1,55 @@
+/* .example-wrap {
+        display: flex;
+        justify-content: left;
+      }
+      .k-form {
+        width: 400px;
+      } */
+
+.example-wrap {
+  display: flex;
+  justify-content: left;
+}
+.k-form {
+  width: 400px;
+}
+.right_sec {
+  margin-top: 6rem;
+  margin-top: 6rem;
+    /* border-left: 1px solid #c7c7c7; */
+    padding-left: 6px;
+    height: 90vh;
+}
+.Product_Area {
+  width: 100%;
+    border-radius: 3px;
+    padding: 5px;
+    margin-top: 0px;
+    border: 1px solid #e0e0e0;
+}
+.closeBtn {
+  border: none;
+  border-radius: 5px;
+  padding: 6px 12px;
+  color: #fff;
+  font-size: 1.3rem;
+  background: #f60002;
+}
+.Clear {
+  background: #2f2f2f;
+}
+.k-form-buttons {
+  margin-top: 1em;
+}
+.k-form .k-form-fieldset {
+  margin: 0;
+}
+.Sec_heading {
+  color: #000;
+}
+.k-form .k-form-field {
+  margin-top: 10px;
+}
+kendo-label {
+  font-size: 15px;
+}

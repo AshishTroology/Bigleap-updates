@@ -1,0 +1,132 @@
+<app-header></app-header>
+ <app-sidenav></app-sidenav>
+ <div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+    <div class="top"> <div class="row t-main">
+      <div class="col-sm-6 col-xs-12 t-main-1">
+        <h4 class="m-n  t-main1">Performance List</h4>
+      </div>
+      <div class="col-sm-6 text-right poppins">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb t-main" style="cursor: pointer;">
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard</li>
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Performance</li>
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color: red;">Performance View List</li>
+
+          </ol>
+        </nav>
+      </div>
+    </div></div>
+    <kendo-grid
+    [kendoGridBinding]="gridView"
+    kendoGridSelectBy="id"
+    [selectedKeys]="mySelection"
+    [pageSize]="20"
+    [pageable]="true"
+    [sortable]="true"
+    [reorderable]="true"
+    [resizable]="true"
+    [height]="500"
+    [columnMenu]="{ filter: true }">
+
+    <ng-template kendoGridToolbarTemplate>
+      <input
+        placeholder="Search in all columns..."
+        kendoTextBox
+        (input)="onFilter($event)"
+        />
+      <kendo-grid-spacer></kendo-grid-spacer>
+      <button class="button" *ngIf="this.userPermission?.performancecreate"> <a routerLink="/performance">Create New Performance</a></button>
+
+    </ng-template>
+
+
+    <kendo-grid-column field="goal_id"  title="ID" [width]="100">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="service-request" style="color: red;">{{ dataItem.goal_id }}</div>
+
+
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="created_at" title="ID" [width]="100">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="service-request" style="color:green;"><i class="fa fa-calendar-check-o"  aria-hidden="true"></i>  {{
+          dataItem.created_at|date:'dd-MM-yyyy' }}</div>
+
+
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="industry" title="Industry" [width]="100">
+      <ng-template kendoGridCellTemplate let-dataItem>
+
+        <div class="service-request" >
+            <label class="label label-success" *ngFor="let ind of dataItem.industry">{{ind.industry}} <br/></label>
+        </div>
+
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="employee" title="Employee" [width]="100">
+      <ng-template kendoGridCellTemplate let-dataItem>
+
+        <div class="service-request" >
+          <label class="label label-success" *ngFor="let emp of dataItem.employee">{{emp.username}}<br/></label>
+        </div>
+
+      </ng-template>
+    </kendo-grid-column>
+
+
+    <kendo-grid-column field="goal_type"  title="Type" [width]="100">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="" >{{ dataItem.goal_type }}</div>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column title="Name" [width]="100">
+      <ng-template kendoGridCellTemplate let-dataItem>
+
+        <div class="">{{ dataItem.goal_name }}</div>
+
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="weightage" title="Weightage" [width]="100">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="duration" title="Duration" [width]="100">
+    </kendo-grid-column>
+
+
+
+
+
+
+
+
+
+
+    <kendo-grid-column
+    title="Action"
+    [width]="100"
+    [class]="{ 'text-center': true }"
+    [resizable]="false"
+    [filterable]="false"
+
+    >
+    <ng-template kendoGridCellTemplate let-performance>
+      <kendo-menu >
+        <kendo-menu-item  icon="gear">
+            <kendo-menu-item icon="edit" *ngIf="this.userPermission?.performanceedit" url="/performance-edit/{{performance._id}}"  text="Edit" > </kendo-menu-item>
+          </kendo-menu-item>
+
+
+
+      </kendo-menu>
+
+
+    </ng-template>
+    </kendo-grid-column>
+  </kendo-grid>
+  </div>
+  </div>
