@@ -1,0 +1,12 @@
+.validator.ng-invalid{
+border:1px solid red;
+}
+.validator.ng-valid{
+    border:1px solid green;
+}
+.validator.ng-valid.ng-pristine{
+    border:1px solid #ccc;
+}
+.validator.ng-invalid.ng-pristine{
+    border:1px solid #ccc;
+}

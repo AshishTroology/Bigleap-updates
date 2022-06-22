@@ -1,0 +1,409 @@
+<app-header ></app-header>
+<app-sidenav ></app-sidenav>
+
+<div id="content" class="app-content" role="main">
+ 
+  <div class="app-content-body ">
+    <div class="top">
+      <div class="row t-main">
+        <div class="col-sm-6 col-xs-12 t-main-1">
+          <h4 class="m-n  t-main1">User View List</h4>
+        </div>
+        <div class="col-sm-6 text-right poppins">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb t-main" style="cursor: pointer;">
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard</li>
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">User</li>
+              
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">User View List</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+         
+    </div>
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close  m-t-xs" data-dismiss="modal"><span>⤬</span></button>
+              <span class="modal-title  font-weight-600 text-20">Add User</span>
+            </div>
+            <div class="modal-body">
+              <div class="details">
+                <form [formGroup]="userform" (ngSubmit)="onsubmit()">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label font-weight-600">Name  <span class="text-theme">*</span></label>
+                        <input type="text" class="form-control  input-sm" placeholder="Name" formControlName="username">
+                        <div *ngIf="f.username.errors && f.username.errors.required && isValidFormSubmitted"
+                          class="text-danger text-left mb-1 errorcontrols">
+                          <div *ngIf="f.username.errors.required"><small>Name is
+                              required.</small></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label font-weight-600">Email  <span class="text-theme">*</span></label>
+                        <input type="email" class="form-control  input-sm" name="email" placeholder="Email" formControlName="email">
+                        <div *ngIf="f.email.errors  && isValidFormSubmitted" class="text-danger text-left mb-1 errorcontrols">
+                          <div *ngIf="f.email.errors.required"><small>Email is
+                            required.</small></div>
+                         
+                          <div *ngIf="f.email.errors.pattern">Invalid email.</div>
+                         
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div class="row">
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label font-weight-600">Phone  <span class="text-theme">*</span></label>
+                        <input type="text" class="form-control  input-sm" placeholder="Phone" formControlName="phone">
+                        <div *ngIf="f.phone.errors && f.phone.errors.required && isValidFormSubmitted"
+                          class="text-danger text-left mb-1 errorcontrols">
+                          <div *ngIf="f.phone.errors.required"><small>Phone is
+                              required.</small></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label font-weight-600">Designation  <span class="text-theme">*</span></label>
+                        <input type="text" class="form-control  input-sm" placeholder="Designation" formControlName="designation">
+                        <!-- <select  class="form-control" formControlName="designation">
+                          <option value="" disabled> Select Designation</option>
+                          <option value="Staff" selected>Staff</option>
+                          <option value="Sales Person"> Sales Person</option>
+                        </select> -->
+                        <div *ngIf="f.designation.errors && f.designation.errors.required && isValidFormSubmitted"
+                          class="text-danger text-left mb-1 errorcontrols">
+                          <div *ngIf="f.designation.errors.required"><small>Designation is
+                              required.</small></div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div class="row">
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label font-weight-600">Password  <span class="text-theme">*</span></label>
+                        <input type="text" class="form-control  input-sm" placeholder="Password" formControlName="password">
+                        <!-- <div *ngIf="f.password.errors && f.password.errors.required && isValidFormSubmitted"
+                          class="text-danger text-left mb-1 errorcontrols">
+                          <div *ngIf="f.password.errors.required"><small>Password is
+                              required.</small></div>
+                              <div *ngIf="f.password.errors.pattern">Invalid Mobile.</div>
+                        </div> -->
+
+                        <div *ngIf="f.password.errors  && isValidFormSubmitted" class="text-danger text-left mb-1 errorcontrols">
+                          <div *ngIf="f.password.errors.required"><small>Password is
+                            required.</small></div>
+                         
+                          <div *ngIf="f.password.errors.pattern">Minimum 8 character password.</div>
+                          <div *ngIf="f.password.errors.pattern">Use uppercase and lowecase letters(e.g.Aa)</div>
+                          <div *ngIf="f.password.errors.pattern">Use a number(e.g 123)</div>
+                         
+                          <div *ngIf="f.password.errors.pattern">Use special character (e.g @#%*).</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label font-weight-600">Confirm
+                         Password  <span class="text-theme">*</span></label>
+                        <input type="text" class="form-control  input-sm" placeholder="Confirm Password" formControlName="cpassword">
+                        <div *ngIf="f.cpassword.errors && f.cpassword.errors.required && isValidFormSubmitted"
+                          class="text-danger text-left mb-1 errorcontrols">
+                          <div *ngIf="f.cpassword.errors.required"><small>Confirm Password is
+                              required.</small></div>
+                        </div>
+                        <div *ngIf="f.cpassword.errors && f.cpassword.errors.mustMatch"
+                          class="text-danger text-left mb-1 errorcontrols">
+                          <div *ngIf="f.cpassword.errors.mustMatch"><small>Password and Confirm Password is not match.</small></div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label font-weight-600">Role  <span class="text-theme">*</span></label>
+                        <select class="form-control validation user_role input-sm" name="role" formControlName="role">
+                          <option value="" disabled>Choose Role  <span class="text-theme">*</span></option>
+                          <option *ngFor="let role of roledata" value="{{role._id}}">{{role.role_name}}</option>
+                        </select>
+                        <div *ngIf="f.role.errors && f.role.errors.required && isValidFormSubmitted"
+                          class="text-danger text-left mb-1 errorcontrols">
+                          <div *ngIf="f.role.errors.required"><small>Role Name is
+                              required.</small></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label font-weight-600">DT Users   <span class="text-theme">*</span></label>
+                        <select class="form-control validation dt_users input-sm"  formControlName="dt_users">
+                          <option value="" disabled>Choose Users</option>
+                          <option value="User">User</option>
+                          <option value="Salesperson">Salesperson</option>
+                          
+                        </select>
+                        <div *ngIf="f.dt_users.errors && f.dt_users.errors.required && isValidFormSubmitted"
+                          class="text-danger text-left mb-1 errorcontrols">
+                          <div *ngIf="f.dt_users.errors.required"><small>DT Users is
+                              required.</small></div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="control-label font-weight-600">&nbsp;</label>
+                      <div class="form-group">
+                          <button type="button"  class="btn btn-dark"  id="closemodal" data-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn btn-danger"  style="margin-left:1.5%"  *ngIf="buttondisabled">Save</button>
+                       
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+
+ <kendo-grid
+    [kendoGridBinding]="gridView"
+    kendoGridSelectBy="_id"
+    [selectedKeys]="mySelection"
+    [pageSize]="20"
+    [pageable]="true"
+    [sortable]="true"
+    [reorderable]="true"
+    [resizable]="true"
+    [height]="500"
+    [columnMenu]="{ filter: false }"
+  >
+
+
+    <ng-template kendoGridToolbarTemplate>
+      <input
+        placeholder="Search in all columns..."
+        kendoTextBox
+        (input)="onFilter($event)"
+        />
+      <kendo-grid-spacer></kendo-grid-spacer>
+      <button *ngIf="this.userPermission.usercreate" class="button" data-toggle="modal"
+          data-target="#exampleModalCenter" style="cursor: pointer;"> Add User</button>
+      <!-- <button kendoGridPDFCommand icon="file-pdf">Export to PDF</button> -->
+      <!-- <button kendoGridExcelCommand type="button" icon="file-excel">
+        Export to Excel
+      </button> -->
+    </ng-template>
+
+      <kendo-grid-column field="username" title="Name" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name" style="color: red;">{{ dataItem.username.toUpperCase() }}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="email" title="Email" [width]="100">
+      </kendo-grid-column>
+
+      <kendo-grid-column
+        field="phone"
+        title="Mobile"
+        [width]="100"
+        [class]="{ 'text-center': true }"
+        [resizable]="false"
+      >
+        <!-- <ng-template kendoGridCellTemplate let-dataItem>
+          <img class="flag" [src]="flagURL(dataItem)" width="30" />
+        </ng-template> -->
+      </kendo-grid-column>
+
+      
+
+      
+
+      <kendo-grid-column  title="Role" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="service" > {{ dataItem.roledata[0].role_name}}</div>
+          
+          
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column  title="Action" [width]="100">
+        <ng-template kendoGridCellTemplate let-user>
+          <div class="user">
+            <button Class="button" data-toggle="modal" data-target="#exampleModalCenteredit" (click)="getId(user._id)" >Edit</button>
+          </div>
+        </ng-template>
+      </kendo-grid-column>
+
+
+     
+
+
+  </kendo-grid>
+</div>
+
+
+
+
+
+
+ <!--Edit  Modal -->
+ <div class="modal fade" id="exampleModalCenteredit" tabindex="-1" role="dialog"
+ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <button type="button" class="close  m-t-xs" data-dismiss="modal"><span>⤬</span></button>
+       <span class="modal-title  font-weight-600 text-20">Edit User</span>
+     </div>
+     <div class="modal-body">
+       <div class="details">
+         <form [formGroup]="usereditform" (ngSubmit)="onFormSubmit()">
+         
+          
+          <div class="row">
+
+            <input type="hidden" value="{{userid}}">
+
+             <div class="col-md-6">
+               <div class="form-group">
+                 <label class="control-label font-weight-600">Name <span class="text-theme">*</span></label>
+                 <input type="text" class="form-control  input-sm" placeholder="Name" formControlName="username" value="{{editUsername}}" (input)="getValues($event,'username')">
+                 <div *ngIf="efe.username.errors && efe.username.errors.required && isValidFormSubmittededit"
+                   class="text-danger text-left mb-1 errorcontrols">
+                   <div *ngIf="efe.username.errors.required"><small>Name is
+                       required.</small></div>
+                 </div>
+               </div>
+             </div>
+             <div class="col-md-6 form-group">
+               <label class="control-label font-weight-600">Email <span class="text-theme">*</span></label>
+               <input type="text" class="form-control" placeholder="Email" formControlName="email" value="{{email}}" readonly>
+               <div *ngIf="efe.email.touched && efe.email.invalid && isValidFormSubmittededit"
+                 class="text-danger text-left mb-1 errorcontrols">
+                 <div *ngIf="efe.email.invalid"><small>Invalid Email.</small></div>
+               </div>
+             </div>
+
+
+           </div>
+           <div class="row">
+
+             <div class="col-md-6">
+               <div class="form-group">
+                 <label class="control-label font-weight-600">Mobile <span class="text-theme">*</span></label>
+                 <input type="text" class="form-control  input-sm" placeholder="Phone" formControlName="phone" value="{{phone}}" (input)="getValues($event,'phone')">
+                  <div *ngIf="efe.phone.errors  && isValidFormSubmittededit" class="text-danger text-left mb-1 errorcontrols">
+               <div *ngIf="efe.phone.errors.required"><small>Mobile is required.</small></div>
+               <div *ngIf="efe.phone.errors.pattern">Invalid Mobile.</div>
+             </div>
+               </div>
+             </div>
+             <div class="col-md-6">
+               <div class="form-group">
+                 <label class="control-label font-weight-600">Designation <span class="text-theme">*</span></label>
+                 <input type="text" class="form-control  input-sm" placeholder="Designation" formControlName="designation" value="{{designation}}" (input)="getValues($event,'designation')">
+                 <div *ngIf="efe.designation.errors && efe.designation.errors.required && isValidFormSubmittededit"
+                   class="text-danger text-left mb-1 errorcontrols">
+                   <div *ngIf="efe.designation.errors.required"><small>Designation is
+                       required.</small></div>
+                 </div>
+               </div>
+             </div>
+
+
+           </div>
+           <div class="row">
+
+             
+
+           </div>
+
+           <div class="row">
+             <div class="col-md-6">
+               <div class="form-group">
+                 <label class="control-label font-weight-600">Role <span class="text-theme">*</span></label>
+                 <select class="form-control validation user_role input-sm" name="role" formControlName="role" value="{{role}}" (change)="getValuesChange($event,'role')">
+                   <option value="">Choose Role</option>
+                   <option *ngFor="let obj of roledata" value={{obj._id}}> {{obj.role_name}} </option>
+                  
+                 </select>
+                 <div *ngIf="efe.role.errors && efe.role.errors.required && isValidFormSubmittededit"
+                   class="text-danger text-left mb-1 errorcontrols">
+                   <div *ngIf="efe.role.errors.required"><small>Role Name is
+                       required.</small></div>
+                 </div>
+               </div>
+             </div>
+             <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label font-weight-600">DT Users  <span class="text-theme">*</span></label>
+                <!-- <select class="form-control validation dt_users input-sm"  formControlName="dt_users" value="{{dt_users}}"   name="dt_users" (change)="getValuesChange($event,'dt_users')"> -->
+                  <select class="form-control validation dt_users input-sm" name="dt_users" formControlName="dt_users" value="{{dt_users}}" (change)="getValuesChange($event,'dt_users')">
+                  <option value="" disabled>Choose Users</option>
+                  <option value="User">User</option>
+                  <option value="Salesperson">Salesperson</option>
+                  
+                </select>
+                <div *ngIf="efe.dt_users.errors && efe.dt_users.errors.required && isValidFormSubmitted"
+                  class="text-danger text-left mb-1 errorcontrols">
+                  <div *ngIf="efe.dt_users.errors.required"><small>DT Users is
+                      required.</small></div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+           </div>
+           <div class="row">
+             <div class="col-md-6">
+               <label class="control-label font-weight-600">&nbsp;</label>
+               <div class="form-group">
+                 <button type="button"  class="btn btn-dark"  id="closemodal" data-dismiss="modal">Cancel</button>
+                   <button type="submit" class="btn btn-danger"   *ngIf="buttondisabled" style="margin-left: 2%;">Save</button>
+                
+               </div>
+             </div>
+           </div>
+         </form>
+       </div>
+     </div>
+
+   </div>
+ </div>
+</div>
+ <!-- mode end -->

@@ -1,0 +1,270 @@
+<div id="dataBox">
+  <div>
+    <button onclick="window.print()" class="btn btn-primary no-print print-btn-none" style="margin-right: 5px;"><i
+        class="fa fa-print" aria-hidden="true"></i> Print</button>
+  </div>
+
+  <!-- Page Header -->
+  <div id="pageHeader">
+    <div class="ph1">
+      <div><img src="assets/img/DIYA.PNG" /></div>
+      <div class="bb bt bl">
+        <ul>
+          <li class="RD  bb">Reference No.: {{this.quoteData?.deal_id}}</li>
+          <li class="RD">Date: {{this.quoteData?.created_date_time |date:'dd-MM-yyyy'}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ph2">
+      <div>
+        <ul>
+          <li>Bill From: {{this.branchData?.branch_name}}</li>
+          <li>Address: {{this.branchData?.address1}}
+            {{this.branchData?.address2}} {{this.branchData?.address3}} {{this.branchData?.state}}
+            {{this.branchData?.country}} {{this.branchData?.zipcode}}</li>
+          <li>E-Mail: info@diyatechnologies.co.in</li>
+          <li>GSTN: {{this.branchData?.branch_gst}}</li>
+          <li>Website: www.diyatechnologies.in</li>
+        </ul>
+      </div>
+      <div class="cpDetail bt bl">
+        <h2 class="bb">Contact person for this Offer:</h2>
+        <ul>
+          <li>Name: {{this.salesPersonData?.username}}</li>
+          <li>Mail-ID: {{this.salesPersonData?.email}}</li>
+          <li>Mobile.no: {{this.salesPersonData?.phone}}</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+  <!-- end Page Header -->
+  <!-- Quote Header -->
+  <div id="quoteHeader">
+    <h2 class="bt bb text-center">QUOTATION</h2>
+    <div class="w100">
+      <div class="w20 pull-left">Customer Name:</div>
+      <div class="w80 bl"> {{this.companyData?.company_name}}</div>
+    </div>
+    <div class="w100 bt bb">
+      <div class="w20 pull-left">Customer Address:</div>
+      <div class="w80 bl"> {{this.companyData?.address1}}
+        {{this.companyData?.address2}} {{this.companyData?.address3}} {{this.companyData?.country}}
+        {{this.companyData?.zip_code}}</div>
+    </div>
+    <div class="w100 bb">
+      <div class="w20 pull-left">Buyer Name:</div>
+      <div class="w40 pull-left bl br">{{this.contactData?.contact_name}}</div>
+      <div class="w20 pull-left">Contact No.:</div>
+      <div class="w20 bl">{{this.contactData?.mobile_no}}</div>
+    </div>
+    <div class="w100">
+      <div class="w20 pull-left">Application / Project:</div>
+      <div class="w80 bl"> {{this.quoteData?.deal_title}}</div>
+    </div>
+  </div>
+  <!-- end quote Header -->
+  <!-- Product List -->
+  <div id="productList">
+    <div class="w100 bt bb listHeader">
+      <div class="ptc1">Sr No</div>
+      <div class="ptc2">Product Description</div>
+      <div class="ptc3">GST %</div>
+      <div class="ptc4">Qty</div>
+      <div class="ptc5">UOM</div>
+      <div class="ptc6">Unit Rate</div>
+      <div class="ptc7">Disc</div>
+      <div class="ptc8">Net Unit Rate</div>
+      <div class="ptc9">Amount</div>
+    </div>
+    <!-- List Data -->
+    <div class="w100 pListData" *ngFor="let prod of this.quoteData?.product_services,index as i">
+      <div class="ptc1">
+        <ul>
+          <li>{{i+1}}</li>
+        </ul>
+      </div>
+      <div class="ptc2">
+        <ul>
+          <li class="ptcName">{{prod.productname}}</li>
+          <li>Part no- {{prod.PartNo}}</li>
+          <li>HSN Code.: {{prod.HSNCode}}</li>
+        </ul>
+      </div>
+      <div class="ptc3">
+        <ul>
+          <li>{{prod.GST.split(";").join("\n")}}</li>
+        </ul>
+      </div>
+      <div class="ptc4">
+        <ul>
+          <li>{{prod.quantity}}</li>
+        </ul>
+      </div>
+      <div class="ptc5">
+        <ul>
+          <li>{{(prod.UOM)}}</li>
+        </ul>
+      </div>
+      <div class="ptc6">
+        <ul>
+          <li>{{prod.UnitPrice | number : '1.2'}}</li>
+        </ul>
+      </div>
+      <div class="ptc7">
+        <ul>
+          <li>{{(prod.discount)}}%</li>
+        </ul>
+      </div>
+      <div class="ptc8">
+        <ul>
+          <li>{{this.decimalFormat(prod.type!='Group'?(prod.UnitPrice*(1-(prod.discount/100))):prod.amount)}}</li>
+        </ul>
+      </div>
+      <div class="ptc9">
+        <ul>
+          <li>{{this.decimalFormat(prod.amount)}}</li>
+        </ul>
+      </div>
+    </div>
+    <!-- End List Data -->
+
+
+    <!-- Total List Data -->
+    <div class="w100 pListData">
+      <div class="ptc1">
+        <ul>
+          <li>&nbsp;</li>
+        </ul>
+      </div>
+      <div class="ptc2">
+        <ul>
+          <li><strong>Total</strong></li>
+        </ul>
+      </div>
+      <div class="ptc3">
+        <ul>
+          <li>&nbsp;</li>
+        </ul>
+      </div>
+      <div class="ptc4">
+        <ul>
+          <li><strong>{{this.quantity }}</strong></li>
+        </ul>
+      </div>
+      <div class="ptc5">
+        <ul>
+          <li>&nbsp;</li>
+        </ul>
+      </div>
+      <div class="ptc6">
+        <ul>
+          <li>&nbsp;</li>
+        </ul>
+      </div>
+      <div class="ptc7">
+        <ul>
+          <li>&nbsp;</li>
+        </ul>
+      </div>
+      <div class="ptc8">
+        <ul>
+          <li>&nbsp;</li>
+        </ul>
+      </div>
+      <div class="ptc9">
+        <ul>
+          <li><strong>{{this.totalAmount | number : '1.2'}}</strong></li>
+        </ul>
+      </div>
+    </div>
+    <!-- End Total List Data -->
+    <!-- Total Tax List Data -->
+    <div class="totalAmtTx text-right">
+      <ul>
+        <li><strong>Total Taxable Amount: {{this.totalAmount | number : '1.2'}}</strong></li>
+        <li><strong>GST Taxes: {{getTaxableAmount() | number : '1.2'}}</strong></li>
+        <li><strong>Total Amount: {{this.totalAmount+getTaxableAmount() | number : '1.2'}}</strong></li>
+      </ul>
+    </div>
+    <!-- End Total Tax List Data -->
+  </div>
+  <!-- end PProduct List -->
+  <!-- Terms Condition -->
+  <div id="tCondition">
+    <h2 class="bt bb">Terms & Conditions</h2>
+    <div class="w100">
+      <div>1</div>
+      <div>INCO Terms:</div>
+      <div>{{this.quoteData?.inco_terms}}</div>
+    </div>
+    <div class="w100">
+      <div>2</div>
+      <div>Payment Terms:</div>
+      <div>{{this.quoteData?.p_t}}</div>
+    </div>
+    <div class="w100">
+      <div>3</div>
+      <div>P&F:</div>
+      <div>{{this.quoteData?.p_f}}</div>
+    </div>
+    <div class="w100">
+      <div>4</div>
+      <div>Freight:</div>
+      <div>{{this.quoteData?.freight}}</div>
+    </div>
+    <div class="w100">
+      <div>5</div>
+      <div>Other Charges:</div>
+      <div>{{this.quoteData?.other_charges}}</div>
+    </div>
+    <div class="w100">
+      <div>6</div>
+      <div>Delivery Period:</div>
+      <div>{{this.quoteData?.delivery}}</div>
+    </div>
+    <div class="w100">
+      <div>7</div>
+      <div>Warranty:</div>
+      <div>{{this.quoteData?.warranty}}</div>
+    </div>
+    <div class="w100">
+      <div>8</div>
+      <div>Quote Validity (days)</div>
+      <div>{{this.quoteData?.deal_validity}}</div>
+    </div>
+    <div class="w100">
+      <div>9</div>
+      <div>Not Valid After:</div>
+      <div>{{this.validDate}}</div>
+    </div>
+    <div class="w100">
+      <div>10</div>
+      <div>Other Remarks:</div>
+      <div>{{this.quoteData?.remark}}</div>
+    </div>
+  </div>
+  <!-- end Terms Condition -->
+  <!-- Footer Note Section -->
+  <div id="noteeSec">
+    <div class="w100">
+      <p>E&OE</p>
+      <p>Deliveries subject to Force Majeure.</p>
+    </div>
+    <div class="w100 bt text-center">
+      <p>Note: This is a computer generated quotation and does not require any signature</p>
+    </div>
+  </div>
+  <!-- end Footer Note Section -->
+  <!-- Authorized Dealers -->
+  <div id="authorizedD">
+    <h2 class="bt bb">Authorized Dealers:</h2>
+    <div class="w100">
+      <div><img src="assets/img/IR.PNG"></div>
+      <div><img src="assets/img/URYU.PNG"></div>
+      <div><img src="assets/img/TOH.PNG"></div>
+    </div>
+  </div>
+  <!-- end Authorized Dealers -->
+</div>

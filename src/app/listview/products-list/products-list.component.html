@@ -1,0 +1,131 @@
+<app-header></app-header>
+ <app-sidenav></app-sidenav>
+ <div id="content" class="app-content"  role="main">
+  <div class="app-content-body ">
+ <div class="top">
+  <div class="row t-main">
+    <div class="col-sm-6 col-xs-12 t-main-1">
+      <h4 class="m-n  t-main1">Products View List</h4>
+    </div>
+    <div class="col-sm-6 text-right poppins">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb t-main" style="cursor: pointer;">
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard</li>
+          <!-- <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Products</li> -->
+          <!-- <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Leads View List</li>  -->
+          <!-- <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;"> Account View List</li> -->
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">Products View List</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+</div>
+<p>Total No. of Product : <b>{{ this.pro_count }}</b></p>
+ <kendo-grid
+    [kendoGridBinding]="gridView"
+    kendoGridSelectBy="id"
+    [selectedKeys]="mySelection"
+    [pageSize]="20"
+    [pageable]="true"
+    [sortable]="true"
+    [reorderable]="true"
+    [resizable]="true"
+    [height]="500"
+    [columnMenu]="{ filter: true }"
+  >
+    <ng-template kendoGridToolbarTemplate>
+      <input
+        placeholder="Search by Part No minimum 4 characters"
+        kendoTextBox
+        (input)="onFilter($event)"
+        style="width:300px"
+        />
+
+        <kendo-grid-spacer></kendo-grid-spacer>
+
+
+
+
+
+      <!-- <button  class="button" > <a routerLink="/create-lead">Create New Lead</a></button> -->
+      <a  href="assets/bl_product_masters.csv" download="Sample.csv"> <i class="fa fa-download " aria-hidden="true" style="margin: 3px;"></i> Sample File </a>
+      <b onclick="$('#file').click()" style="cursor: pointer;" class="button"> <i class="fa fa-upload " aria-hidden="true" style="margin: 3px;"></i> Import Product </b>
+      <input accept=".csv,.xls,.xlsx" type="file"  encType="multipart/form-data" class="form-control " (change)="onFileChange($event)" placeholder="Uplode your Company Logo" id="file" formControlName="attach_file" style="font-size:12px; border-right:0px;display: none;" >
+    </ng-template>
+
+
+
+
+    <kendo-grid-column field="product_name" title="Product Name" [width]="150">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="customer-name" ><b>{{dataItem.PartNo}}</b><br>{{dataItem.productname}}</div>
+
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="type" title="Type" [width]="100">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="customer-name" >{{dataItem.type}}</div>
+
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="UnitPrice" title="Unit Price" [width]="100">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="customer-name" >{{ dataItem.UnitPrice }}</div>
+      </ng-template>
+    </kendo-grid-column>
+
+      <kendo-grid-column field="GST" title="GST" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+ <div class="customer-name">{{ dataItem.GST }}</div>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="Category" title="Category" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name" >Type : {{ dataItem.Category }}</div>
+          <!-- <div class="customer-name" >Industry:{{ dataItem.industry}}</div> -->
+                 </ng-template>
+      </kendo-grid-column>
+
+
+
+
+
+
+      <kendo-grid-column
+        field="HSNCode"
+        title="HSNCode"
+        [width]="100"
+        [class]="{ 'text-center': true }"
+        [resizable]="false"
+      >
+      </kendo-grid-column>
+
+
+      <kendo-grid-column
+      title="Controls"
+      [width]="100"
+      [class]="{ 'text-center': true }"
+      [resizable]="false"
+      [filterable]="false"
+     >
+      <ng-template kendoGridCellTemplate let-product>
+       <kendo-menu>
+         <kendo-menu-item icon="gear">
+           <kendo-menu-item icon="edit"  url="/product-edit/{{product._id}}"  text="Edit" > </kendo-menu-item>
+           <!-- <kendo-menu-item text="Delete" icon="delete"></kendo-menu-item> -->
+         </kendo-menu-item>
+
+       </kendo-menu>
+      </ng-template>
+    </kendo-grid-column>
+
+
+  </kendo-grid>
+  <div *ngIf="!gridView" class="k-i-loading"></div>
+
+
+  </div>
+  </div>

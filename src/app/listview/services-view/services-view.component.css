@@ -1,0 +1,23 @@
+.status-end {
+    text-align: end;
+}
+
+.bb {
+    border-bottom: 1px solid #edf1f2;
+    padding: 0 15px;
+}
+
+.xy {
+    padding: 15px;
+}
+
+.Acc-border {
+    border-bottom: 1px solid #edf1f2;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #333;
+}
+
+img {
+    height: 14px;
+}

@@ -1,0 +1,419 @@
+<app-header ></app-header>
+<app-sidenav ></app-sidenav>
+<div id="content" class="app-content" role="main">
+    <div class="app-content-body ">
+      <div class="top">
+        <div class="row t-main">
+          <div class="col-sm-6 col-xs-12 t-main-1">
+            <h4 class="m-n  t-main1">Create Company</h4>
+          </div>
+          <div class="col-sm-6 text-right poppins">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb t-main" style="cursor: pointer;">
+                <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard</li>
+                <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Company</li>
+                <!-- <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;"> Account View List</li> -->
+                <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">Create Company</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+           
+      </div>
+    <div class="wrapper-md" ng-controller="FormDemoCtr5">
+      <form [formGroup]="companyForm" >
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Company  Information</div> 
+            
+            <div class="panel-body">
+           
+              <div class="col-md-4 form-group">  
+                <label>Company ID <span class="text-danger">*</span></label> 
+               
+                  <input type="text" class="form-control" placeholder="" [attr.disabled]=true value={{this.companyId}} formControlName="company_id">
+                </div>
+         
+    
+              <div class="col-md-4 form-group">
+                <label >Company Owner<span class="text-danger">*</span> </label>
+                
+                  <input type="text" class="form-control" placeholder="" [attr.disabled]=true value={{this.loginUser}} formControlName="company_owner">
+                <!-- <select name="companyowner" id="comapnyowner" class="form-control"  required>
+                  <option  selected disabled>Comapny Owner </option>
+                  <option >{{this.loginUser}}</option>
+                </select>  -->
+                <div *ngIf="c.company_owner.errors && c.company_owner.errors.required && isValidFormSubmitted"
+                class="text-danger text-left mb-1 errorcontrols">
+                <div *ngIf="c.company_owner.errors.required"><small>Company Name is required.</small></div>
+              </div>
+              </div>
+            
+
+            
+              <!-- <div class="col-md-6 form-group">  
+                <label class="col-md-3 control-label">Comapny Name:</label> 
+                <div class="col-md-9">
+                  <input type="text" class="form-control" placeholder="Enter Comany Name" name="comapnyid">
+                </div>
+              </div> -->
+              
+    
+              <!-- <div class="form-group  col-md-6 ">
+                <label class="control-label col-sm-3" >Company</label>
+                <div class="col-sm-9">
+                  <div class="input-group">
+                    <span class="input-group-addon" style="color:gray;font-size:20px;background:white; border-right:0px;"><i class="fa fa-building"></i></span>
+                    <input type="text" class="form-control" placeholder="Enter Company Name" formControlName="company_name" style="border-left:0px;">    
+                </div>
+                </div>
+              </div>     -->
+    
+              <div class="form-group  col-md-4 ">
+                <label>Company<span class="text-danger">*</span></label>
+               
+                  <div class="input-group">
+                    <span class="input-group-addon" style="color:gray;font-size:20px;background:white; border-right:0px;"><i class="fa fa-building"></i></span>
+                    <input type="text" (change)="handleNameChange($event)" value={{this.companyName}} class="validate form-control" placeholder="Enter Company Name" formControlName="company_name">
+                  </div>
+                  <div *ngIf="c.company_name.errors && c.company_name.errors.required && isValidFormSubmitted"
+                  class="text-danger text-left mb-1 errorcontrols">
+                  <div *ngIf="c.company_name.errors.required"><small>Company Name is required.</small></div>
+                </div>
+                </div>
+                <div class="clearfix"></div>   
+    
+              <!-- <div class="form-group  col-md-6 ">
+                <label class="control-label col-sm-3" >Contact</label>
+                <div class="col-sm-9">
+                  <div class="input-group">
+                    <span class="input-group-addon  " style="color:gray;font-size:20px;background:white; border-right:0px;"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control " aria-describedby="inputGroupSuccess2Status" placeholder="Select Contact" formControlName="contact" style="border-left:0px;">
+                    <span class="input-group-addon " style="color:red;font-size:20px;background:white;">+</span>
+                </div>
+                </div>
+              </div>     -->
+    
+              
+           <div class="col-md-4 form-group">   
+            <label  >Logo<span class="text-danger">*</span></label>
+           
+                <div class="input-group">
+            <input type="file" (change)="handleUpload($event)" encType="multipart/form-data" class="form-control " placeholder="Uplode your Company Logo" id="file" formControlName="company_logo" style="font-size:12px; border-right:0px;" >
+            <span class="input-group-addon " style="border-left:0px; font-size:15px;background:white;"><a onclick="$('#file').click()" style="color:blue;text-decoration: underline;">Choose file</a></span>
+            </div> 
+            <div *ngIf="c.company_logo.errors && c.company_logo.errors.required && isValidFormSubmitted"
+            class="text-danger text-left mb-1 errorcontrols">
+            <div *ngIf="c.company_logo.errors.required"><small>Company Name is required.</small></div>
+          </div> 
+          </div>  
+      
+
+
+          
+
+          <div class="col-md-4 form-group">
+            <label >GST <span class="text-danger">*</span> </label>
+           
+            <input type="text"  class="validate form-control" value={{this.companyGst}} (change)="handleGst($event)" placeholder="Enter GST" formControlName="gstin"/>
+            <div *ngIf="c.gstin.errors && c.gstin.errors.required && isValidFormSubmitted"
+            class="text-danger text-left mb-1 errorcontrols">
+            <div *ngIf="c.gstin.errors.required"><small>Company Name is required.</small></div>
+          </div>
+        </div>
+        
+    
+          <div class="col-md-4 form-group">
+            <label >PAN <span class="text-danger">*</span> </label>
+         
+            <input type="text"  class="validate form-control " value={{this.companyPan}} (change)="handlePan($event)" placeholder="Enter Pan" formControlName="pan"/>
+            <div *ngIf="c.pan.errors && c.pan.errors.required && isValidFormSubmitted"
+            class="text-danger text-left mb-1 errorcontrols">
+            <div *ngIf="c.pan.errors.required"><small>Company Name is required.</small></div>
+          </div>
+          </div>
+          <div class="clearfix"></div>
+
+
+       
+
+
+          <div class="form-group  col-md-4 ">
+            <label for="inputGroupSuccess2">Phone No</label>
+              <div class="input-group col-md-12">
+                <!-- <span class="input-group-addon">+91</span> -->
+                <input type="number" class="form-control"  aria-describedby="inputGroupSuccess2Status" placeholder="Enter Phone Number " formControlName="phone_no">
+              </div>
+            </div>
+          
+    
+          <div class="form-group  col-md-4 ">
+            <label  for="inputGroupSuccess2">Mobile No<span class="text-danger">*</span></label>
+           
+              <div class="input-group">
+                <span class="input-group-addon">+91</span>
+                <input type="number" class="validate form-control" placeholder="Enter Mobile Number " formControlName="mobile_no">
+              </div>
+              <div *ngIf="c.mobile_no.errors && c.mobile_no.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="c.mobile_no.errors.required"><small>Company Name is required.</small></div>
+            </div>
+            </div>
+              
+          
+      
+
+
+          <div class="col-md-4 form-group">
+             <label >Email <span class="text-danger">*</span> </label>
+          
+             <input type="text"  class="validate form-control " placeholder="Enter Email Address" formControlName="email"/>
+             <div *ngIf="c.email.errors && c.email.errors.required && isValidFormSubmitted"
+             class="text-danger text-left mb-1 errorcontrols">
+             <div *ngIf="c.email.errors.required"><small>Company Name is required.</small></div>
+           </div>
+            </div>
+            <div class="clearfix"></div>
+    
+          <div class="col-md-4 form-group">
+            <label >Secondary Email </label>
+          
+            <input type="text"  class="validate form-control " placeholder="Enter Secondery Email " formControlName="secondary_email"/>
+          </div>
+      
+
+          <div class="clearfix"></div>
+
+
+    </div>
+    </div>
+  </div>
+    <div  style="text-align: right; margin:10px 0px;margin-right:16px;" >
+      <button type="cancel" class="btn btn-dark" >Cancel</button>
+      <button (click)="submitForm()" class="btn btn-danger">Save</button>
+     
+      </div>
+  </div>
+</form>
+    <!-- End content1 -->
+   
+
+    <!--Start Conten2-->
+    <form [formGroup]="addressForm">
+     <div class="row">
+       <div  class="text-right col-md-12"   >
+         <!-- <button (click)="handleAddNew()" class="button" style="margin-right: 9px;">Add New Branch</button> -->
+       </div>
+       <br/>
+       <br/>
+       <div class="col-sm-12" *ngIf="addnewaddress">
+        <div class="panel panel-default">
+          <div class="panel-heading font-bold">Address Information</div> 
+          <div class="panel-body">
+            
+            <div class="col-md-4 form-group">  
+              <div class="col-md-9">
+                <input hidden type="text" class="form-control" placeholder="" [attr.disabled]=true value={{this.userId}} formControlName="branch_id">
+              </div>
+            </div>
+<!--   
+            <div class="col-md-6 form-group">
+              <label class="col-md-3 control-label" style="padding-left: 0;">Branch Name</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" placeholder="" formControlName="branch_name">
+            </div>
+            </div> -->
+            
+            <div class="col-md-12 form-group">   
+              <label >Branch Name<span class="text-danger">*</span></label>
+           
+              <input type="text"  class="form-control "  placeholder="Enter Branch Name" formControlName="branch_name"/>
+              <div *ngIf="f.branch_name.errors && f.branch_name.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.branch_name.errors.required"><small>Branch Name is required.</small></div>
+            </div>
+            </div>  
+         
+            <div class="col-md-6 form-group">   
+              <label >Logo<span class="text-danger">*</span></label>
+             
+                  <div class="input-group">
+              <input type="file"  class="form-control " placeholder="Uplode your Company Logo" (change)="handleBranchUpload($event)" id="file" formControlName="branch_logo" style="font-size:12px; border-right:0px;" >
+              <span class="input-group-addon " style="border-left:0px; font-size:15px;background:white;"><a  style="color:blue;text-decoration: underline;">Browser</a></span>
+              </div> 
+              <div *ngIf="f.branch_logo.errors && f.branch_logo.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.branch_logo.errors.required"><small>Logo is required.</small></div>
+            </div>
+              
+            </div>  
+           
+      
+            <div class="col-md-6 form-group">
+              <label >GST <span class="text-danger">*</span> </label>
+             
+              <input type="text"  class="validate form-control " placeholder="Enter GST" formControlName="branch_gst"/>
+              <div *ngIf="f.branch_gst.errors && f.branch_gst.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.branch_gst.errors.required"><small>Branch GST is required.</small></div>
+            </div>
+            </div>
+            <div class="clearfix"></div>
+      
+
+            <div class="col-md-12 form-group">   
+              <label>Address Line 1<span class="text-danger">*</span>  </label>
+           
+              <input type="text"  class="form-control "  placeholder="Enter Address Line 1" formControlName="address1"/>
+              <div *ngIf="f.address1.errors && f.address1.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.address1.errors.required"><small>Address 1 is required.</small></div>
+            </div>
+            </div>  
+         
+            <div class="col-md-12 form-group">   
+              <label  >Address Line 2  </label>
+           
+              <input type="text"  class="form-control " placeholder="Enter Address Line 2" formControlName="address2"/>
+            </div>  
+         
+    
+            <div class="col-md-12 form-group">   
+              <label >Address Line 3 </label>
+          
+              <input type="text"  class="form-control " placeholder="Enter Address Line 3" formControlName="address3"/>
+            </div>  
+        
+           
+            <!-- <div class="col-md-6 form-group">
+              <label >Country <span class="text-danger">*</span> </label>
+             
+              <select (change)="changeCountry()" formControlName="country" id="" class="form-control"  required>
+                <option value="" [selected]=true [attr.disabled]> Select Country  </option>
+                <option  *ngFor="let country of Country" value={{country.country_name}}>{{country.country_name}}</option>
+              </select> 
+              <div *ngIf="f.country.errors && f.country.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.country.errors.required"><small>Country is required.</small></div>
+            </div>
+            </div>
+           -->
+      
+            <!-- <div class="col-md-6 form-group">
+              <label >State <span class="text-danger">*</span> </label>
+        
+              <select (change)="changeState()" formControlName="state" id="" class="form-control"  required>
+                <option value=""  [selected]=true disabled> Select State  </option>
+                <option  *ngFor="let country of State" value={{country.state_name}}>{{country.state_name}}</option>
+              </select> 
+              <div *ngIf="f.state.errors && f.state.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.state.errors.required"><small>State is required.</small></div>
+            </div>
+            </div> -->
+            <div class="col-md-6 form-group">
+              <label >Country    <span class="text-danger">*</span></label>
+              <select (change)="countryChangeAdd($event)" formControlName="country" id="" class="form-control"  >
+                <option value="" selected disabled> Select Country  </option>
+                <option  value="India" >India</option>
+                <option  value="Bangladesh" >Bangladesh</option>
+                <option  value="Nepal" >Nepal</option>
+              </select> 
+            </div>
+            
+
+            <div class="col-md-6 form-group">
+              <label >State   <span class="text-danger">*</span> </label>
+              <select formControlName="state" id="" class="form-control"  required> 
+                <option value="" selected disabled> Select State  </option>
+                <option *ngFor="let state of AddState" > {{state}} </option>
+              </select>
+      </div>
+      
+            <div class="col-md-6 form-group">
+              <label >City <span class="text-danger">*</span> </label>
+           
+              <!-- <select formControlName="city" id="" class="form-control"  required>
+                <option value=""  [selected]=true disabled> Select City </option>
+                <option  *ngFor="let country of City" value={{country.city_name}}>{{country.city_name}}</option>
+              </select>  -->
+              <input type="text" formControlName="city" id="" class="form-control"  required>
+              <div *ngIf="f.city.errors && f.city.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.city.errors.required"><small>City is required.</small></div>
+            </div>
+            </div>
+         
+    
+            <div class="col-md-6 form-group">
+              <label >Zip Code<span class="text-danger">*</span> </label>
+           
+              <input type="text"  class="form-control " placeholder="Enter zip" formControlName="zipcode"/>
+              <div *ngIf="f.zipcode.errors && f.zipcode.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.zipcode.errors.required"><small>Zip Code is required.</small></div>
+            </div>
+            </div>
+           
+            <div class="text-right col-md-12">
+              <button class="btn btn-dark mx-2" (click)="handleClose()">Cancel</button>
+              <button class="btn btn-danger" (click)="handleSave()">Save</button>
+            </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <br/>
+      <!-- <div *ngFor="let obj of address" style="margin: 10px 0px; display: flex;justify-content: space-between;align-items: center; border: 1px solid grey;" class="col-md-12 bg-secondary">
+       <div style="display: flex;align-items: center;">
+         <img src={{obj.branch_logo}} width="80px" height="80px"/>
+        <div style="margin-left: 10px;">
+          <h5>Branch Name : {{obj.branch_name}}</h5>
+          <p>Address : {{obj.full_address}}</p>
+          <p>{{obj.zipcode}}</p>
+        </div>
+       </div>
+        <div>
+         
+       
+          <button (click)="handleAddressDelete(obj.branch_id)">Delete</button>
+        </div>
+      </div> -->
+              <!------end content2-->
+            
+              
+
+
+
+
+
+              <div class="col-cm-12" >
+                <div class="card1 col-sm-3" ><span (click)="handleAddNew()">
+                  <i class="fa fa-plus" aria-hidden="true"></i> <br>Add New Branch
+                </span> </div>
+                <div class="card col-sm-3" *ngFor="let obj of address">
+                  <img src={{obj.branch_logo}} style="width:100%">
+                  <h5>Branch Name : {{obj.branch_name}}</h5>
+                  <h5>GST: {{obj.branch_gst}}</h5>
+                    <p><b>Address :</b> {{obj.full_address}}</p>
+                
+                    <h5>Zip Code : {{obj.zipcode}}</h5>
+                    <br>
+                    <span>
+                      <button style="border:none; background: white;padding-left: 0px;">Edit</button>&nbsp; | &nbsp;<button style="border:none; background: white;">Active</button>
+                    </span>
+                    <!-- <button (click)="handleAddressDelete(obj.branch_id)" class="pull-right" style="background: white;border: 1px solid gray;"></button> -->
+                  
+                  </div>
+              </div>
+
+
+
+
+
+
+      </div>
+      </div>
+      </div>

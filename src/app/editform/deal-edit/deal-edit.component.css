@@ -1,0 +1,16 @@
+.textboxWidth{
+    width:100%;
+}
+.totalSumValue {
+    width: 20rem;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+.totalSumValue hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 1px solid #f00;
+}
+.fw600 {
+    font-weight: 600;
+}

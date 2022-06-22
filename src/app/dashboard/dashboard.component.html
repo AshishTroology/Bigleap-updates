@@ -1,0 +1,192 @@
+<app-header ></app-header>
+<app-sidenav ></app-sidenav>
+
+<div id="content" class="app-content" role="main" style="background-color:#fff;">
+  <div class="app-content-body ">
+    <div class="top">
+      <div class="row t-main">
+        <div class="col-sm-6 col-xs-12 t-main-1">
+          <h2 style="margin: 0 0 10px 15px;">Dashboard</h2>
+        </div>
+      </div>
+    </div>
+
+    <div ng-controller="FormDemoCtr5">
+      <div class="container-fluid">
+          <div class="col-sm-12" style="padding-top:1rem ;">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="well topBox">
+                <h4>Leads</h4>
+                <p>{{ this.dashboardcount.lead }}</p>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="well topBox" style="background-color:#36bfbf;">
+                <h4>Quotes</h4>
+                <p>{{ this.dashboardcount.quote }}</p>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="well topBox" style="background-color:#51c473;">
+                <h4>Deals</h4>
+                <p>{{ this.dashboardcount.deal }}</p>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="well topBox" style="background-color:#ffa479;">
+                <h4>Service</h4>
+                <p>{{ this.dashboardcount.service }}</p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="">
+                <div class="headding">
+                  <h4>Lead</h4>
+                </div>
+
+                <table style="width:100%">
+                  <tr height="">
+                    <td>Information Required</td>
+                    <td class="text-end">{{ this.dashboardcount.clead[0].information_required }}</td>
+                  </tr>
+                  <tr>
+                    <td>Quote to be Prepared</td>
+                    <td class="text-end">{{ this.dashboardcount.clead[0].quote_prepared }}</td>
+                  </tr>
+                  <tr>
+                    <td>Price/Quote Awaited from OEM</td>
+                    <td class="text-end">{{ this.dashboardcount.clead[0].awaited_from_oem }}</td>
+                  </tr>
+                  <tr>
+                    <td>Lost</td>
+                    <td class="text-end">{{ this.dashboardcount.clead[0].Lost }}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="">
+                <div class="headding">
+                  <h4>Quotes</h4>
+                </div>
+                <table style="width:100%">
+                  <tr>
+                    <td>Under Negotiation</td>
+                    <td class="text-end">{{ this.dashboardcount.cquote[0].Under_Negotiation }}</td>
+                  </tr>
+                  <tr>
+                    <td>Under Technical Negotiation</td>
+                    <td class="text-end">{{ this.dashboardcount.cquote[0].Under_Technical_Discussion }}</td>
+                  </tr>
+                  <tr>
+                    <td>Deal to be Prepared</td>
+                    <td class="text-end">{{ this.dashboardcount.cquote[0].Deal_Prepared }}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="row" style="margin-bottom: 12px; margin-top: 20px; ">
+            <div class="col-sm-6">
+              <div class="">
+                <div class="headding">
+                  <h4>Deals</h4>
+                </div>
+                <table style="width:100%">
+                  <tr>
+                    <td>Won</td>
+                    <td class="text-end">{{ this.dashboardcount.cdeal[0].Won }}</td>
+                  </tr>
+                  <tr>
+                    <td>PO Received (Text box required for PO No & Date)</td>
+                    <td class="text-end">{{ this.dashboardcount.cdeal[0].PO_received }}</td>
+                  </tr>
+                  <tr>
+                    <td>Panding Acknowledgement</td>
+                    <td class="text-end">{{ this.dashboardcount.cdeal[0].Pending_Acknowledgement }}</td>
+                  </tr>
+                  <tr>
+                    <td>Acknowledgement (Text box for SO No. & Date)</td>
+                    <td class="text-end">{{ this.dashboardcount.cdeal[0].Acknowledgement }}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <!--
+            <div class="col-sm-6">
+              <div class="">
+                <div class="headding">
+                  <h4>Industry Wise</h4>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Industry Name</th>
+                      <th>Lead</th>
+                      <th>Quote</th>
+                      <th>Deal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Defence</td>
+                      <td>00</td>
+                      <td>00</td>
+                      <td>00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>-->
+            <div class="col-sm-6">
+              <div class="">
+                <div class="headding">
+                  <h4>Type</h4>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Type</th>
+                      <th>Lead</th>
+                      <th>Quote</th>
+                      <th>Deal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Project</td>
+                      <td>{{ this.dashboardcount.clead[0].Project }}</td>
+                      <td>{{ this.dashboardcount.cquote[0].Project }}</td>
+                      <td>{{ this.dashboardcount.cdeal[0].Project }}</td>
+                    </tr>
+                    <tr>
+                      <td>Solution</td>
+                      <td>{{ this.dashboardcount.clead[0].Solution }}</td>
+                      <td>{{ this.dashboardcount.cquote[0].Solution }}</td>
+                      <td>{{ this.dashboardcount.cdeal[0].Solution }}</td>
+                    </tr>
+                    <tr>
+                      <td>Standard</td>
+                      <td>{{ this.dashboardcount.clead[0].Standard }}</td>
+                      <td>{{ this.dashboardcount.cquote[0].Standard }}</td>
+                      <td>{{ this.dashboardcount.cdeal[0].Standard }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,197 @@
+
+<aside id="aside" class="app-aside hidden-xs bg-white">
+   <div class="aside-wrap" id="sidebar">
+     <div class="navi-wrap">
+       <!-- nav -->
+       <nav ui-nav class="navi clearfix" id="leftmenuinnerinner">
+         <ul class="nav">
+           <li
+             class="hidden-folded padder m-t m-b-sm text-muted font-bold "
+           >
+             <span style="color: #8F939E;font-size: 1.1rem;">NAVIGATION  </span>
+           </li>
+           <li>
+             <a routerLink="/dashboard" >
+              <i><img src="assets/asset/img/dashboard.svg" class="side-img1" ></i>
+
+               <span class="text-theme" >Dashboard</span>
+             </a>
+           </li>
+
+           <!-- <li>
+             <a href="/masters" class="active">
+               <i class="fa fa-th"></i>
+               <span>Master Module</span>
+             </a>
+           </li> -->
+           <li>
+             <a routerLink="/lead" routerLinkActive="active" >
+               <i><img src="assets/asset/img/Leads.svg" class="side-img"></i>
+               <span style="color: black;"> Leads</span>
+             </a>
+           </li>
+           <li>
+             <a routerLink="/quote" routerLinkActive="active">
+              <i><img src="assets/asset/img/Quotations.svg" class="side-img"></i>
+               <span style="color: black;">Quotes</span>
+             </a>
+           </li>
+           <li>
+             <a routerLink="/deal" routerLinkActive="active" >
+              <i><img src="assets/asset/img/deal.svg" class="side-img1" ></i>
+               <span style="color: black;">Deals</span>
+             </a>
+           </li>
+
+           <li>
+            <a routerLink="/service-request-list" routerLinkActive="active">
+              <!-- <i><img src="assets/asset/img/Role & Permission.svg" class="side-img1" ></i> -->
+              <i class="fa fa-wrench" aria-hidden="true" ></i>
+              <span style="color: black;">Service</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/performance-list" routerLinkActive="active">
+              <i class="fa fa-bar-chart" aria-hidden="true"></i>
+              <span style="color: black;">Performance</span>
+            </a>
+          </li>
+           <hr>
+           <li
+           class="hidden-folded padder m-t m-b-sm text-muted font-bold "
+         >
+           <span style="color: #8F939E;font-size:1.2rem;">System Configuration  </span>
+         </li>
+           <li>
+             <a routerLink="/account" routerLinkActive="active">
+              <i><img src="assets/asset/img/accounts.svg" class="side-img" ></i>
+               <span style="color: black;"><img src="">Account</span>
+             </a>
+           </li>
+           <li>
+             <a routerLink="/contact" routerLinkActive="active">
+              <i><img src="assets/asset/img/Contact.svg" class="side-img" ></i>
+               <span style="color: black;">Contact</span>
+             </a>
+           </li>
+           <li>
+             <a routerLink="/company" routerLinkActive="active">
+              <i><img src="assets/asset/img/Company.svg" class="side-img" ></i>
+               <span style="color: black;">Company-(DT Internal)</span>
+             </a>
+           </li>
+           <li>
+             <a routerLink="/products-list" routerLinkActive="active">
+              <i><img src="assets/asset/img/product.svg" class="side-img" ></i>
+               <span style="color: black;">Product List</span>
+             </a>
+           </li>
+
+           <!-- <li> <span style="color: black;" class="hidden-folded padder m-t m-b-sm  font-bold">New Additions</span></li>
+           <li>
+            <li
+           class="hidden-folded padder m-t m-b-sm text-muted font-bold "
+         >
+         <span style="color: #8F939E;font-size:1.2rem;" >New Additions</span>
+         </li>
+         <li>
+             <a routerLink="/new-products" routerLinkActive="active">
+              <i><img src="assets/asset/img/Icon simple-addthis.svg" class="side-img" ></i>
+               <span style="color: black;">Newly Added Product</span>
+              </a>
+             <a routerLink="/new-groups" routerLinkActive="active">
+              <i><img src="assets/asset/img/newly added group.svg" class="side-img1" ></i>
+               <!-- <span style="color: black;">Newly Added Product</span>
+               <span style="color: black;">Newly Added Group</span>
+              </a>
+
+           </li>-->
+           <!-- <li>
+             <a routerLink="/sales-person" routerLinkActive="active">
+               <i class="fa fa-list-alt"></i>
+               <span style="color: black;">Sales Person</span>
+             </a>
+           </li> -->
+
+           <li
+           class="hidden-folded padder m-t m-b-sm text-muted font-bold "
+         >
+           <span style="color: #8F939E;font-size:1.2rem;">Settings </span>
+         </li>
+         <li>
+          <a routerLink="/add-user" routerLinkActive="active">
+            <i><img src="assets/asset/img/user.svg" class="side-img1" ></i>
+            <span style="color: black;">User</span>
+          </a>
+        </li>
+         <li>
+          <a routerLink="/role-list" routerLinkActive="active">
+          <i class="fa fa-cog" aria-hidden="true"></i>
+            <span style="color: black;">Role and Permission</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/report" routerLinkActive="active">
+            <i class="fa fa-th" aria-hidden="true"></i>
+            <span style="color: black;">Report</span>
+          </a>
+        </li>
+
+           <li class="line dk"></li>
+           <li
+             class="hidden-folded padder m-t m-b-sm text-muted font-bold text-10"
+           >
+             <span style="color: #8F939E;font-size: 1.1rem;">LOGOUT</span>
+           </li>
+           <li>
+             <a (click)="logout()" routerLink="/login" routerLinkActive="active">
+              <i><img src="assets/asset/img/logout.svg" class="side-img" ></i>
+               <span>Logout </span>
+
+             </a>
+           </li>
+
+         </ul>
+       </nav>
+       <!-- nav -->
+       <!-- aside footer -->
+       <div class="aside-footer wrapper-sm poppins">
+         <div class="text-center-folded text-center">
+           <p class="hidden-folded text-xs m-b-xs">
+             Need help ?
+             <a
+               href="https://www.troology.com/"
+               target="_blank"
+               class="font-weight-600"
+               >Contact us</a
+             >
+           </p>
+           <p class="hidden-folded text-xs m-b-md">
+             <a href="https://www.troology.com/" target="_blank"
+               ><i class="fa fa-bug"></i> Report a bug?</a
+             >
+           </p>
+           <img
+             src="../../assets/img/Group.png"
+             style="background-color: red;"
+             class="center-block img-responsive m-b-xs"
+             width="75px"
+           />
+
+           <hr style="margin: 10px 0;" />
+           <p
+             class="hidden-folded text-10 text-muted font-weight-600 text-uppercase m-b-xs"
+           >
+             <a href="">Support Manual</a>
+           </p>
+           <p
+             class="hidden-folded text-10 text-muted font-weight-600 text-uppercase m-b-xs"
+           >
+             <a href="">Copyright Information</a>
+           </p>
+         </div>
+       </div>
+       <!-- / aside footer -->
+     </div>
+   </div>
+ </aside>

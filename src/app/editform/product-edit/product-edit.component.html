@@ -1,0 +1,147 @@
+<app-header ></app-header>
+<app-sidenav ></app-sidenav>
+<div id="content" class="app-content" role="main">
+    <div class="app-content-body ">
+      <div class="top">
+        <div class="row t-main">
+          <div class="col-sm-6 col-xs-12 t-main-1">
+            <h4 class="m-n  t-main1">Edit Products</h4>
+          </div>
+          <div class="col-sm-6 text-right poppins">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb t-main" style="cursor: pointer;">
+                <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard</li>
+                <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Products</li>
+                <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;"  routerLink="/new-products">Products View List</li>
+                <!-- <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;"> Account View List</li> -->
+                <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">Edit Products</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+           
+      </div>
+    <div class="wrapper-md" ng-controller="FormDemoCtr5">
+      <form  [formGroup]="productForm" role="form" (ngSubmit)="onFormSubmit()" >
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Products Information</div> 
+            
+            <div class="panel-body">
+           
+                <div class="col-md-4 form-group">
+                    <label>Type</label>
+                      <!-- <input type="text" class="form-control" placeholder="" > -->
+                     <select formControlName="type" class="form-control" value="{{type}}"
+                     (change)="getValuesChange($event,'type')"  >
+                         <option value="Product">Product</option>
+                         <option value="Service">Service</option>
+                      
+                     </select>
+                     <div *ngIf="f.type.errors && f.type.errors.required && isValidFormSubmitted"
+                     class="text-danger text-left mb-1 errorcontrols">
+                     <div *ngIf="f.type.errors.required"><small>Type  is
+                         required.</small></div>
+                   </div>
+                  </div>   
+
+
+              <div class="col-md-4 form-group">  
+                <label >Product Name</label> 
+                  <input formControlName="productname" class="form-control" value={{productname}} (input)="getValues($event,'productname')">
+                  <div *ngIf="f.productname.errors && f.productname.errors.required && isValidFormSubmitted"
+                  class="text-danger text-left mb-1 errorcontrols">
+                  <div *ngIf="f.productname.errors.required"><small>Product Name  is
+                      required.</small></div>
+                </div>
+                </div>
+            
+    
+              <div class="col-md-4 form-group">
+                <label>Part No</label>
+                  <input formControlName="PartNo" type="text" class="form-control" placeholder="" value={{PartNo}} (input)="getValues($event,'PartNo')">
+                  <div *ngIf="f.PartNo.errors && f.PartNo.errors.required && isValidFormSubmitted"
+                  class="text-danger text-left mb-1 errorcontrols">
+                  <div *ngIf="f.PartNo.errors.required"><small>Part No  is
+                      required.</small></div>
+                </div>
+                </div>
+              <div class="clearfix"></div>
+              <div class="col-md-4 form-group">
+                <label> CCN No</label>
+                  <input formControlName="CCNNo" type="text" class="form-control" placeholder=""  value={{CCNNo}} (input)="getValues($event,'CCNNo')">
+              </div>
+
+
+  <div class="col-md-4 form-group">
+    <label>Unit Price</label>
+      <input formControlName="UnitPrice" type="text" class="form-control" placeholder="" >
+      <div *ngIf="f.UnitPrice.errors && f.UnitPrice.errors.required && isValidFormSubmitted"
+      class="text-danger text-left mb-1 errorcontrols">
+      <div *ngIf="f.UnitPrice.errors.required"><small>Unit Price is
+          required.</small></div>
+    </div>
+    </div>
+       
+  <div class="col-md-4 form-group">
+    <label> UOM</label>
+      <input formControlName="UOM" type="text" class="form-control" placeholder="" >
+      <div *ngIf="f.UOM.errors && f.UOM.errors.required && isValidFormSubmitted"
+      class="text-danger text-left mb-1 errorcontrols">
+      <div *ngIf="f.UOM.errors.required"><small>UOM Price is
+          required.</small></div>
+    </div>
+    </div>
+               
+  <div class="col-md-4 form-group">
+    <label> Category</label>
+      <input formControlName="Category" type="text" class="form-control" placeholder="" >
+  </div>
+  
+  <div class="col-md-4 form-group">
+    <label>OEM</label>
+      <input formControlName="OEM" type="text" class="form-control" placeholder=""  >
+  </div>
+      
+  <div class="col-md-4 form-group">
+    <label> OEM Product Code</label>
+      <input formControlName="OEMProductCode" type="text" class="form-control" placeholder="" value={{OEMProductCode}}  (input)="getValues($event,'OEMProductCode')">
+  </div>       
+ 
+  <div class="col-md-4 form-group">
+    <label> HSN Code</label>
+      <input  formControlName="HSNCode" type="text" class="form-control" placeholder="" >
+      <div *ngIf="f.HSNCode.errors && f.HSNCode.errors.required && isValidFormSubmitted"
+      class="text-danger text-left mb-1 errorcontrols">
+      <div *ngIf="f.HSNCode.errors.required"><small> HSN Code is
+          required.</small></div>
+    </div>
+    </div>   
+       
+  <div class="col-md-4 form-group">
+    <label> GST</label>
+      <input formControlName="GST" type="text" class="form-control" placeholder="" >
+      <div *ngIf="f.GST.errors && f.GST.errors.required && isValidFormSubmitted"
+      class="text-danger text-left mb-1 errorcontrols">
+      <div *ngIf="f.GST.errors.required"><small> GST is
+          required.</small></div>
+    </div>
+  </div>   
+  <div class="clearfix"></div>         
+ 
+
+    </div>
+    </div>
+  </div>
+    <div  style="text-align: right; margin:10px 0px;margin-right:16px;" >
+      <button type="cancel"  class="btn btn-dark" >Cancel</button>
+      <button class="btn btn-danger"[disabled]="isValidbutton" (click)="saveform('save')">Save</button>
+     
+      </div>
+  </div>
+</form>
+    <!-- End content1 -->
+   
+
+    

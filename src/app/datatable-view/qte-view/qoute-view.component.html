@@ -1,0 +1,115 @@
+<app-header></app-header>
+ <app-sidenav></app-sidenav>
+ <div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+    <div class="top"> <div class="row t-main">
+      <div class="col-sm-6 col-xs-12 t-main-1">
+        <h4 class="m-n  t-main1"> Quote View List</h4>
+      </div>
+      <div class="col-sm-6 text-right poppins">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb t-main">
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Dashboard</li>
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Quote</li>
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">T-view</li>
+           
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">Quote View List</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+</div>
+<div class="col-sm-12 text-right" style="padding: 10px;"> 
+    <button class=" button" style="background-color: #7266BA;border:1px solid #7266BA;"> <a routerLink="/quote"><i _ngcontent-suu-c437="" class="fa fa-bars"></i>
+       kendo - view</a></button>
+    <button  class="button" > <a routerLink="/create-lead"><i _ngcontent-suu-c437="" class="fa fa-plus"></i> Create Lead</a></button>
+  </div>
+    <div class="col-sm-12" style="padding-top: 10px;">
+      
+     
+            <table datatable  [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                <thead class="l-head">
+                    <tr>
+                      <th>ID</th>
+                      <th>Account</th>
+                      <th>Qoute Owner </th>
+                      <th>Qoute Title</th>
+                     
+                      <th>Qoute Type</th>
+                      <th>Qoute Status</th>
+                      <th>Qoute Location</th>
+                      <th>Approval</th>
+                      <th>Action</th>
+                   
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of gridData">
+                      <td>
+                        <div class="text-theme font-bold">							{{ data.quote_id }}</div>
+                        <div><i _ngcontent-fcn-c561="" aria-hidden="true" class="fa fa-calendar-check-o" style="color: green;"></i>: {{ data.created_date_time }}</div>
+                        <div><i _ngcontent-fcn-c561="" aria-hidden="true" class="fa fa-calendar-check-o" style="color: red;"></i>:  {{ data.modified_date_time}}</div>
+                        <div>Aging: {{ data.aging }}</div>
+
+                      </td>
+
+
+                      <td>
+                          <div class="text-theme">{{data.company_name}}</div>
+                          <div>{{data.contact_name}}</div>
+                      </td>
+                      <td>
+                          <div>{{data.quote_owner}}</div>
+                        
+                    </td>
+                      <td>
+                        <div>{{data.quote_title}}</div>
+                      </td>
+                      <td>
+                        <div>{{data.quote_source}}</div>
+                        
+                      </td>
+                      <td> <div>{{data.quote_source}} </div></td>
+                      <td>
+                          <div>{{data.quote_location}}</div>
+                          
+                    </td>
+                    <td>
+                      <div><b>Approved By: </b>{{ data?.approved_by?.username }}</div>
+                      <div><b>Verified By: </b>{{ data?.verified_by?.username  }}</div>
+                      
+                </td>
+                      <td>
+                          
+                        <div class="dropdown">
+                            <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown" style="border: 1px solid red;background:white;color:red;border-radius: 5px;"><i class="fa fa-cog"></i>
+                            <span class="caret" style="margin-left: 10px;"></span></button>
+                            
+                            <ul class="dropdown-menu " >
+                              <li *ngIf="userPermission.quoteedit"><a [routerLink]="['/edit-quote',data.quote_id]">Edit</a></li>
+                              <li *ngIf="userPermission.quoteverifier && !data.verified"><a  click)="handleVerify(data._id)">Verify</a></li>
+                              <li *ngIf="userPermission.quoteapprover && !data.aprroved"><a  (click)="handleApprove(data._id)">Approve</a></li>
+                              <li ><a  [routerLink]="['/edit-quote',data.quote_id]"> Convert to Deal</a></li>
+
+                              <li ><a (click)="handleDelete(data._id)" >  Delete</a></li>
+                              <li ><a href="/view-quote/{{data.quote_id}}" target="_blank">  View Quote</a></li>
+                            </ul>
+                          </div>
+
+
+                      </td>
+                    </tr>
+
+                   
+                  </tbody>
+              </table>
+            
+          
+          </div>   
+            
+
+
+  </div>
+  </div>
+
+  

@@ -1,0 +1,135 @@
+<app-header></app-header>
+ <app-sidenav></app-sidenav>
+ <div id="content" class="app-content"  role="main">
+  <div class="app-content-body ">
+ <div class="top">
+  <div class="row t-main">
+    <div class="col-sm-6 col-xs-12 t-main-1">
+      <h4 class="m-n  t-main1">Leads View List</h4>
+    </div>
+    <div class="col-sm-6 text-right poppins">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb t-main" style="cursor:pointer;">
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard</li>
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Leads</li>
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;"  routerLink="/lead">Leads View List</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+</div>
+<kendo-grid [kendoGridBinding]="gridView" [pageSize]="10" [pageable]="true" [sortable]="false" [sort]="sort"
+  [reorderable]="true" [resizable]="true" [height]="620" [filterable]="false">
+    <ng-template kendoGridToolbarTemplate>
+      <input
+        placeholder="Search in all columns..."
+        kendoTextBox
+        (input)="onFilter($event)"
+        />
+        <kendo-grid-spacer></kendo-grid-spacer>
+        <button class=" button" style="background-color: #7266BA;border:1px solid #7266BA;"> <a routerLink="/lead-view"><i _ngcontent-suu-c437="" class="fa fa-bars"></i> T- view</a></button>
+      <button *ngIf="this.userPermission?.leadcreate" class="button" > <a routerLink="/create-lead">Create New Lead</a></button>
+
+    </ng-template>
+
+    <kendo-grid-column field="lead_id" title="ID" [width]="120" [locked]="true">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="customer-name" style="color: red;">{{ dataItem.lead_id }}</div>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="created_date_time" title="Created" [width]="150">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="customer-name" style="color:green;"><i class="fa fa-calendar-check-o"  aria-hidden="true"></i> {{
+          dataItem.created_date_time }}</div>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="modified_date_time" title="Modified" [width]="150">
+      <ng-template kendoGridCellTemplate let-dataItem>
+
+        <div class="customer-name" style="color:red;"><i class="fa fa-calendar-plus-o"  aria-hidden="true"></i>  {{
+          dataItem.modified_date_time }}</div>
+      </ng-template>
+    </kendo-grid-column>
+      <kendo-grid-column field="aging" title="Aging" [width]="90">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name">{{ dataItem.aging }}</div>
+        </ng-template>
+      </kendo-grid-column>
+
+
+    <kendo-grid-column field="company_name" title="Account" [width]="300">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="customer-name" style="color: red;">{{dataItem.company_name}}</div>
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="contact" title="Contact" [width]="200">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="customer-name">{{ dataItem.contact }}</div>
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="lead_title" title="Lead Title" [width]="200">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="customer-name" >{{ dataItem.lead_title }}</div>
+      </ng-template>
+    </kendo-grid-column>
+
+      <kendo-grid-column field="lead_owner" title="Lead Owner" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name">{{ dataItem.lead_owner[0].username }}</div>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="lead_type" title=" Lead Value" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name" >{{ dataItem.lead_type }}</div>
+                 </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column
+        field="lead_status_stage"
+        title="Lead Status "
+        [width]="200"
+        [class]="{ 'text-center': true }"
+
+      >
+      </kendo-grid-column>
+
+
+      <kendo-grid-column
+        title="Action"
+        [width]="100"
+        [class]="{ 'text-center': true }"
+        [resizable]="false"
+        [filterable]="false"
+
+      >
+        <ng-template kendoGridCellTemplate let-lead>
+          <kendo-menu >
+            <kendo-menu-item  icon="gear">
+
+              <kendo-menu-item icon="edit" *ngIf="this.userPermission?.leadedit" url="/edit-lead/{{lead.lead_id}}"  text="Edit" > </kendo-menu-item>
+
+
+              <kendo-menu-item icon="change-manually" *ngIf="this.userPermission?.convertleadtoquote" url="/edit-lead/{{lead.lead_id}}"  text="Convert to Quote">
+              </kendo-menu-item>
+
+
+            </kendo-menu-item>
+          </kendo-menu>
+
+
+
+        </ng-template>
+      </kendo-grid-column>
+
+
+
+  </kendo-grid>
+
+
+
+  </div>
+  </div>

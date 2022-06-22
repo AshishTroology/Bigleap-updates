@@ -1,0 +1,96 @@
+<app-header></app-header>
+ <app-sidenav></app-sidenav>
+
+
+ <kendo-grid
+    [kendoGridBinding]="gridView"
+    kendoGridSelectBy="id"
+    [selectedKeys]="mySelection"
+    [pageSize]="20"
+    [pageable]="true"
+    [sortable]="true"
+    [reorderable]="true"
+    [resizable]="true"
+    [height]="500"
+    [columnMenu]="{ filter: true }"
+  >
+
+
+    <ng-template kendoGridToolbarTemplate>
+      <input
+        placeholder="Search in all columns..."
+        kendoTextBox
+        (input)="onFilter($event)"
+        />
+      <kendo-grid-spacer></kendo-grid-spacer>
+      <button  > <a routerLink="/create-quote">Create New Quote</a></button>
+      <!-- <button kendoGridPDFCommand icon="file-pdf">Export to PDF</button> -->
+      <!-- <button kendoGridExcelCommand type="button" icon="file-excel">
+        Export to Excel
+      </button> -->
+    </ng-template>
+    
+      <kendo-grid-column field="quote_owner" title="Quote Owner" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <!-- <div
+            class="customer-photo"
+            [ngStyle]="{ 'background-image': photoURL(dataItem) }"
+          ></div> -->
+          <div class="customer-name" style="color: red;">{{ dataItem.quote_owner }}</div>
+          <!-- <div class="customer-name" >{{ dataItem.created_date_time.split('T')[0] }}</div> -->
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="quote_title" title="Quote Title" [width]="100">
+      </kendo-grid-column>
+
+      <kendo-grid-column
+        field="quote_source"
+        title="Quote Source"
+        [width]="100"
+        [class]="{ 'text-center': true }"
+        [resizable]="false"
+      >
+        <!-- <ng-template kendoGridCellTemplate let-dataItem>
+          <img class="flag" [src]="flagURL(dataItem)" width="30" />
+        </ng-template> -->
+      </kendo-grid-column>
+      <kendo-grid-column
+        field="quote_status"
+        title="Quote Status"
+        [width]="100"
+        [class]="{ 'text-center': true }"
+        [resizable]="false"
+      >
+        <!-- <ng-template kendoGridCellTemplate let-dataItem>
+          <img class="flag" [src]="flagURL(dataItem)" width="30" />
+        </ng-template> -->
+      </kendo-grid-column>
+      <kendo-grid-column
+        title="Controls"
+        [width]="100"
+        [class]="{ 'text-center': true }"
+        [resizable]="false"
+        [filterable]="false"
+        
+      >
+        <ng-template kendoGridCellTemplate let-quote>
+          <div class="dropdown">
+            <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-cog"></i>
+            <span class="caret" style="margin-left: 5px;"></span></button>
+            
+            <ul class="dropdown-menu">
+              <li><p [routerLink]="['/edit-quote',quote.quote_id]"><i class="fa fa-edit"></i>Edit</p></li>
+              <!-- (click)="handleEdit(quote.quote_id)" -->
+              <!-- <li><p (click)="handleDelete(account.account_id)"><i class="fa fa-ban" ></i>Delete</p></li> -->
+            </ul>
+          </div>
+
+
+          <!-- <i class="fa fa-cog"></i> -->
+          <!-- <button (click)="handleEdit(account.account_id)">Edit</button>{{" "}}
+          <button (click)="handleDelete(account.account_id)">Delete</button> -->
+        </ng-template>
+      </kendo-grid-column>
+
+
+  </kendo-grid>

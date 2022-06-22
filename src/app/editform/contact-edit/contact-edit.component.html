@@ -1,0 +1,253 @@
+<app-header ></app-header>
+<app-sidenav ></app-sidenav>
+
+
+<style>.multiselect-dropdown[_ngcontent-xxm-c534]{position:relative;width:100%;font-size:inherit;font-family:inherit}.multiselect-dropdown[_ngcontent-xxm-c534]   .dropdown-btn[_ngcontent-xxm-c534]{display:inline-block;border:1px solid #adadad;width:100%;padding:6px 12px;margin-bottom:0;font-weight:400;line-height:1.52857143;text-align:left;vertical-align:middle;cursor:pointer;background-image:none;border-radius:4px}.multiselect-dropdown[_ngcontent-xxm-c534]   .dropdown-btn[_ngcontent-xxm-c534]   .selected-item[_ngcontent-xxm-c534]{border:unset !important; margin-right:4px;background:unset !important;padding:0 5px;color:unset !important;border-radius:2px;float:left;display:flex;max-width:unset !important}.multiselect-dropdown[_ngcontent-xxm-c534]   .dropdown-btn[_ngcontent-xxm-c534]   .selected-item[_ngcontent-xxm-c534]   span[_ngcontent-xxm-c534]{overflow:hidden;text-overflow:ellipsis}.multiselect-dropdown[_ngcontent-xxm-c534]   .dropdown-btn[_ngcontent-xxm-c534]   .selected-item[_ngcontent-xxm-c534]   a[_ngcontent-xxm-c534]{text-decoration:none}.multiselect-dropdown[_ngcontent-xxm-c534]   .dropdown-btn[_ngcontent-xxm-c534]   .selected-item[_ngcontent-xxm-c534]:hover{box-shadow:1px 1px #959595}.multiselect-dropdown[_ngcontent-xxm-c534]   .dropdown-btn[_ngcontent-xxm-c534]   .dropdown-multiselect__caret[_ngcontent-xxm-c534]{line-height:16px;display:block;position:absolute;box-sizing:border-box;width:40px;height:38px;right:1px;top:0;padding:4px 8px;margin:0;text-decoration:none;text-align:center;cursor:pointer;transition:transform .2s}.multiselect-dropdown[_ngcontent-xxm-c534]   .dropdown-btn[_ngcontent-xxm-c534]   .dropdown-multiselect__caret[_ngcontent-xxm-c534]:before{position:relative;right:0;top:65%;color:#999;margin-top:4px;border-style:solid;border-width:8px 8px 0;border-color:#999 transparent;content:""}.multiselect-dropdown[_ngcontent-xxm-c534]   .dropdown-btn[_ngcontent-xxm-c534]   .dropdown-multiselect--active[_ngcontent-xxm-c534]   .dropdown-multiselect__caret[_ngcontent-xxm-c534]{transform:rotateZ(180deg)}.multiselect-dropdown[_ngcontent-xxm-c534]   .disabled[_ngcontent-xxm-c534] > span[_ngcontent-xxm-c534]{background-color:#eceeef}.dropdown-list[_ngcontent-xxm-c534]{position:absolute;padding-top:6px;width:100%;z-index:9999;border:1px solid #ccc;border-radius:3px;background:#fff;margin-top:10px;box-shadow:0 1px 5px #959595}.dropdown-list[_ngcontent-xxm-c534]   ul[_ngcontent-xxm-c534]{padding:0;list-style:none;overflow:auto;margin:0}.dropdown-list[_ngcontent-xxm-c534]   li[_ngcontent-xxm-c534]{padding:6px 10px;cursor:pointer;text-align:left}.dropdown-list[_ngcontent-xxm-c534]   .filter-textbox[_ngcontent-xxm-c534]{border-bottom:1px solid #ccc;position:relative;padding:10px}.dropdown-list[_ngcontent-xxm-c534]   .filter-textbox[_ngcontent-xxm-c534]   input[_ngcontent-xxm-c534]{border:0;width:100%;padding:0 0 0 26px}.dropdown-list[_ngcontent-xxm-c534]   .filter-textbox[_ngcontent-xxm-c534]   input[_ngcontent-xxm-c534]:focus{outline:0}.multiselect-item-checkbox[_ngcontent-xxm-c534]:hover{background-color:#e4e3e3}.multiselect-item-checkbox[_ngcontent-xxm-c534]   input[type=checkbox][_ngcontent-xxm-c534]{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.multiselect-item-checkbox[_ngcontent-xxm-c534]   input[type=checkbox][_ngcontent-xxm-c534]:focus + div[_ngcontent-xxm-c534]:before, .multiselect-item-checkbox[_ngcontent-xxm-c534]   input[type=checkbox][_ngcontent-xxm-c534]:hover + div[_ngcontent-xxm-c534]:before{border-color:#337ab7;background-color:#f2f2f2}.multiselect-item-checkbox[_ngcontent-xxm-c534]   input[type=checkbox][_ngcontent-xxm-c534]:active + div[_ngcontent-xxm-c534]:before{transition-duration:0s}.multiselect-item-checkbox[_ngcontent-xxm-c534]   input[type=checkbox][_ngcontent-xxm-c534] + div[_ngcontent-xxm-c534]{position:relative;padding-left:2em;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:pointer;margin:0;color:#000}.multiselect-item-checkbox[_ngcontent-xxm-c534]   input[type=checkbox][_ngcontent-xxm-c534] + div[_ngcontent-xxm-c534]:before{box-sizing:content-box;content:"";color:#337ab7;position:absolute;top:50%;left:0;width:14px;height:14px;margin-top:-9px;border:2px solid #337ab7;text-align:center;transition:.4s}.multiselect-item-checkbox[_ngcontent-xxm-c534]   input[type=checkbox][_ngcontent-xxm-c534] + div[_ngcontent-xxm-c534]:after{box-sizing:content-box;content:"";position:absolute;transform:scale(0);transform-origin:50%;transition:transform .2s ease-out;background-color:transparent;top:50%;left:4px;width:8px;height:3px;margin-top:-4px;border-style:solid;border-color:#fff;border-width:0 0 3px 3px;-o-border-image:none;border-image:none;transform:rotate(-45deg) scale(0)}.multiselect-item-checkbox[_ngcontent-xxm-c534]   input[type=checkbox][_ngcontent-xxm-c534]:disabled + div[_ngcontent-xxm-c534]:before{border-color:#ccc}.multiselect-item-checkbox[_ngcontent-xxm-c534]   input[type=checkbox][_ngcontent-xxm-c534]:disabled:focus + div[_ngcontent-xxm-c534]:before   .multiselect-item-checkbox[_ngcontent-xxm-c534]   input[type=checkbox][_ngcontent-xxm-c534]:disabled:hover + div[_ngcontent-xxm-c534]:before{background-color:inherit}.multiselect-item-checkbox[_ngcontent-xxm-c534]   input[type=checkbox][_ngcontent-xxm-c534]:disabled:checked + div[_ngcontent-xxm-c534]:before{background-color:#ccc}.multiselect-item-checkbox[_ngcontent-xxm-c534]   input[type=checkbox][_ngcontent-xxm-c534]:checked + div[_ngcontent-xxm-c534]:after{content:"";transition:transform .2s ease-out;transform:rotate(-45deg) scale(1)}.multiselect-item-checkbox[_ngcontent-xxm-c534]   input[type=checkbox][_ngcontent-xxm-c534]:checked + div[_ngcontent-xxm-c534]:before{-webkit-animation:.2s ease-in borderscale;animation:.2s ease-in borderscale;background:#337ab7}@-webkit-keyframes borderscale{50%{box-shadow:0 0 0 2px #337ab7}}@keyframes borderscale{50%{box-shadow:0 0 0 2px #337ab7}}</style>
+
+
+<div id="content" class="app-content" role="main">
+    <div class="app-content-body ">
+      <div class="top">
+
+        <div class="row t-main">
+    <div class="col-sm-6 col-xs-12 t-main-1">
+      <h4 class="m-n  t-main1"> Edit Contact</h4>
+    </div>
+    <div class="col-sm-6 text-right poppins">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb t-main" style="cursor: pointer;">
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard</li>
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Contact</li>
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/contact">Contact View List</li>
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color: red;">Edit Contact</li>
+
+        </ol>
+      </nav>
+    </div>
+  </div>
+  </div>
+    <div class="wrapper-md" ng-controller="FormDemoCtr5">
+        <form [formGroup]="contactForm">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Account Source</div>
+            <div class="panel-body">
+
+
+              <div class="col-md-6 form-group">
+                <label >Contact ID <span class="text-danger">*</span> </label>
+                  <input type="text" class="form-control" [readonly]=true value={{this.contactId}} placeholder="" formControlName="contact_id">
+                </div>
+
+
+              <div class="col-md-6 form-group">
+                <label >Contact  Owner <span class="text-danger">*</span> </label>
+                  <input type="text" class="form-control" [readonly]=true value={{this.username}} placeholder="" formControlName="contact_owner">
+                <!-- <select formControlName="contact_owner" id="contactowner" class="form-control"  required>
+                  <option [attr.selected]="this.contactData?.contact_owner?false:true" disabled>  Contact  Owner </option>
+                  <option [attr.selected]="!this.contactData?.contact_owner" value="this.username">{{this.username}}</option>
+                </select>  -->
+              </div>
+
+
+    </div>
+    </div>
+    </div>
+      </div>
+    <!-- End content1 -->
+     <!-- content 2-->
+    <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+           <div class="panel-heading font-bold">Contact Information</div>
+           <div class="panel-body">
+
+           <div class="col-md-12 form-group">
+            <label>Comapny Name <span class="text-danger">*</span>  </label>
+
+            <!-- <input type="text"  class="form-control " placeholder="Enter Account Holder Company Name" formControlName="company_name" /> -->
+
+            <ng-multiselect-dropdown
+            [(ngModel)]="SelectedCompany"
+            [settings]="dropdownSettings"
+            [data]="accountData"
+            formControlName="company_name"
+            (onSelect)="onItemSelect($event)"
+            >
+          </ng-multiselect-dropdown>
+          <div *ngIf="f.company_name.errors && f.company_name.errors.required && isValidFormSubmitted"
+            class="text-danger text-left mb-1 errorcontrols">
+            <div *ngIf="f.company_name.errors.required"><small>Company Name is required.</small></div>
+          </div>
+          </div>
+
+
+          <div class="col-md-4 form-group">
+            <label >Industry  <span class="text-danger">*</span> </label>
+            <!-- <select  value={{this.selected}} formControlName="industry" id="" class="form-control"  required>
+              <option  disabled> Select Industry</option>
+              <option >IT</option>
+              <option >Marketing</option>
+            </select>  -->
+            <input type="text"  class="form-control " [attr.disabled]=true value={{this.company_industry}} placeholder="Company Industry" formControlName="industry"/>
+          </div>
+
+
+          <div class="col-md-4 form-group">
+            <label >Country <span class="text-danger">*</span> </label>
+            <!-- <select (change)="countryChange()" value={{this.selected}} formControlName="country" id="" class="form-control"  required>
+              <option value="" disabled> Select Country  </option>
+              <option *ngFor="let obj of Country" value={{obj.country_name}} >{{obj.country_name}}</option>
+            </select>  -->
+            <input type="text"  class="form-control " [attr.disabled]=true value={{this.company_country}} placeholder="Company Country" formControlName="country"/>
+          </div>
+
+
+          <div class="col-md-4 form-group">
+            <label >State <span class="text-danger">*</span>  </label>
+            <!-- <select (change)="cityChange()" [value]="this.contactData?.state" formControlName="state" id="" class="form-control"  required>
+              <option value="" disabled> Select State  </option>
+              <option *ngFor="let obj of State" value={{obj.state_name}} >{{obj.state_name}}</option>
+            </select>  -->
+            <input type="text"  class="form-control " [attr.disabled]=true value={{this.company_state}} placeholder="Company State" formControlName="state"/>
+          </div>
+          <div class="clearfix"></div>
+
+          <div class="col-md-4 form-group">
+            <label>City<span class="text-danger">*</span>  </label>
+            <!-- <select value={{this.contactForm.value.city}} formControlName="city" id="" class="form-control"  required>
+              <option value="" disabled> Select City </option>
+              <option *ngFor="let obj of City" value={{obj.city_name}}>{{obj.city_name}}</option>
+            </select>  -->
+            <input type="text"  class="form-control " [attr.disabled]=true value={{this.company_city}} placeholder="Company City" formControlName="city"/>
+          </div>
+
+
+          <div class="col-md-4 form-group">
+            <label >Location  </label>
+            <input type="text"  class="form-control" [attr.disabled]=true value={{this.company_location}} placeholder="Company Location" formControlName="location"/>
+          </div>
+
+          <div class="col-md-4 form-group">
+            <label  >Department  </label>
+            <input type="text"  class="form-control " placeholder="Enter Your department" formControlName="department"/>
+
+          </div>
+          <div class="clearfix"></div>
+
+          <div class="col-md-4 form-group">
+            <label >Role<span class="text-danger">*</span>  </label>
+            <select value={{this.contactData?.role}} formControlName="role" id="" class="form-control"  required>
+              <option disabled> Select Role </option>
+              <option >User</option>
+              <option >Planner</option>
+              <option >Purchaser</option>
+              <option >Others</option>
+            </select>
+            <div *ngIf="f.role.errors && f.role.errors.required && isValidFormSubmitted"
+            class="text-danger text-left mb-1 errorcontrols">
+            <div *ngIf="f.role.errors.required"><small>Role is required.</small></div>
+          </div>
+          </div>
+
+          <div class="col-md-4 form-group">
+            <label >First Name<span class="text-danger">*</span>: </label>
+            <input type="text" (input)="this.onchange()" class="form-control " placeholder="Enter First Name" formControlName="first_name"/>
+            <div *ngIf="f.first_name.errors && f.first_name.errors.required && isValidFormSubmitted"
+            class="text-danger text-left mb-1 errorcontrols">
+            <div *ngIf="f.first_name.errors.required"><small>First Name is required.</small></div>
+          </div>
+          </div>
+
+
+          <div class="col-md-4 form-group">
+            <label >Last Name<span class="text-danger">*</span> </label>
+
+            <input type="text" (input)="this.onchange()" class="form-control " placeholder="EnterLast Name" formControlName="last_name"/>
+            <div *ngIf="f.last_name.errors && f.last_name.errors.required && isValidFormSubmitted"
+            class="text-danger text-left mb-1 errorcontrols">
+            <div *ngIf="f.last_name.errors.required"><small>Last Name is required.</small></div>
+          </div>
+          </div>
+          <div class="clearfix"></div>
+
+
+
+          <div class="col-md-4 form-group">
+            <label >Contact Name :  </label>
+            <input type="text" value={{this.fullname}} [readonly]=true class="form-control " placeholder="Preview First and Last Name" formControlName="contact_name"/>
+          </div>
+
+
+          <div class="form-group  col-md-4 ">
+            <label  for="inputGroupSuccess2">Phone No</label>
+              <div class="input-group col-md-12">
+                <!-- <span class="input-group-addon">+{{this.country_code}}</span> -->
+                <input type="number" class="validate form-control" aria-describedby="inputGroupSuccess2Status" placeholder="Enter Your Phone Number " formControlName="phone_no">
+              </div>
+            </div>
+
+
+          <div class="form-group  col-md-4 ">
+            <label for="inputGroupSuccess2">Mobile No<span class="text-danger">*</span>:</label>
+              <div class="input-group">
+                <span class="input-group-addon">+{{this.country_code}}</span>
+                <input type="number" class="validate form-control" aria-describedby="inputGroupSuccess2Status" placeholder="Enter Your Mobile Number " formControlName="mobile_no">
+              </div>
+              <div *ngIf="f.mobile_no.errors && f.mobile_no.errors.required && isValidFormSubmitted"
+            class="text-danger text-left mb-1 errorcontrols">
+            <div *ngIf="f.mobile_no.errors.required"><small>Mobile No is required.</small></div>
+          </div>
+
+          </div>
+          <div class="clearfix"></div>
+
+        <div class="col-md-4 form-group">
+          <label>Email </label>
+          <input type="text" class="form-control validator" placeholder="Enter Email Address" formControlName="email" />
+          <div *ngIf="f.email.errors && f.email.errors.required && isValidFormSubmitted"
+            class="text-danger text-left mb-1 errorcontrols">
+            <!-- <div *ngIf="f.email.errors.required"><small>Lead Source is required.</small></div> -->
+          </div>
+        </div>
+
+          <div class="col-md-4 form-group">
+            <label >Secondery Email </label>
+            <input type="text"  class="validator form-control " placeholder="Enter Secondery Email " formControlName="secondary_email"/>
+          </div>
+
+      </div>
+      </div>
+      </div>
+    </div>
+     <!--End  content 2-->
+     <!--start content 3-->
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading font-bold">Remark :</div>
+                  <div class="panel-body">
+
+
+                    <div class="col-md-12 ">
+
+                        <input type="text" class="form-control" placeholder="Remark" formControlName="remark">
+                      </div>
+                    </div>
+
+          </div>
+          </div>
+          </div>
+
+        </form>
+        <div  style="text-align: right; margin:10px 0px;margin-right:16px;" >
+          <button class="btn btn-dark" ><a routerLink="/contact">Cancel</a></button>
+          <button type="submit" (click)="submitForm()" class="btn btn-danger">Save</button>
+
+          </div>
+          <!-- End content3 -->
+    </div>
+    </div>
+

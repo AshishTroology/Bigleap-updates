@@ -1,0 +1,61 @@
+<kendo-treelist kendoTreeListExpandable [data]="rootData" idField="EmployeeId" [fetchChildren]="fetchChildren"  (cellClick)="cellClickHandler($event)"  (cellClose)="cellCloseHandler($event)"
+  [hasChildren]="hasChildren" (add)="addHandler($event)" (edit)="editHandler($event)" (remove)="removeHandler($event)" (save)="saveHandler($event)" (cancel)="cancelHandler($event)" [height]="533">
+  <ng-template kendoTreeListToolbarTemplate>
+    <kendo-dropdownlist [data]="listItems"
+      textField="ProductName"
+      valueField="ProductID" kendoTreeList (selectionChange)="addDropdownHandler($event)">
+    </kendo-dropdownlist>
+    <button kendoTreeListAddCommand type="button">Add new</button>
+  </ng-template>
+  <kendo-treelist-column [expandable]="true" field="ProductID" title="ProductID">
+
+  </kendo-treelist-column>
+  <kendo-treelist-column field="ProductName" title="Product Name">
+  </kendo-treelist-column>
+  <kendo-treelist-column field="UnitPrice" title="UnitPrice">
+    <ng-template kendoTreeListEditTemplate let-dataItem="dataItem" let-column="column" let-formGroup="formGroup">
+      <kendo-textbox #anchor="popupAnchor" popupAnchor placeholder="Select position..." [formControl]="formGroup.get(column.field)">
+      </kendo-textbox>
+      <kendo-popup [anchor]="anchor.element" *ngIf="
+              formGroup.get(column.field).invalid &&
+              !(isNew && formGroup.get(column.field).untouched)
+            " popupClass="k-widget k-tooltip k-tooltip-validation k-invalid-msg">
+        <span class="k-icon k-i-warning"></span>
+        Position is required
+      </kendo-popup>
+    </ng-template>
+  </kendo-treelist-column>
+  <kendo-treelist-column field="UnitsInStock" title="UnitsInStock" editor="numeric" format="#">
+    <ng-template kendoTreeListEditTemplate let-column="column" let-formGroup="formGroup" let-isNew="isNew">
+      <kendo-numerictextbox #anchor="popupAnchor" popupAnchor format="#" [formControl]="formGroup.get(column.field)">
+      </kendo-numerictextbox>
+      <kendo-popup [anchor]="anchor.element" *ngIf="
+              formGroup.get(column.field).invalid &&
+              !(isNew && formGroup.get(column.field).untouched)
+            " popupClass="k-widget k-tooltip k-tooltip-validation k-invalid-msg">
+        <span class="k-icon k-i-warning"></span>
+        Extension must be a positive number
+      </kendo-popup>
+    </ng-template>
+  </kendo-treelist-column>
+  <kendo-treelist-command-column >
+    <ng-template kendoTreeListCellTemplate let-isNew="isNew" let-cellContext="cellContext">
+      <!-- "Add Child" command directive, will not be visible in edit mode -->
+      <button [kendoTreeListAddCommand]="cellContext" icon="filter-add-expression" title="Add Child"></button>
+
+      <!-- "Edit" command directive, will not be visible in edit mode -->
+      <button [kendoTreeListEditCommand]="cellContext" icon="edit" title="Edit" [primary]="true"></button>
+
+      <!-- "Remove" command directive, will not be visible in edit mode -->
+      <button [kendoTreeListRemoveCommand]="cellContext" icon="delete" title="Remove"></button>
+
+      <!-- "Save" command directive, will be visible only in edit mode -->
+      <button [kendoTreeListSaveCommand]="cellContext" [disabled]="formGroup.invalid" icon="save"
+        title="{{ isNew ? 'Add' : 'Update' }}"></button>
+
+      <!-- "Cancel" command directive, will be visible only in edit mode -->
+      <button [kendoTreeListCancelCommand]="cellContext" icon="cancel"
+        title="{{ isNew ? 'Discard changes' : 'Cancel' }}"></button>
+    </ng-template>
+  </kendo-treelist-command-column>
+</kendo-treelist>

@@ -1,0 +1,69 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+    <div class="top">
+      <div class="row t-main">
+        <div class="col-sm-6 col-xs-12 t-main-1">
+          <h4 class="m-n  t-main1">Brand</h4>
+        </div>
+        <div class="col-sm-6 text-right poppins">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb t-main" style="cursor:pointer;">
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard
+              </li>
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Master</li>
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/lead">Brand
+                View List</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="wrapper-md"  ng-controller="FormDemoCtr5">
+      <form novalidate #myForm="ngForm" (submit)="onAddBrand(myForm)">
+        <kendo-grid [kendoGridTemplateEditing]="createNewBrand" [kendoGridBinding]="brands" [pageSize]="10"
+          [pageable]="true" [sortable]="true" [navigable]="true">
+          <ng-template kendoGridToolbarTemplate>
+            <button kendoGridAddCommand type="button">Add new</button>
+          </ng-template>
+          <kendo-grid-column field="BrandName" title="Brand Name">
+            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+              <input [(ngModel)]="dataItem.BrandName" kendoGridFocusable name="BrandName"
+                class="k-textbox k-input k-rounded-md" required />
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="BrandID"  title="BrandID">
+            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+              <input [(ngModel)]="dataItem.BrandID" kendoGridFocusable name="BrandID"
+                class="k-textbox k-input k-rounded-md" required />
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="brandstatus" editor="boolean" title="Status">
+            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+              <input [(ngModel)]="dataItem.brandstatus" kendoGridFocusable name="brandstatus" type="checkbox" required />
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-command-column title="command">
+            <ng-template kendoGridCellTemplate let-isNew="isNew">
+              <button kendoGridEditCommand type="button" [primary]="true">
+                Edit
+              </button>
+              <button kendoGridRemoveCommand type="button">Remove</button>
+              <button  type="submit" >
+                {{ isNew ? "Add" : "Update" }}
+              </button>
+              <button kendoGridCancelCommand type="button">
+                {{ isNew ? "Discard changes" : "Cancel" }}
+              </button>
+            </ng-template>
+          </kendo-grid-command-column>
+        </kendo-grid>
+      </form>
+
+    </div>
+  </div>
+</div>

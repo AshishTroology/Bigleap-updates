@@ -1,0 +1,146 @@
+<div id="cover-spin"></div>
+<div class="app app-header-fixed ">
+<!-- header -->
+<header id="header" class="app-header navbar" role="menu">
+   <!-- navbar header -->
+   <div class="navbar-header bg-light lter">
+      <button class="pull-right visible-xs dk" ui-toggle-class="show" target="#aside">
+      <i class="glyphicon glyphicon-cog"></i>
+      </button>
+      <button class="pull-right visible-xs" ui-toggle-class="off-screen" target="#aside" ui-scroll="app">
+      <i class="glyphicon glyphicon-align-justify"></i>
+      </button>
+      <!-- brand -->
+      <a href="#/" class="navbar-brand text-lt" style="background-color: rgb(255, 255, 255);">
+         <!-- <i class="fa fa-btc"></i> -->
+         <!-- <img src="/img/bigleap.png" alt="." class="hide"> -->
+         <!-- <span class="visible-folded hidden-xs"><img src="../../assets/img/Group.png" style="background-color: red;" alt="bigleap" ></span> -->
+         <span class="hidden-folded"><img src="../../assets/img/Group.png"  alt="bigleap" ></span>
+      </a>
+      <!-- / brand -->
+   </div>
+   <!-- / navbar header -->
+   <!-- navbar collapse -->
+   <div class="collapse pos-rlt navbar-collapse box-shadow bg-white-only">
+      <!-- buttons -->
+      <div class="nav navbar-nav hidden-xs">
+         <!-- <a href="#" class="btn no-shadow navbar-btn g-px-5" ui-toggle-class="app-aside-folded" target=".app-aside">
+         <i class="fa fa-dedent fa-fw text"></i>
+         <i class="fa fa-indent fa-fw text-active"></i>
+         </a> -->
+         <!-- <a class="btn no-shadow navbar-btn g-px-0 m-t-10">
+         <i class="fa fa-circle text-success text-10 g-px-5"></i>  <small class=""><span id="date_header_time"></span><span id="clock"></span></small>
+         </a> -->
+      </div>
+      <!-- / buttons -->
+      <!-- nabar right -->
+      <ul class="nav navbar-nav navbar-right">
+         <li class="dropdown">
+            <a href="/dashboard" class="dropdown-toggle">
+            <i class="fa fa-fw fa-plus visible-xs-inline-block"></i><i class="fa fa-dashboard text-xs text-danger g-px-5"></i>Dashboard</a>
+         </li>
+        <!--  <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+            <i class="fa fa-fw fa-plus visible-xs-inline-block"></i><i class="fa fa-file-text text-xs text-info g-px-5"></i>Report </a>
+         </li> -->
+         <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle get_last_10_notification" data-toggle="dropdown">
+            <i class="fa fa-bell fa-fw g-px-5"></i>
+            <span class="visible-xs-inline">Notifications</span>
+            <span class="badge badge-sm up bg-info pull-right-xs"><span class="noti_count_show">0</span></span>
+            </a>
+            <div class="dropdown-menu w-600">
+               <div class="panel bg-white">
+                  <div class="panel-heading b-light bg-light">
+                     <a href="/vehicle/notification_all">See all the notifications</a>
+                  </div>
+                  <div class="list-group noti_content_show">
+                  </div>
+               </div>
+            </div>
+         </li>
+         <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle clear" data-toggle="dropdown">
+               <!-- <span class="thumb-sm avatar m-t-n-sm m-b-n-sm m-r-sm">
+                  <img src="/img/a0.jpg" alt="...">
+                  <i class="on md b-white bottom"></i>
+                  </span> -->
+               <span class="hidden-sm hidden-md">Hi  <span class="text-uppercase user-profile-name">{{this.username}}</span></span> <b class="caret"></b>
+            </a>
+            <!-- dropdown -->
+            <ul class="dropdown-menu animated fadeInRight w">
+
+               <li>
+                  <a ui-sref="app.page.profile" class="user-change-password" data-toggle="modal"
+                  data-target="#exampleModalpassCenter">Change Password</a>
+               </li>
+               <li>
+                  <a ui-sref="app.docs">
+                  <span class="label bg-info pull-right">new</span>
+                  Help
+                  </a>
+               </li>
+               <li class="divider"></li>
+               <li>
+                  <a (click)="handleLogOut()" href="/login">Logout</a>
+               </li>
+            </ul>
+            <!-- / dropdown -->
+         </li>
+      </ul>
+      <!-- / navbar right -->
+   </div>
+   <!-- / navbar collapse -->
+</header>
+<!-- / header -->
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModalpassCenter" tabindex="-1" role="dialog"
+ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered" role="document" style="width: 35%;">
+  <div class="modal-content">
+    <div class="modal-header main">
+      <h5 class="modal-title" id="exampleModalLongTitle" style="padding-top: 1%;color:black;">Change Password</h5>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="changeform" (ngSubmit)="onFormSubmit()" >
+        <div class="form-group">
+          <label>Current Password </label>
+          <input type="password" class="form-control"  placeholder="Enter Current Password "formControlName="old_pass">
+          <div *ngIf="f.old_pass.errors && f.old_pass.errors.required && isValidFormSubmitted"
+                   class="text-danger text-left mb-1 errorcontrols">
+                   <div *ngIf="f.old_pass.errors.required"><small>Current Password is required.</small></div>
+
+                 </div>
+        </div>
+        <div class="form-group">
+          <label>New Password </label>
+          <input type="password" class="form-control"  placeholder="Enter New Password" formControlName="new_pass">
+          <div *ngIf="f.new_pass.errors && isValidFormSubmitted" class="text-danger text-left mb-1 errorcontrols">
+          <div *ngIf="f.new_pass.errors.required"><small> New Password is
+              required.</small></div>
+              <div *ngIf="f.new_pass.errors.pattern">Minimum 8 character password.</div>
+        </div>
+        </div>
+        <div class="form-group">
+           <label>New Confirm Password </label>
+           <input type="password" class="form-control"  placeholder="Enter New Confirm Password "formControlName="c_pass">
+           <div *ngIf="f.c_pass.errors && f.c_pass.errors.required && isValidFormSubmitted"
+           class="text-danger text-left mb-1 errorcontrols">
+           <div *ngIf="f.c_pass.errors.required"><small>New Confirm Password is required.</small></div>
+
+         </div>
+         <div *ngIf="f.c_pass.errors && f.c_pass.errors.mustMatch"
+                       class="text-danger text-left mb-1 errorcontrols">
+                       <div *ngIf="f.c_pass.errors.mustMatch"><small>Password and Confirm Password is not match.</small></div>
+                     </div>
+         </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+      <button type="submit" class="btn btn-danger" [disabled]="isValidbutton" (click)="saveform('save')">Save </button></div>
+     </form>
+    </div>
+  </div>
+</div>
+</div>
+<!-- mode end -->

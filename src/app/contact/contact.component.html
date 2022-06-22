@@ -1,0 +1,274 @@
+<app-header ></app-header>
+<app-sidenav ></app-sidenav>
+<div id="content" class="app-content" role="main">
+    <div class="app-content-body ">
+      <div class="top">
+
+        <div class="row t-main">
+    <div class="col-sm-6 col-xs-12 t-main-1">
+      <h4 class="m-n  t-main1">  Create Contact</h4>
+    </div>
+    <div class="col-sm-6 text-right poppins">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb t-main" style="cursor: pointer;">
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard</li>
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Contact</li>
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/contact">Contact View List</li>
+          <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color: red;">Create New Contact</li>
+
+        </ol>
+      </nav>
+    </div>
+  </div>
+  </div>
+
+
+
+
+    <div class="wrapper-md" ng-controller="FormDemoCtr5">
+        <form [formGroup]="contactForm" >
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Account Source</div>
+            <div class="panel-body">
+
+
+              <div class="col-md-6 form-group">
+                <label >Contact ID <span class="text-danger">*</span> </label>
+                  <input type="text" class="form-control" [readonly]=true value={{this.contactId}} placeholder="" formControlName="contact_id">
+                </div>
+
+              <div class="col-md-6 form-group">
+                <label >Created by <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" [readonly]=true value={{this.username}} placeholder="" formControlName="contact_owner">
+                <!-- <select formControlName="contact_owner" id="contactowner" class="form-control"  required>
+                  <option [attr.selected]="this.contactData?.contact_owner?false:true" disabled>  Contact  Owner </option>
+                  <option [attr.selected]="!this.contactData?.contact_owner" value="this.username">{{this.username}}</option>
+                </select>  -->
+
+              </div>
+
+    </div>
+    </div>
+    </div>
+      </div>
+    <!-- End content1 -->
+     <!-- content 2-->
+    <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+           <div class="panel-heading font-bold">Contact Information</div>
+           <div class="panel-body">
+
+           <div class="col-md-12 form-group">
+            <label >Company Name <span class="text-danger">*</span> </label>
+
+            <!-- <input type="text"  class="form-control " placeholder="Enter Account Holder Company Name" formControlName="company_name" />
+             -->
+            <!-- <select data-placeholder="Choose a country..." single class="col-md-10 chosen-select">
+              <option value=""></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select> -->
+
+            <!-- <select chosen
+              data-placeholder-text-single="'Pick one of these'"
+              disable-search="true"
+              allow-single-deselect="true">
+              <option value=""></option>
+              <option>This is fun</option>
+              <option>I like Chosen so much</option>
+              <option>I also like bunny rabbits</option>
+            </select> -->
+
+              <!-- <ng-multiselect-dropdown
+                  [placeholder]="'Select An Account'"
+                  [data]="dropdownList"
+                  [settings]="dropdownSettings"
+                  [(ngModel)]="selectedItems"
+                  (onSelect)="onItemSelect($event)">
+              </ng-multiselect-dropdown> -->
+
+              <ng-multiselect-dropdown
+              [placeholder]="'Select a Company'"
+              [settings]="dropdownSettings"
+              [data]="accountData"
+              formControlName="company_name"
+              (onSelect)="onItemSelect($event)"
+              >
+              </ng-multiselect-dropdown>
+              <div *ngIf="f.company_name.errors && f.company_name.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.company_name.errors.required"><small>Company is required.</small></div>
+            </div>
+            </div>
+          <div class="clearfix"></div>
+
+          <div class="col-md-4 form-group">
+            <label >Industry  </label>
+            <!-- <select  value={{this.selected}} formControlName="industry" id="" class="form-control"  required>
+              <option  disabled> Select Industry</option>
+              <option >IT</option>
+              <option >Marketing</option>
+            </select>  -->
+            <input type="text"  class="form-control " value={{this.company_industry}} [attr.disabled]=true placeholder="Company Industry" formControlName="location"/>
+          </div>
+
+
+          <div class="col-md-4 form-group">
+            <label >Country  </label>
+            <!-- <select (change)="countryChange()" value={{this.selected}} formControlName="country" id="" class="form-control"  required>
+              <option value="" disabled> Select Country  </option>
+              <option *ngFor="let obj of Country" value={{obj.country_name}} >{{obj.country_name}}</option>
+            </select>  -->
+            <input type="text"  class="form-control " value={{this.company_country}} [attr.disabled]=true placeholder="Company Country" formControlName="location"/>
+          </div>
+
+
+          <div class="col-md-4 form-group">
+            <label >State    </label>
+
+            <!-- <select (change)="cityChange()" [value]="this.contactData?.state" formControlName="state" id="" class="form-control"  required>
+              <option value="" disabled> Select State  </option>
+              <option *ngFor="let obj of State" value={{obj.state_name}} >{{obj.state_name}}</option>
+            </select>  -->
+            <input type="text"  class="form-control " value={{this.company_state}}  [attr.disabled]=true placeholder="Company State" formControlName="location"/>
+          </div>
+          <div class="clearfix"></div>
+
+          <div class="col-md-4 form-group">
+            <label >City    </label>
+            <!-- <select value={{this.contactForm.value.city}} formControlName="city" id="" class="form-control"  required>
+              <option value="" disabled> Select City </option>
+              <option *ngFor="let obj of City" value={{obj.city_name}}>{{obj.city_name}}</option>
+            </select>  -->
+            <input type="text"  class="form-control" value={{this.company_city}} [attr.disabled]=true placeholder="Company City" formControlName="location"/>
+          </div>
+
+
+          <div class="col-md-4 form-group">
+            <label>Location   </label>
+            <input type="text"  class="form-control " value={{this.company_location}}  [attr.disabled]=true placeholder="Company Location" formControlName="location"/>
+          </div>
+
+          <div class="col-md-4 form-group">
+            <label>Department  </label>
+            <input type="text"  class="form-control " placeholder="Enter Your department" formControlName="department"/>
+          </div>
+        <div class="clear"></div>
+
+          <div class="col-md-4 form-group">
+            <label >Role<span class="text-danger">*</span>  </label>
+            <select value="this.contactData?.role" formControlName="role" id="" class="form-control"  required>
+              <option value="" disabled> Select Role </option>
+              <option value="User">User</option>
+              <option value="Planner">Planner</option>
+              <option value="Purchaser">Purchaser</option>
+              <option value="Others">Others</option>
+            </select>
+            <div *ngIf="f.role.errors && f.role.errors.required && isValidFormSubmitted"
+            class="text-danger text-left mb-1 errorcontrols">
+            <div *ngIf="f.role.errors.required"><small>Role is required.</small></div>
+          </div>
+          </div>
+
+
+          <div class="col-md-4 form-group">
+            <label>First Name <span class="text-danger">*</span> </label>
+            <input type="text" (input)="this.onchange()" class="form-control " placeholder="Enter First Name" formControlName="first_name"/>
+            <div *ngIf="f.first_name.errors && f.first_name.errors.required && isValidFormSubmitted"
+            class="text-danger text-left mb-1 errorcontrols">
+            <div *ngIf="f.first_name.errors.required"><small>First Name is required.</small></div>
+          </div>
+          </div>
+
+
+          <div class="col-md-4 form-group">
+            <label >Last Name</label>
+            <input type="text" (input)="this.onchange()" class="form-control " placeholder="EnterLast Name" formControlName="last_name"/>
+            <div *ngIf="f.last_name.errors && f.last_name.errors.required && isValidFormSubmitted"
+            class="text-danger text-left mb-1 errorcontrols">
+            <div *ngIf="f.last_name.errors.required"><small>Last Name is required.</small></div>
+          </div>
+          </div>
+
+
+    <div class="clearfix"></div>
+          <div class="col-md-4 form-group">
+            <label >Contact Name   </label>
+            <input type="text" value={{this.fullname}} [readonly]=true class="form-control " placeholder="Preview First and Last Name" formControlName="contact_name"/>
+          </div>
+
+
+          <div class="form-group  col-md-4 ">
+            <label for="inputGroupSuccess2">Phone No</label>
+              <div class="input-group col-md-12">
+                <!-- <span class="input-group-addon">+{{this.country_code}}</span> -->
+                <input type="number" class="form-control" aria-describedby="inputGroupSuccess2Status" placeholder="Enter Your Phone Number " formControlName="phone_no">
+              </div>
+            </div>
+
+
+          <div class="form-group  col-md-4 ">
+            <label for="inputGroupSuccess2">Mobile No<span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-addon">+{{this.country_code}}</span>
+                <input type="number" class="form-control" aria-describedby="inputGroupSuccess2Status" placeholder="Enter Your Mobile Number " formControlName="mobile_no">
+              </div>
+              <div *ngIf="f.mobile_no.errors && f.mobile_no.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.mobile_no.errors.required"><small>Mobile No is required.</small></div>
+            </div>
+            </div>
+          <div class="clearfix"></div>
+        <div class="col-md-4 form-group">
+          <label>Email </label>
+          <input type="text" class="form-control validator" placeholder="Enter Email Address" formControlName="email" />
+          <div *ngIf="f.email.errors && f.email.errors.required && isValidFormSubmitted"
+            class="text-danger text-left mb-1 errorcontrols">
+            <!-- <div *ngIf="f.email.errors.required"><small>Lead Source is required.</small></div> -->
+          </div>
+        </div>
+
+
+          <div class="col-md-4 form-group">
+            <label >Secondary Email </label>
+            <input type="text"  class="validate form-control " placeholder="Enter Secondary Email " formControlName="secondary_email"/>
+          </div>
+           <div class="clearfix"></div>
+
+      </div>
+      </div>
+      </div>
+    </div>
+     <!--End  content 2-->
+     <!--start content 3-->
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading font-bold">Remark </div>
+                  <div class="panel-body">
+
+
+                    <div class="col-md-12 ">
+
+                        <input type="text" class="form-control" placeholder="Remark" formControlName="remark">
+                      </div>
+                    </div>
+
+          </div>
+          </div>
+          </div>
+
+        </form>
+        <div  style="text-align: right; margin:10px 0px;margin-right:16px;" >
+          <button class="btn btn-dark" ><a routerLink="/contact">Cancel</a></button>
+          <button type="submit" (click)="submitForm()" class="btn btn-danger">Save</button>
+
+          </div>
+          <!-- End content3 -->
+    </div>
+    </div>

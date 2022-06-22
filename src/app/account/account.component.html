@@ -1,0 +1,336 @@
+<app-header ></app-header>
+<app-sidenav ></app-sidenav>
+<div id="content" class="app-content" role="main">
+
+  <div class="app-content-body ">
+
+  <div class="top">
+    <div class="row t-main">
+      <div class="col-sm-6 col-xs-12 t-main-1">
+        <h4 class="m-n  t-main1">Create Account</h4>
+      </div>
+      <div class="col-sm-6 text-right poppins">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb t-main" style="cursor: pointer;">
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard</li>
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Account</li>
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/account"> Account View List</li>
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">Create New Account</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+  </div>
+
+
+
+    <div class="wrapper-md b-b-none" ng-controller="FormDemoCtrl">
+      <form role="form" [formGroup]="accFormAdd" enctype="multipart/form-data">
+        <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Account Source</div>
+            <div class="panel-body">
+
+
+              <div class="col-md-6 form-group">
+                <label >Account ID  <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" value={{this.accountId}} [attr.disabled]=true formControlName="account_id">
+
+              </div>
+
+              <div class="col-md-6 form-group">
+                <label >Created by <span class="text-danger">*</span> </label>
+
+                  <input type="text" class="form-control" [attr.disabled]=true value={{this.username}} formControlName="contact_owner">
+
+              </div>
+             <div class="clearfix"></div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- End content1 -->
+     <!-- content 2-->
+
+    <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+           <div class="panel-heading font-bold">Account Information</div>
+           <div class="panel-body">
+
+           <div class="col-md-12 form-group">
+            <label  >Company Name <span class="text-danger">*</span>  </label>
+
+            <input type="text"  class="form-control " placeholder="Enter Account Holder Company Name" formControlName="company_name" />
+            <div *ngIf="f.company_name.errors && f.company_name.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.company_name.errors.required"><small>Company Name is required.</small></div>
+
+            </div>
+          </div>
+
+          <div class="col-md-4 form-group">
+            <label>Industry  <span class="text-danger">*</span> </label>
+
+            <select formControlName="industry" id="" class="form-control"  >
+              <option value="" disabled> Select Industry</option>
+              <option value="Casting & Forging">Casting & Forging</option>
+              <option value="Defence">Defence</option>
+              <option value="Heavy - Power / Steel">Heavy - Power / Steel</option>
+              <option value="Integrator">Integrator</option>
+              <option value="MVI OEM">MVI OEM</option>
+              <option value="MVI Vendor">MVI Vendor</option>
+              <option value="Non MVI Assembly">Non MVI Assembly</option>
+              <option value="Non MVI Process">Non MVI Process</option>
+              <option value="Government / Public  Sector">Government / Public  Sector</option>
+              <option value="Railways">Railways</option>
+              <option value="Trader">Trader</option>
+              <option value="Misc. / Others">Misc. / Others</option>
+            </select>
+            <div *ngIf="f.industry.errors && f.industry.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.industry.errors.required"><small>Company Industry is required.</small></div>
+            </div>
+
+          </div>
+
+          <div class="col-md-4 form-group">
+            <label >Country <span class="text-danger">*</span>   </label>
+            <select (change)="countryChangeAdd($event)" formControlName="company_country" id="" class="form-control"  >
+              <option value="" selected disabled> Select Country  </option>
+              <option  value="India" >India</option>
+              <option  value="Bangladesh" >Bangladesh</option>
+              <option  value="Nepal" >Nepal</option>
+            </select>
+            <div *ngIf="f.company_country.errors && f.company_country.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.company_country.errors.required"><small>Company Country is required.</small></div>
+            </div>
+          </div>
+
+
+          <div class="col-md-4 form-group">
+            <label >State  <span class="text-danger">*</span>  </label>
+            <select  formControlName="company_state" id="" class="form-control" >
+              <option value="" selected disabled> Select State  </option>
+              <option *ngFor="let state of AddState" > {{state}} </option>
+            </select>
+            <div *ngIf="f.company_state.errors && f.company_state.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.company_state.errors.required"><small>Company State is required.</small></div>
+
+          </div>
+    </div>
+
+
+
+          <div class="col-md-4 form-group">
+            <label >City <span class="text-danger">*</span>   </label>
+            <!-- <label >City    </label>
+            <select formControlName="city" id="" class="form-control"  >
+              <option value="" selected disabled> Select City </option>
+              <option *ngFor="let obj of AddCity" value={{obj.city_name}}> {{obj.city_name}}  </option>
+            </select>  -->
+            <input type="text" formControlName="company_city" class="form-control">
+            <div *ngIf="f.company_city.errors && f.company_city.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.company_city.errors.required"><small>Company City is required.</small></div>
+
+          </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+          <div class="col-md-4 form-group">
+            <label >Location   </label>
+            <input type="text"  class="form-control " placeholder="Enter Location" formControlName="company_location"/>
+          </div>
+
+
+          <!-- <div class="col-md-4 form-group">
+            <label >GST  </label>
+            <input type="text"  class="form-control validator" placeholder="Enter GST" formControlName="gst">
+          </div> -->
+
+          <div class="col-md-4 form-group">
+            <label >GST  </label>
+            <input type="text"  class="form-control validator" placeholder="Enter GST" formControlName="gst"  #box (keyup)="getval(box.value)"/>
+          </div>
+          <div class="clearfix"></div>
+
+
+
+
+
+
+
+
+          <!-- <div class="col-md-4 form-group">
+            <label >PAN  </label>
+            <input type="text"  class="form-control validator" placeholder="Enter PAN" formControlName="pan"  >
+          </div> -->
+          <div class="col-md-4 form-group">
+            <label >PAN  </label>
+            <input type="text"  class="form-control validator" placeholder="Enter PAN" formControlName="pan"  value="{{display}}" >
+          </div>
+          <div class="col-md-4 form-group">
+            <label>TAN  </label>
+            <input type="text"  class="form-control validator" placeholder="Enter TAN" formControlName="tan"/>
+          </div>
+
+
+          <div class="col-md-4 form-group">
+            <label >CIN  </label>
+            <input type="text"  class="form-control validator" placeholder="Enter CIN" formControlName="cin"/>
+          </div>
+          <div class="clearfix"></div>
+
+          <div class=" col-md-4 form-group">
+            <label  for="inputGroupSuccess2">Phone No</label>
+
+                <!-- <span class="input-group-addon"></span> -->
+                <input type="text" class="form-control " aria-describedby="inputGroupSuccess2Status" placeholder="Enter Your Phone Number " formControlName="phone_no">
+
+            </div>
+
+
+
+
+          <div class="form-group  col-md-4 ">
+            <label  for="inputGroupSuccess2">Mobile No <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-addon">+{{this.country_code?this.country_code:91}}</span>
+                <input type="text" class="form-control validator" aria-describedby="inputGroupSuccess2Status" placeholder="Enter Your Mobile Number " formControlName="mobile_no">
+              </div>
+              <div *ngIf="f.mobile_no.errors && f.mobile_no.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <div *ngIf="f.mobile_no.errors.required"><small>Mobile No is required.</small></div>
+            </div>
+            </div>
+
+          <div class="col-md-4 form-group">
+            <label>Email </label>
+            <input type="text" class="form-control validator" placeholder="Enter Email Address" formControlName="email" />
+            <div *ngIf="f.email.errors && f.email.errors.required && isValidFormSubmitted"
+              class="text-danger text-left mb-1 errorcontrols">
+              <!-- <div *ngIf="f.email.errors.required"><small>Lead Source is required.</small></div> -->
+            </div>
+          </div>
+        <div class="clearfix"></div>
+
+          <div class="col-md-4 form-group">
+            <label >Secondary Email </label>
+            <input type="text"  class="form-control validator" placeholder="Enter Secondary Email " formControlName="secondary_email"/>
+          </div>
+
+          <div class="clearfix"></div>
+      </div>
+    </div>
+    </div>
+    </div>
+     <!--End  content 2-->
+     <!--Start Conten3-->
+     <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading font-bold">Address Information</div>
+          <div class="panel-body">
+
+            <div class="col-md-12 form-group">
+              <label >Address Line 1  </label>
+              <input type="text"  class="form-control " placeholder="Enter Your Address" formControlName="address1"/>
+            </div>
+
+
+            <div class="col-md-12 form-group">
+              <label>Address Line 2  </label>
+              <input type="text"  class="form-control " placeholder="Enter Your Address" formControlName="address2"/>
+            </div>
+
+
+            <div class="col-md-12 form-group">
+              <label >Address Line 3  </label>
+              <input type="text"  class="form-control " placeholder="Enter Your Address" formControlName="address3"/>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="col-md-4 form-group">
+              <label >Country   </label>
+              <select (change)="countryChangeAdd($event)" formControlName="country" id="" class="form-control"  >
+                <option value="" selected disabled> Select Country  </option>
+                <option  value="India" >India</option>
+                <option  value="Bangladesh" >Bangladesh</option>
+                <option  value="Nepal" >Nepal</option>
+              </select>
+            </div>
+
+
+            <div class="col-md-4 form-group">
+              <label >State   </label>
+              <select  formControlName="state" id="" class="form-control" >
+                <option value="" selected disabled> Select State  </option>
+                <option *ngFor="let state of AddState" > {{state}} </option>
+              </select>
+      </div>
+
+
+
+            <div class="col-md-4 form-group">
+              <label >City   </label>
+              <!-- <label >City    </label>
+              <select formControlName="city" id="" class="form-control"  >
+                <option value="" selected disabled> Select City </option>
+                <option *ngFor="let obj of AddCity" value={{obj.city_name}}> {{obj.city_name}}  </option>
+              </select>  -->
+              <input type="text" formControlName="city" class="form-control">
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="col-md-4 form-group">
+              <label >Zip Code </label>
+              <input type="text"  class="form-control " placeholder="Enter zip" formControlName="zip_code"/>
+            </div>
+            </div>
+
+</div>
+</div>
+</div>
+
+            <!------end content3-->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading font-bold">Remark </div>
+                  <div class="panel-body">
+
+
+                    <div class="col-md-12 form-group">
+
+                        <input type="text" class="form-control" placeholder="Remark" formControlName="remark">
+                      </div>
+                    </div>
+
+          </div>
+          </div>
+          </div>
+        </form>
+        <div  style="text-align: right;" >
+          <button class="btn btn-dark " ><a routerLink="/account">Cancel</a></button>
+          <button (click)="submitForm()" class="btn btn-danger">Save</button>
+
+          </div>
+          <!-- End content1 -->
+    </div>
+    </div>
+    </div>

@@ -1,0 +1,6 @@
+.multiselect-dropdown .dropdown-btn .selected-item{
+    background-color: unset !important;
+    border: unset !important;
+    color: unset !important;
+    max-width: unset !important;
+}

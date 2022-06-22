@@ -1,0 +1,525 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+    <!-- <div class="bg-white b-b-none wrapper-md">
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <h4 class="font-bold ">Add User's Role</h4>
+            </div>
+            <div class="col-sm-6 text-right poppins hidden-xs">
+                <a class="btn m-b-xs w-xs btn-sm text-10 btn-info btn-3d -staff" routerLink="/role-list"><i class="fa fa-undo"></i> Back</a>
+            </div>
+        </div>
+    </div> -->
+    <div class="top">
+        <div class="row t-main">
+          <div class="col-sm-6 col-xs-12 t-main-1">
+            <h4 class="m-n  t-main1">Add User's Role</h4>
+          </div>
+          <div class="col-sm-6 text-right poppins">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb t-main" style="cursor: pointer;">
+                <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard</li>
+                <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Role & Permission</li>
+                <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/role-list">Role & Permission View List</li>
+                
+                <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">Add New User's Role</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+           
+      </div>
+
+  </div>
+  <div class="col-sm-12" style="margin:0px;padding: 0px;">
+
+  <div class="wrapper-md">
+    <div class="panel ">
+        <div class="panel-body">
+            <form role="form" [formGroup]="addroleform" (ngSubmit)="onFormSubmit()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label font-weight-600">Role Name <span class="text-theme">*</span> </label>
+                            <input type="text" class="form-control validate" name="name" formControlName="role_name">
+                            <div *ngIf="f.role_name.errors && f.role_name.errors.required && isValidFormSubmitted"
+                              class="text-danger text-left mb-1 errorcontrols">
+                              <div *ngIf="f.role_name.errors.required"><small>Role Name is
+                                  required.</small></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label font-weight-600">Role Description</label>
+                            <input type="text" class="form-control validate" formControlName="description">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Module</th>
+                                        <th class="text-center">View</th>
+                                        <th class="text-center">Create</th>
+                                        <th class="text-center">Edit</th>
+                                        <th class="text-center">Delete</th>
+                                        <th class="text-center">Verifier</th>
+                                        <th class="text-center">Approver</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="font-bold">Lead</td>
+
+                                        <td class="text-center">
+                                            <div class="checkbox g-my-0">
+                                                <label class="i-checks i-checks">
+                                                    <input type="checkbox"  formControlName="leadview">
+                                                    <i></i>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="checkbox g-my-0">
+                                                <label class="i-checks i-checks">
+                                                    <input type="checkbox"  formControlName="leadcreate">
+                                                    <i></i>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="checkbox g-my-0">
+                                                <label class="i-checks i-checks">
+                                                    <input type="checkbox"  formControlName="leadedit">
+                                                    <i></i>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="checkbox g-my-0">
+                                                <label class="i-checks i-checks">
+                                                    <input type="checkbox"  formControlName="leaddelete">
+                                                    <i></i>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                          <div class="checkbox g-my-0">
+                                            <label class="i-checks i-checks">
+                                              <input type="checkbox"  formControlName="leadverifier">
+                                              <i></i>
+                                            </label>
+                                          </div>
+                                        </td>
+                                        <td class="text-center">
+                                          <div class="checkbox g-my-0">
+                                            <label class="i-checks i-checks">
+                                              <input type="checkbox"  formControlName="leadapprover">
+                                              <i></i>
+                                            </label>
+                                          </div>
+                                        </td>
+                                    </tr>
+
+
+                                        <tr>
+                                            <td class="font-bold">Quote</td>
+
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="quoteview">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="quotecreate">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="quoteedit">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="quotedelete">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                              <div class="checkbox g-my-0">
+                                                <label class="i-checks i-checks">
+                                                  <input type="checkbox"  formControlName="quoteverifier">
+                                                  <i></i>
+                                                </label>
+                                              </div>
+                                            </td>
+                                            <td class="text-center">
+                                              <div class="checkbox g-my-0">
+                                                <label class="i-checks i-checks">
+                                                  <input type="checkbox"  formControlName="quoteapprover">
+                                                  <i></i>
+                                                </label>
+                                              </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-bold">Deal</td>
+
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="dealview">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox" formControlName="dealcreate">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="dealedit">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="dealdelete">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                              <div class="checkbox g-my-0">
+                                                <label class="i-checks i-checks">
+                                                  <input type="checkbox"  formControlName="dealverifier">
+                                                  <i></i>
+                                                </label>
+                                              </div>
+                                            </td>
+                                            <td class="text-center">
+                                              <div class="checkbox g-my-0">
+                                                <label class="i-checks i-checks">
+                                                  <input type="checkbox"  formControlName="dealapprover">
+                                                  <i></i>
+                                                </label>
+                                              </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="font-bold">Account</td>
+
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="accountview">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="accountcreate">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="accountedit">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="accountdelete">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-bold">Contact</td>
+
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="contactview">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"   formControlName="contactcreate">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"   formControlName="contactedit">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="contactdelete">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-bold">Users</td>
+
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox" formControlName="userview">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"   formControlName="usercreate">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="useredit">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="userdelete">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-bold">Role And Permission</td>
+
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="roleview">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="rolecreate">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="roleedit">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="roledelete">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-bold">Add Service</td>
+
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="serviceview">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="servicecreate">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="serviceedit">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="servicedelete">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="font-bold">Performance</td>
+
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="performanceview">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="performancecreate">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="performanceedit">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks i-checks">
+                                                        <input type="checkbox"  formControlName="performancedelete">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Access</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="font-bold">Convert Lead to Quote</td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks">
+                                                        <input type="checkbox"  formControlName="convertleadtoquote">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-bold">Convert Quote to Deal</td>
+                                            <td class="text-center">
+                                                <div class="checkbox g-my-0">
+                                                    <label class="i-checks">
+                                                        <input type="checkbox"  formControlName="convertquotetodeal">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                           </div>
+
+                    </div>
+
+
+
+                    <div class="row m-t-md">
+                        <div class="col-md-12">
+                           
+                            <a class="btn btn-dark" href="/role-list">Cancel</a>
+                            <button class="btn btn-danger" type="submit"  [disabled]="isValidbutton" (click)="saveform('save')"> Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+

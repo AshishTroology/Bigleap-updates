@@ -1,0 +1,17 @@
+::-webkit-file-upload-button{
+    display: none;
+}
+
+.validate.ng-pristine.ng-valid{
+    border: 1px solid #ccc !important
+ }
+ .validate.ng-valid{
+ border: 1px solid green;
+ }
+ .validate.ng-invalid.ng-touched{
+ border: 1px solid red;
+ }
+ .input-group-addon>.validate.ng-touched.ng-valid{
+     border: 1px solid green;
+ }
+ 

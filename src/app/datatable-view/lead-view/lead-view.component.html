@@ -1,0 +1,117 @@
+
+ <app-header></app-header>
+ <app-sidenav></app-sidenav>
+ <div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+    <div class="top"> <div class="row t-main">
+      <div class="col-sm-6 col-xs-12 t-main-1">
+        <h4 class="m-n  t-main1"> Lead View List</h4>
+      </div>
+      <div class="col-sm-6 text-right poppins">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb t-main">
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Dashboard</li>
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Leads</li>
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">T-View</li>
+            
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">Leads View List</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+</div>
+<div class="col-sm-12 text-right" style="padding: 10px;"> 
+  <button class=" button" style="background-color: #7266BA;border:1px solid #7266BA;"> <a routerLink="/lead"><i _ngcontent-suu-c437="" class="fa fa-bars"></i>
+     kendo - view</a></button>
+  <button *ngIf="this.userPermission?.leadcreate" class="button" > <a routerLink="/create-lead"> &nbsp;  Create New Lead</a></button>
+</div>
+    <div class="col-sm-12" style="padding-top: 10px;">
+      
+     
+            <table datatable  [dtOptions]="dtOptions"  [dtTrigger]="dtTrigger" class="row-border hover">
+                <thead class="l-head">
+                    <tr>
+                      <th>ID</th>
+                      <th>Account</th>
+                      <th>Lead Title</th>
+                      <th>Lead Owner</th>
+                      <th>Lead Value</th>
+                      <th>Lead Status</th>
+                      <!-- <th>Open Activities</th> -->
+                      <th>Action</th>
+                   
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of gridData">
+                      <td>
+                        <div class="text-theme font-bold">{{ data.lead_id }} </div>
+                        <div><i _ngcontent-fcn-c561="" aria-hidden="true" class="fa fa-calendar-check-o" style="color: green;"></i> : {{ data.created_date_time }} </div>
+                        <div><i _ngcontent-fcn-c561="" aria-hidden="true" class="fa fa-calendar-check-o" style="color: red;"></i> : {{data.modified_date_time }}</div>
+                        <div>Aging :{{ data.aging }}</div>
+
+                      </td>
+
+
+                      <td>
+                          <div class="text-theme">{{data.company_name}}</div>
+                          <div>{{ data.contact }}</div>
+                      </td>
+                      <td>
+                          <div>{{ data.lead_title }}</div>
+                        
+                    </td>
+                      <td>
+                        <div>{{ data.lead_owner[0].username }}</div>
+                      </td>
+                      <td>
+                        <div>Type : {{ data.lead_type }}</div>
+                        <div>Industry:{{ data.industry}}</div>
+                      </td>
+                      <td> <div>{{data.lead_status_stage}}</div></td>
+                      <!-- <td>
+                          <div>Task- </div>
+                          <div>Call- </div>
+                          <div>Metting- </div>
+                    </td> -->
+                      <td>
+                          
+                        <div class="d-menu dropdown">
+                            <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown" style="border: 1px solid red;background:white;color:red;border-radius: 5px;"><i class="fa fa-cog"></i>
+                            <span class="caret" style="margin-left: 10px;"></span></button>
+                            
+                            <ul class="dropdown-menu " >
+                              <!-- <li><a  href="/edit-lead/{{data.lead_id}}">Edit</a></li> -->
+                             
+                              <li><a *ngIf="this.userPermission?.leadedit"  [routerLink]="['/edit-lead',data.lead_id]" >Edit</a></li>                             
+                              <li><a *ngIf="this.userPermission?.convertleadtoquote"  [routerLink]="['/edit-lead',data.lead_id]" >Convert to Quote</a></li>  
+                            
+                              <!-- <li><a  (click)="handleDelete(data._id)" >Delete</a></li>   -->
+                            </ul>
+                          </div>
+
+
+                      </td>
+                    </tr>
+
+                   
+                  </tbody>
+              </table>
+            
+          
+          </div>   
+            
+
+
+  </div>
+  </div>
+
+  <!-- <div class="dropdown open">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+       <span class="fa fa-cog"></span>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li><a ><i class="fa fa-pencil-square-o text-info" aria-hidden="true"> Edit</i></a></li>
+       
+    </div>
+</div> -->
