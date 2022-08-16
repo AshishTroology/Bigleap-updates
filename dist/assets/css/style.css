@@ -1,0 +1,312 @@
+.form-horizontal .control-label{
+    text-align: left !important;
+}
+
+.deal_div{
+    margin-right: 15px;
+    width:130px;
+    padding:10px 0px;
+    text-align: center;
+    border: 1px solid #CFDADD !important;
+    background: white;
+}
+.deal_div:last-child{
+    margin-right: 0;
+}
+.btn{
+    margin-right: .8%;
+}
+
+
+tr.k-state-selected > td{
+    background-color: rgba(255, 255, 255, 1 ) !important;
+}
+.k-toolbar{
+    justify-content: flex-end !important
+}
+.modal-body{
+    min-height: 100px;
+}
+
+.selected{
+    background-color: rgba(255, 99, 88, 0.25) !important
+}
+.t-main{
+    background-color: #FFE5E5;
+    height: 40px;
+}
+.t-main-1{
+   padding-left: 30px;
+   padding-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color:#161615;
+    font-size: 10px!important;
+    
+   
+}
+.top{
+    height: 70px;
+    background: white;
+}
+.breadcrumb-item .active{
+    font-size: 10px!important;
+}
+.button{
+    /* border: 1px solid #F81B1B;
+        color: white;
+        background-color: #F81B1B;
+        border-radius: 6px;
+        height: 30px;
+        padding-top: 5px; */
+
+        border: 1px solid #F81B1B;
+    color: white;
+    background-color: #F81B1B;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    padding: 4px 10px;
+    margin-right: 1%;
+}
+
+.t-main-2{
+    padding-right: 6px;
+     
+ }
+.card{
+    margin-left: 20px;
+    padding: 25px;
+    min-height: 300px;
+    font-size: 14px;
+  
+}
+
+.breadcrumb-item.active{
+    color:black ;
+}
+  
+.card1{
+   
+    min-height: 300px;
+    font-size: 14px;
+    border: 1px dashed grey;
+    padding: 25px;
+    margin-left: 20px;
+    background-color: #ffff;
+    text-align: center;
+    font-size: 25px;
+    padding-top: 100px;
+}
+   
+/******************************GNS CSS**********************************/
+label.col-md-3.control-label, label.col-sm-3.control-label {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.panel {
+    background: #FFFFFF;
+    border-radius: 8px!important;
+}
+.panel-default > .panel-heading{
+    background-color: white;
+ 
+}
+.panel-heading{
+    background: #FFFFFF !important;
+  border-radius: 8px 8px 0px 0px !important;
+}
+/* .form-control{
+    border-radius: 6px;
+} */
+.h4, h4 {
+    font-size: 16px !important;
+}
+
+
+.k-grid tbody div{
+    font-size: 13px;
+}
+
+.t-view{
+    font-size: 14px !important;
+
+}
+
+.text-theme{
+    color: red !important;
+}
+
+.product_footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-btn{
+    border: 1px solid rgb(185, 185, 185);
+    padding: 3px 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.form-control{
+    border-radius: 5px;
+    }
+    .c-btn{
+        margin-left: 5px;
+        background: #FFFFFF;
+        border:1px solid #EE1313;
+        border-radius: 5px;
+        color:#EE1313;
+    }
+    .c-bt{
+        margin-left: 5px;
+        background: #FFFFFF;
+        border:1px solid #EE1313;
+        border-radius: 5px;
+        color:#EE1313;
+    }
+    
+    
+li.multiselect-item-checkbox div:before, li.multiselect-item-checkbox div:after {
+    display:none;
+}
+li.multiselect-item-checkbox div {
+    padding-left: 1rem !important;
+}
+.multiselect-dropdown .dropdown-btn .selected-item {
+    border: none !important;
+    margin-right: 4px;
+    background: transparent !important;
+    padding: 0 5px;
+    color: #201f1f !important;
+    border-radius: 0px; 
+    float: left;
+    display: block !important;
+    max-width: 100% !important;
+}
+.multiselect-dropdown .dropdown-btn .selected-item:hover {
+    box-shadow:none !important;
+}
+.dropdown-list .filter-textbox input {
+    padding:0 0 0 10px !important;
+}
+
+
+
+
+.mSelectD li.multiselect-item-checkbox div:before, li.multiselect-item-checkbox div:after {
+    display:block;
+}
+.mSelectD li.multiselect-item-checkbox div {
+    padding-left: 2rem !important;
+}
+.mSelectD .multiselect-dropdown .dropdown-btn .selected-item {
+    border: 1px solid #337ab7 !important;
+    margin-right: 4px;
+    background: #337ab7 !important;
+    padding: 0 5px;
+    color: #fff !important;
+    border-radius: 0px; 
+    float: left;
+    display: flex !important;
+    max-width: 100px !important;
+}
+.mSelectD .multiselect-dropdown .dropdown-btn .selected-item:hover {
+    box-shadow:none !important;
+}
+.mSelectD .dropdown-list .filter-textbox input {
+    padding:0 0 0 10px !important;
+}
+
+
+
+.kendo-menu-item{
+    border: 1px solid gray !important;
+}
+
+
+/* .k-item{
+    border: 1px solid #ff6358 !important;
+} */
+
+.k-menu:not(.k-context-menu) > .k-item{
+    border: 1px solid #ff6358 !important;
+    border-radius:5px
+}
+
+.k-dropdowntree{
+    width: 25rem !important;
+}
+.sorting:after{
+    display: none !important;
+}
+
+.fa-percent{
+    font-weight: unset !important;
+    font-size: 13px;
+}
+/* .btn:hover {
+    color: #8A8A8A !important;
+    text-decoration: none;
+} */
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
+    color: #ffffff !important;
+    background-color: #6254b2 !important;
+    border-color: #5a4daa !important;
+}
+.add-group{
+    border: 1px solid red;
+    color: red;
+    border-radius: 5px;
+    background-color: white;
+    padding: 3px 6px;
+    margin-bottom: 5px;
+}
+.k-link.k-item{
+    border: 1px solid gray;
+}
+.side-img{
+    height:1.34rem;
+}
+.side-img1{
+    height:1.1rem;
+}
+.k-pager-info {
+    text-align: right;
+    justify-content: flex-end;
+    flex: 1 1 0%;
+    order: 9;
+    text-transform: capitalize!important;
+}
+#productListDropdown .c-btn {
+    margin-left: 0px;
+    background: #FFFFFF;
+    border: 1px solid #b5b5b5;
+    border-radius: 5px;
+    color: #777777;
+    font-size: 12px !important;
+}
+.k-touch-action-auto {
+    text-transform: uppercase;
+}
+@media print and (max-width: 768px) {
+    label.col-md-3.control-label, label.col-sm-3.control-label {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+  }
+
+@media all and (max-width: 768px) {
+    label.col-md-3.control-label, label.col-sm-3.control-label {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+
+  
+

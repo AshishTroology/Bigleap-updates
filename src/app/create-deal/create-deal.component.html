@@ -78,7 +78,7 @@
                             (onSelect)="onItemSelect($event)"
                             >
                             </ng-multiselect-dropdown>
-                            <span class="input-group-addon " style="color:red;font-size:20px;background:white;border-radius: 0px;"><a routerLink="/create-account">+</a></span>
+                            <span class="input-group-addon " style="color:red;font-size:20px;background:white;border-radius: 0px;"><a routerLink="/create-account" target="_blank">+</a></span>
                         </div>
                         <div *ngIf="f.company.errors && f.company.errors.required && isValidFormSubmitted"
                             class="text-danger text-left mb-1 errorcontrols">
@@ -100,7 +100,7 @@
                             (onSelect)="onContactSelect($event)"
                             >
                             </ng-multiselect-dropdown>
-                            <span class="input-group-addon " style="color:red;font-size:20px;background:white;border-radius: 0px;"><a routerLink="/create-contact">+</a></span>
+                            <span class="input-group-addon " style="color:red;font-size:20px;background:white;border-radius: 0px;"><a routerLink="/create-contact" target="_blank">+</a></span>
                         </div>
                         <div *ngIf="f.contact.errors && f.contact.errors.required && isValidFormSubmitted"
                             class="text-danger text-left mb-1 errorcontrols">

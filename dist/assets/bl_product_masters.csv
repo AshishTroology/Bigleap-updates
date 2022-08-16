@@ -1,0 +1,3 @@
+CCNNo,Category,GST,HSNCode,OEM,OEMProductCode,PartNo,UOM,UnitPrice,amount,discount,id,parent,productname,products,quantity,type,remark
+47104062,Test TOOLS 1,18,84672900,EA,SAH-395-DC-TOOLS-INR,TestPQ4,EA,162117,162117,0,1,FALSE,Test1,null,1,Product,1
+47104005,Test TOOLS 2,18,84672900,EA,SAH-395-DC-TOOLS-INR,TestPQ5,EA,162117,162117,0,2,FALSE,Test2,null,1,Product,1

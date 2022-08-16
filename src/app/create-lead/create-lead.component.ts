@@ -15,6 +15,7 @@ import { FlatBindingDirective } from '@progress/kendo-angular-treelist';
 import { SortDescriptor } from '@progress/kendo-data-query';
 import { MultiSelectTreeCheckableSettings, MultiSelectTreeHierarchyBindingDirective } from "@progress/kendo-angular-dropdowns";
 import { Product } from '../../productInterface'
+import { FormControl } from '@angular/forms';
 
 import Swal from 'sweetalert2';
 
@@ -133,15 +134,22 @@ export class CreateLeadComponent implements OnInit {
     private product: ProductService,
     private user: UserService
   ) {
-    let number = Math.random(); // 0.9394456857981651
-    number.toString(36); // '0.xtis06h6'
-    var id = 'L-' + number.toString(36).substr(2, 9);
-    this.lead_id = id.toUpperCase();
+    this.getId()
+  }
+
+  async getId(){
+    await this.leadService.getAllLeadLogs().subscribe((item: any) => {
+      console.log(item.result);
+      let number = 70230001 + item.result.length;
+      var id = 'L-' + number;
+      this.lead_id = id;
+      console.log(id);
+    });
   }
 
   async convertToQuote() {
     let obj = await {
-      quote_id: this.lead_id,
+      quote_id: this.lead_id+'-C',
       quote_owner: this.loggedInUser,
       account_id: this.account_id,
       contact_id: this.contact_id,
@@ -197,9 +205,11 @@ export class CreateLeadComponent implements OnInit {
   }
 
   async submitForm() {
-    console.log(this.leadForm);
-    console.log(this.leadForm.invalid);
-    console.log(this.productVal);
+    // console.log(this.leadForm);
+    // console.log(this.leadForm.invalid);
+    // console.log(this.productVal);
+    this.leadForm.get('lead_id')?.setValue(this.lead_id);
+    this.leadForm.get('lead_id')?.updateValueAndValidity();
 
     this.leadForm.value.account_id = this.account_id;
     this.leadForm.value.contact_id = this.contact_id;
@@ -218,13 +228,14 @@ export class CreateLeadComponent implements OnInit {
       this.leadForm.value.estimated_value
     );
     this.leadForm.value.attachments = this.files_url;
-    console.log(this.files_url);
+    // console.log(this.files_url);
     // files_url?.length>0 ? this.leadForm.value.attachments=files_url:null
 
-    console.log(this.leadForm.value);
+    // console.log(this.leadForm.value);
     // this.leadForm.valid?
-    console.log(this.leadForm.value.attachments);
+    // console.log(this.leadForm.value.attachments);
 
+    console.log(this.leadForm);
     if (this.leadForm.invalid) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       this.isValidFormSubmitted = true;
@@ -275,36 +286,37 @@ export class CreateLeadComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.product.getAllProduct().subscribe((data: any) => {
-      console.log(data);
+      // console.log(data);
       this.productData = data.result.slice();
       this.data1 = this.productData.slice();
       this.data2 = this.data1.slice();
     });
 
     this.auth.userLoggedIn().subscribe((user: any) => {
-      console.log(user.result);
+      // console.log(user.result);
       this.loggedInUser = user.result.username;
       this.selectedUser = [user.result];
     });
 
     this.user.getAllUsers().subscribe((data: any) => {
-      console.log(data);
+      // console.log(data);
       this.users = data.result;
     });
 
     this.company.GetAddress().subscribe((branch: any) => {
-      console.log(branch);
+      // console.log(branch);
       this.branchData = branch.result;
     });
 
     this.account.getAllAccount().subscribe((data: any) => {
       this.accountData = data;
-      console.log(data);
+      // console.log(data);
     });
 
     this.contact.getAllContact().subscribe((data: any) => {
-      console.log(data);
+      // console.log(data);
       this.contactData = data;
     });
 

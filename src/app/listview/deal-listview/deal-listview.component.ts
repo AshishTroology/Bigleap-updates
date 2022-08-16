@@ -167,10 +167,12 @@ export class DealListviewComponent implements OnInit {
 
         this.contact.getContactData(dt.contact_id).subscribe((cntdata: any) => {
           console.log(cntdata);
-          data.results[index].contact_name =
-            cntdata[0]?.contact_name.toUpperCase();
-          data.results[index].company_name =
-            cntdata[0]?.company_name.toUpperCase();
+          // data.results[index].contact_name =
+          //   cntdata[0]?.contact_name.toUpperCase();
+          // data.results[index].company_name =
+          //   cntdata[0]?.company_name.toUpperCase();
+            data[index].contact_name = cntdata[0].contact_name;
+            data[index].company_name = cntdata[0].company_name;
         });
         if (dt.modified_date_time) {
           let modify_date = new Date(dt?.modified_date_time);

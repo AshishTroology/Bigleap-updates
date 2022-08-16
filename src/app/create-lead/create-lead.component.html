@@ -33,8 +33,9 @@
                 <div class="panel-body">
 
                   <div class="col-md-4 form-group">
-                    <label >Lead ID <span class="text-danger">*</span></label>
-                      <input type="text" [attr.disabled]=true class="form-control" placeholder="" formControlName="lead_id">
+                    <label >Lead ID-  <span class="text-danger">*</span></label>
+                    <p class="leadID">{{ this.lead_id }}</p>
+                      <input type="text" hidden class="form-control" placeholder="" formControlName="lead_id" value="this.lead_id" readonly>
                     </div>
                       <div class="col-md-4 form-group">
                         <label >Lead Owner <span class="text-danger">*</span></label>
@@ -75,7 +76,7 @@
                                 >
                                 </ng-multiselect-dropdown>
 
-                                <span class="input-group-addon " style="color:red;font-size:20px;background:white;border-radius: 0px;"><a style="width:100%" routerLink="/create-account">+</a></span>
+                                <span class="input-group-addon " style="color:red;font-size:20px;background:white;border-radius: 0px;"><a style="width:100%" routerLink="/create-account" target="_blank">+</a></span>
                             </div>
                             <div *ngIf="f.selected_company.errors && f.selected_company.errors.required && isValidFormSubmitted"
                             class="text-danger text-left mb-1 errorcontrols">
@@ -98,7 +99,7 @@
                                 [(ngModel)]="selectedCompany"
                                 >
                                 </ng-multiselect-dropdown>
-                                <span class="input-group-addon " style="color:red;font-size:20px;background:white;border-radius: 0px;"><a routerLink="/create-contact">+</a></span>
+                                <span class="input-group-addon " style="color:red;font-size:20px;background:white;border-radius: 0px;"><a routerLink="/create-contact" target="_blank">+</a></span>
                             </div>
                             <div *ngIf="f.selected_contact.errors && f.selected_contact.errors.required && isValidFormSubmitted"
                             class="text-danger text-left mb-1 errorcontrols">
@@ -890,7 +891,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-                  <button type="button" (click)="convertToQuote()" class="btn btn-primary">Convert To Quote</button>
+                  <!--<button type="button" (click)="convertToQuote()" class="btn btn-primary">Convert To Quote</button>-->
                 </div>
               </div>
             </div>
@@ -899,7 +900,7 @@
           <div  style="text-align: right; margin:10px 0px;" >
           <button   (click)="handleBack()" class="btn btn-dark" >Cancel</button>
           <button (click)="submitForm()" class="btn btn-danger">Save</button>
-          <button  (click)="checkForm()" class="btn btn-primary">Convert To Quote</button>
+         <!-- <button  (click)="checkForm()" class="btn btn-primary">Convert To Quote</button>-->
           <input type="hidden" data-toggle="modal" data-target="#exampleModal" id="openmodal" class="btn btn-primary"/>
 
           </div>

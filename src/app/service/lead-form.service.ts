@@ -46,6 +46,17 @@ export class LeadFormService {
     return this.http.get(api_url, httpOptions);
   }
 
+  getAllLeadLogs() {
+    let api_url = this.base_url + '/logs';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+        apikey: this.api_key,
+      }),
+    };
+    return this.http.get(api_url, httpOptions);
+  }
+
   getAllLogsById(id: any) {
     let api_url = this.base_url + '/getleadlogs/' + id;
     const httpOptions = {
@@ -90,7 +101,7 @@ export class LeadFormService {
     return this.http.get(api_url, httpOptions);
   }
 
-   getAllDashboard() {
+  getAllDashboard() {
     let api_url = this.base_url + '/getAllDashboard';
     const httpOptions = {
       headers: new HttpHeaders({

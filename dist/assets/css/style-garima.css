@@ -1,0 +1,162 @@
+.form-horizontal .control-label{
+    text-align: left !important;
+}
+
+.deal_div{
+    margin-right: 15px;
+    width:130px;
+    padding:10px 0px;
+    text-align: center;
+    border: 1px solid #CFDADD !important;
+    background: white;
+}
+.deal_div:last-child{
+    margin-right: 0;
+}
+.btn{
+    margin-right: .8%;
+}
+
+
+tr.k-state-selected > td{
+    background-color: rgba(255, 255, 255, 1 ) !important;
+}
+.k-toolbar{
+    justify-content: flex-end !important
+}
+.modal-body{
+    min-height: 100px;
+}
+
+.selected{
+    background-color: rgba(255, 99, 88, 0.25) !important
+}
+.t-main{
+    background-color: #FFE5E5;
+    height: 40px;
+}
+.t-main-1{
+   padding-left: 30px;
+   padding-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color:#161615;
+    font-size: 10px!important;
+    
+   
+}
+.top{
+    height: 70px;
+    background: white;
+}
+.breadcrumb-item .active{
+    font-size: 10px!important;
+}
+.button{
+    border: 1px solid #F81B1B;
+        color: white;
+        background-color: #F81B1B;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        padding: 4px 10px;
+        margin-right: 1%;
+}
+
+.t-main-2{
+    padding-right: 6px;
+     
+ }
+.card{
+    margin-left: 20px;
+    padding: 25px;
+    min-height: 300px;
+    font-size: 14px;
+  
+ 
+  
+}
+
+.breadcrumb-item.active{
+    color:black ;
+}
+   
+
+.card1{
+   
+    min-height: 300px;
+    font-size: 14px;
+    border: 1px dashed grey;
+    padding: 25px;
+    margin-left: 20px;
+    background-color: #ffff;
+    text-align: center;
+    font-size: 25px;
+    padding-top: 100px;
+}
+   
+/******************************GNS CSS**********************************/
+label.col-md-3.control-label, label.col-sm-3.control-label {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.panel {
+    background: #FFFFFF;
+    border-radius: 8px!important;
+}
+.panel-default > .panel-heading{
+    background-color: white;
+ 
+}
+.panel-heading{
+    background: #FFFFFF !important;
+  border-radius: 8px 8px 0px 0px !important;
+}
+/* .form-control{
+    border-radius: 6px;
+} */
+.h4, h4 {
+    font-size: 16px !important;
+}
+.form-control{
+border-radius: 5px;
+}
+.c-btn{
+    margin-left: 5px;
+    background: #FFFFFF;
+    border:1px solid #EE1313;
+    border-radius: 5px;
+    color:#EE1313;
+}
+.c-bt{
+    margin-left: 5px;
+    background: #FFFFFF;
+    border:1px solid #EE1313;
+    border-radius: 5px;
+    color:#EE1313;
+}
+.k-menu-link{
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+}
+.l-head tr th{
+    color: #565656 !important;
+    height: 35px;
+    
+}
+
+.sorting:after{
+    display: none !important;
+}
+.d-menu li{
+padding-left: 15px;
+cursor:pointer;
+
+}
+@media screen and (max-width: 768px) {
+    label.col-md-3.control-label, label.col-sm-3.control-label {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+  }
+
+

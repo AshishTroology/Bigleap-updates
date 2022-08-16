@@ -217,7 +217,7 @@ export class CreateQuoteComponent implements OnInit {
       this.isValidFormSubmitted=true
     }else{
       let obj=await{
-        deal_id:this.quoteId,
+        deal_id:this.quoteId+'-C',
       deal_owner:this.currentUser,
       sales_person:this.quoteForm.value.sales_person,
       company_name:'',
