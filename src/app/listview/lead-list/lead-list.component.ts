@@ -11,6 +11,12 @@ import { LeadFormService } from 'src/app/service/lead-form.service';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
 
+import {
+  MatDialog,
+  MatDialogConfig,
+  MatDialogRef,
+} from '@angular/material/dialog';
+
 @Component({
   selector: 'app-lead-list',
   templateUrl: './lead-list.component.html',
@@ -31,6 +37,7 @@ export class LeadListComponent implements OnInit, AfterViewInit {
   userPermission: any;
 
   public mySelection: string[] = [];
+
   constructor(
     private router: Router,
     private lead: LeadFormService,
@@ -39,6 +46,18 @@ export class LeadListComponent implements OnInit, AfterViewInit {
     private userservice: UserService,
     private ngZone: NgZone
   ) {}
+
+  displayStyle = 'none';
+  basicDetails:any={};
+
+  openPopup(dataItem:any) {
+    this.displayStyle = 'block';
+    this.basicDetails = dataItem;
+  }
+  closePopup() {
+    this.displayStyle = 'none';
+    this.basicDetails=null
+  }
 
   ngOnInit(): void {
     this.users.userLoggedIn().subscribe((user: any) => {

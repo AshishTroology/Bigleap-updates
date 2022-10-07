@@ -72,7 +72,7 @@
     "tslib": "^2.3.0",
     "uniqid": "^5.4.0",
     "uuid": "^8.3.2",
-    "xlsx": "^0.17.5",
+    "xlsx": "^0.17.4",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -80,7 +80,6 @@
     "@angular/cli": "^12.2.6",
     "@angular/compiler-cli": "^12.2.6",
     "@types/datatables.net": "^1.10.18",
-    "@types/file-saver": "^2.0.5",
     "@types/jasmine": "~3.8.0",
     "@types/jquery": "^3.3.33",
     "@types/node": "^12.20.25",

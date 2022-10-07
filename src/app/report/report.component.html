@@ -1,0 +1,105 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body ">
+
+    <div class="top">
+      <div class="row t-main">
+        <div class="col-sm-6 col-xs-12 t-main-1">
+          <h4 class="m-n  t-main1">Report </h4>
+        </div>
+        <div class="col-sm-6 text-right poppins">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb t-main" style="cursor: pointer;">
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard
+              </li>
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Report</li>
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;"> List
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+    </div>
+
+
+
+<button (click)="exportexcel()" class="btn btn-primary">Export to Excel</button>
+
+    <kendo-grid id="tableExecl" [kendoGridBinding]="gridView" [pageSize]="10" [pageable]="true"  [reorderable]="true" [resizable]="true" [height]="620" [filterable]="true">
+      <kendo-grid-column field="quotation" title="Quote Type" [width]="120" >
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name" style="color: red;">{{ dataItem.quotation }}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="code" title="Quote code" [width]="120">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name" style="color: red;">{{ dataItem.code }}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="created_at" title="Created" [width]="150">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name" style="color:green;"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{
+            dataItem.created_at|date:'d-M-yyyy' }}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column  title="Aging(Days)" [width]="120">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name">{{ this.aging(dataItem.created_at) }}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column title="Account" field="account" [width]="300">
+        <ng-template kendoGridCellTemplate let-data>
+          <div class="text-theme">{{data.account}}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column  title="Contact" field="contact" [width]="180">
+        <ng-template kendoGridCellTemplate let-data>
+          <div>{{data.contact}}</div>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="owner" title="Quote Owner" [width]="200">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name">{{ dataItem.owner }}</div>
+        </ng-template>
+      </kendo-grid-column>
+
+
+      <kendo-grid-column title="Title" field="title" [width]="200">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name">{{ dataItem.title }}</div>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="source" title="Quote Source" [width]="200" [class]="{ 'text-center': true }">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div>{{dataItem.source}}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column  title="Status" field="status_stage" [width]="200" [class]="{ 'text-center': true }">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div>{{dataItem.status_stage}}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column title="Location" field="location" [width]="180" [class]="{ 'text-center': true }">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name">{{ dataItem.location }}</div>
+        </ng-template>
+      </kendo-grid-column>
+
+        <kendo-grid-column title="By" field="created_by" [width]="180" [class]="{ 'text-center': true }">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <div class="customer-name">{{ dataItem.created_by }}</div>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column title="Estimation" field="estimated_value" [width]="180" [class]="{ 'text-center': true }">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <div class="customer-name">{{ dataItem.estimated_value }}</div>
+          </ng-template>
+        </kendo-grid-column>
+
+    </kendo-grid>
+  </div>
+</div>

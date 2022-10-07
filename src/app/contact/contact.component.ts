@@ -196,28 +196,31 @@ handleLimitSelection() {
 
 
   forminit(){
-    this.contactForm=this.contact.group({
-                contact_id: this.contactId,
-                account_id:'',
-                country_code:this.country_code,
-                contact_owner:this.username,
-                company_name:['',Validators.required],
-                industry:'',
-                country:'',
-                state:'',
-                city:'',
-                location:'',
-                department:'',
-                role:['',Validators.required],
-                first_name:['',Validators.required],
-                last_name:['',Validators.required],
-                contact_name:'',
-                phone_no:[''],
-                mobile_no:['',Validators.required],
-                email:[''],
-                secondary_email:[''],
-                remark:'',
-                account:''
-    })
+    this.contactForm = this.contact.group({
+      contact_id: this.contactId,
+      account_id: '',
+      country_code: this.country_code,
+      contact_owner: this.username,
+      company_name: ['', Validators.required],
+      industry: '',
+      country: '',
+      state: '',
+      city: '',
+      location: '',
+      department: '',
+      role: ['', Validators.required],
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      contact_name: '',
+      phone_no: [''],
+      mobile_no: [
+        '',
+        [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],
+      ],
+      email: [''],
+      secondary_email: [''],
+      remark: '',
+      account: '',
+    });
   }
 }

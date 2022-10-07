@@ -1,0 +1,191 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+<div id="content" class="app-content" role="main">
+    <div class="app-content-body ">
+        <div class="top">
+            <div class="row t-main">
+                <div class="col-sm-6 col-xs-12 t-main-1">
+                    <h4 class="m-n  t-main1"> Service</h4>
+                </div>
+                <div class="col-sm-6 text-right poppins">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb t-main" style="cursor: pointer;">
+                            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;"
+                                routerLink="/">Dashboard
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Service </li>
+                            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;"
+                                routerLink="/service-request-list">Service View List</li>
+                            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">
+                                Create New Service </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div id="demo" class="wrapper-md" ng-controller="FormDemoCtr5">
+            <form>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading font-bold">Service Information</div>
+                            <div class="panel-body">
+                                <div class="row bb">
+                                    <div class="col-sm-6">
+                                        <p>Service ID : <span>{{serviceData.service_id}}</span></p>
+
+                                    </div>
+                                    <div class="col-sm-6 status-end">
+                                        <label class="label label-success"
+                                            *ngIf="serviceData.stages=='completed'?true:false">{{serviceData.stages}}</label>
+                                        <label class="label label-info"
+                                            *ngIf="serviceData.stages=='Pending'?true:false">{{serviceData.stages}}</label>
+                                        <label class="label label-warning"
+                                            *ngIf="serviceData.stages=='open'?true:false">{{serviceData.stages}}</label>
+                                        <label class="label label-primary"
+                                            *ngIf="serviceData.stages=='Repair Estimate Prepare'?true:false">{{serviceData.stages}}</label>
+                                    </div>
+                                </div>
+                                <div class="row bb xy">
+                                    <div class="col-sm-6">
+                                        <p>Service Type :
+                                            <span *ngIf="serviceData.service_type=='AMC'?true:false"><img
+                                                    src="../../assets/img/Group1394.png">
+                                                {{serviceData.service_type}}</span>
+                                            <span *ngIf="serviceData.service_type=='FOC'?true:false"><img
+                                                    src="../../assets/img/Group1401(1).png">
+                                                {{serviceData.service_type}}</span>
+                                            <span *ngIf="serviceData.service_type=='Paid'?true:false"><img
+                                                    src="../../assets/img/Group1393.png">
+                                                {{serviceData.service_type}}</span>
+                                            <span *ngIf="serviceData.service_type=='Other'?true:false"><img
+                                                    src="../../assets/img/Group1392.png">
+                                                {{serviceData.service_type}}</span>
+                                        </p>
+                                        <p>Service Location :
+                                            <span *ngIf="serviceData.service_location=='On site'?true:false"><img
+                                                    src="../../assets/img/Group1399.png">
+                                                {{serviceData.service_location}}</span>
+                                            <span *ngIf="serviceData.service_location=='Of site'?true:false"><img
+                                                    src="../../assets/img/Group1397.png">
+                                                {{serviceData.service_location}}</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-6 status-end">
+                                        <p>Source Type :
+                                            <span *ngIf="serviceData.source_type=='Call'?true:false"><img
+                                                    src="../../assets/img/Iconfeather-phone-call(1).png">
+                                                {{serviceData.source_type}}</span>
+                                            <span *ngIf="serviceData.source_type=='E Mail'?true:false"><img
+                                                    src="../../assets/img/Iconsimple-email(1).png">
+                                                {{serviceData.source_type}}</span>
+                                            <span *ngIf="serviceData.source_type=='Message'?true:false"><img
+                                                    src="../../assets/img/Iconmaterial-message.png">
+                                                {{serviceData.source_type}}</span>
+                                        </p>
+                                        <p>Priority :
+                                            <span *ngIf="serviceData.priority=='Low'?true:false"><img
+                                                    src="../../assets/img/Group1402.png">
+                                                {{serviceData.priority}}</span>
+                                            <span *ngIf="serviceData.priority=='Medium'?true:false"><img
+                                                    src="../../assets/img/Group1384.png">
+                                                {{serviceData.priority}}</span>
+                                            <span *ngIf="serviceData.priority=='High'?true:false"><img
+                                                    src="../../assets/img/Group1386(1).png">
+                                                {{serviceData.priority}}</span>
+                                            <span *ngIf="serviceData.priority=='Urgent'?true:false"><img
+                                                    src="../../assets/img/Group1388(1).png">
+                                                {{serviceData.priority}}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="panel-heading font-bold Acc-border">Account Information</div>
+                                    <div class="panel-body xy">
+                                        <div class="row xy">
+                                            <div class="col-sm-6">
+                                                <p><i class="fa fa-building"></i> Customer Name : <span>
+                                                        {{serviceData.accountData[0].account_owner}}</span></p>
+                                                <p><i class="fa fa-user"></i> Contact : <span>
+                                                        {{serviceData.contactData[0].contact_name}}</span></p>
+                                                <p>Contact Persion Name : <span> {{serviceData.person_name}}</span></p>
+                                            </div>
+                                            <div class="col-sm-6 status-end">
+                                                <p>Assign To : <span> {{serviceData.UserData[0].username}}</span></p>
+                                                <p>Visit Schedule : <span><i class="icon-calendar"></i>
+                                                        {{serviceData.visit_schedule}} </span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="row xy">
+                                    <div class="col-sm-12">
+                                        <p>Assign To : <span> {{serviceData.assign_to}}</span></p>
+                                        <p>Visit Schedule : <span> {{serviceData.visit_schedule}} </span></p>
+                                    </div>
+
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading font-bold">List of Service </div>
+                            <div class="panel-body">
+                                <div style="margin: 5px 0" class="col-md-12 input-group">
+                                    <span *ngFor="let person of serviceData.add_service;let i = index">
+
+                                        <span style="margin: 0 0 0 1.5rem;">{{i+1}}: {{person.value}} </span>
+                                        <br>
+
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading font-bold">List of Attachment </div>
+
+                            <table class="table">
+                                <thead>
+                                    <tr style="background: #FFE5E5;">
+                                        <th>File Name</th>
+                                        <th>Attach By</th>
+                                        <th>Date added</th>
+                                        <th>Size</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let string of serviceData.attachments;let i = index">
+                                        <td scope="row"> <a target="_blank" style="color:blue" href="{{string.img_url}}"><u>{{string.name}}</u></a></td>
+                                        <td></td>
+                                        <td>{{string.upload_date}}</td>
+                                        <td>{{string.size}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading font-bold">Remark </div>
+                            <div class="panel-body">
+
+                                <span style="margin: 0 0 0 1.5rem;"> {{serviceData.remark}} </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- End content3 -->
+        </div>
+    </div>
+</div>

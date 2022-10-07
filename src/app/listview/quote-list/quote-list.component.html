@@ -22,6 +22,70 @@
       </div>
 
     </div>
+
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Basic Details</h4>
+          </div>
+          <div class="modal-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Quote ID</td>
+                  <td>{{ this.basicDetails.quote_id }}</td>
+                </tr>
+                <tr>
+                  <td>Creation Date</td>
+                  <td>{{ this.basicDetails.created_date_time }}</td>
+                </tr>
+                <tr>
+                  <td>Quote Title</td>
+                  <td>{{ this.basicDetails.quote_title }}</td>
+                </tr>
+                <tr>
+                  <td>Customer</td>
+                  <td>{{this.basicDetails.company_name}}</td>
+                </tr>
+                <tr>
+                  <td>Quote Value</td>
+                  <td>{{ this.basicDetails.estimated_value }}</td>
+                </tr>
+                <tr>
+                  <td>Aging (Days)</td>
+                  <td>{{ this.basicDetails.aging }}</td>
+                </tr>
+                <tr>
+                  <td>Quote Location</td>
+                  <td>{{ this.basicDetails.quote_location?this.basicDetails.quote_location[0].branch_name:'' }}</td>
+                </tr>
+                <tr>
+                  <td>Quote Status</td>
+                  <td>{{ this.basicDetails.quote_status }}</td>
+                </tr>
+                <tr>
+                  <td>Created By</td>
+                  <td>{{ this.basicDetails.quote_owner?this.basicDetails.quote_owner[0].username:''}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="closePopup()">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <kendo-grid id="tableExecl" [kendoGridBinding]="gridView"  [pageSize]="10"
       [pageable]="true" [sortable]="false" [sort]="sort" [reorderable]="true" [resizable]="true" [height]="620" [filterable]="false">
       <ng-template kendoGridToolbarTemplate>
@@ -39,9 +103,9 @@
       </ng-template>
 
 
-      <kendo-grid-column field="quote_id" title="ID" [width]="120" [locked]="true">
+      <kendo-grid-column field="quote_id" title="ID" [width]="120" [locked]="true" [sticky]="true">
         <ng-template kendoGridCellTemplate let-dataItem>
-          <div class="customer-name" style="color: red;">{{ dataItem.quote_id }}</div>
+          <div class="customer-name" style="color: red;" (click)="openPopup(dataItem)">{{ dataItem.quote_id }}</div>
         </ng-template>
       </kendo-grid-column>
       <kendo-grid-column field="created_date_time" title="Created" [width]="150">
@@ -162,7 +226,7 @@
               <kendo-menu-item icon="preview" *ngIf="userPermission?.quoteview && quote.aprroved">
                 <ng-template kendoMenuItemTemplate>
                   <div>
-                    <a href="/view-quote/{{quote.quote_id}}" target="_blank">View Quote</a>
+                    <a href="https://app-diyatechnologies.evalue8.info/view-quote/{{quote.quote_id}}" target="_blank">View Quote</a>
                   </div>
                 </ng-template>
               </kendo-menu-item>

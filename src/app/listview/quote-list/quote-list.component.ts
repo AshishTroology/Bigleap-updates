@@ -14,7 +14,7 @@ import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
 
 import * as XLSX from 'xlsx';
-import * as fs from 'file-saver';
+// import * as fs from 'file-saver';
 
 @Component({
   selector: 'app-quote-list',
@@ -55,10 +55,21 @@ export class QuoteListComponent implements OnInit {
     private contact: ContactService
   ) {}
 
+  displayStyle = 'none';
+  basicDetails: any = {};
+
+  openPopup(dataItem: any) {
+    this.displayStyle = 'block';
+    this.basicDetails = dataItem;
+  }
+  closePopup() {
+    this.displayStyle = 'none';
+    this.basicDetails = null;
+  }
 
   ngOnInit(): void {
     this.auth.userLoggedIn().subscribe((user: any) => {
-      console.log(user);
+      // console.log(user);
       this.user = user.result;
       this.currentUser = user.result.username;
       this.userId = user.result._id;
@@ -66,7 +77,7 @@ export class QuoteListComponent implements OnInit {
       this.role
         .getUserRolePermissions(user.result.role)
         .subscribe((data: any) => {
-          console.log(data.result[0]);
+          // console.log(data.result[0]);
           this.userPermission = data.result[0];
         });
     });
@@ -174,11 +185,11 @@ export class QuoteListComponent implements OnInit {
   }
 
   getQuotes() {
-    console.log('get quotes');
+    // console.log('get quotes');
     this.quote.getQuote().subscribe((resdata: any) => {
       this.gridData = resdata.result;
       let data = resdata.result;
-      // console.log(resdata.result);
+      console.log(resdata.result);
 
       data?.map((dt: any, index: any) => {
         let date = new Date(dt.created_date_time);
@@ -345,6 +356,5 @@ export class QuoteListComponent implements OnInit {
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     XLSX.writeFile(wb, this.fileName);
-
   }
 }

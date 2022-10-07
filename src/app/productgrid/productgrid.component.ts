@@ -121,10 +121,10 @@ export class ProductgridComponent implements OnInit {
 
     // })
     if (this.levelIndex.length === 1) {
-      if (formdata.type !== 'Product') {
-        this.data[this.levelIndex].productname = formdata.productname;
-        this.data[this.levelIndex].PartNo = formdata.PartNo;
-      }
+      // if (formdata.type !== 'Product') {
+      // }
+      this.data[this.levelIndex].productname = formdata.productname;
+      this.data[this.levelIndex].PartNo = formdata.PartNo;
       this.data[this.levelIndex].GST = formdata.GST;
       this.data[this.levelIndex].HSNCode = formdata.HSNCode;
       this.data[this.levelIndex].UnitPrice = formdata.UnitPrice;
@@ -149,6 +149,8 @@ export class ProductgridComponent implements OnInit {
       ) {
         if (this.levelvalue == this.levelIndex.length - 1) {
           this.levelvalue = 0;
+          ele.productname = ff.productname;
+          ele.PartNo = ff.PartNo;
           ele.HSNCode = ff.HSNCode;
           ele.GST = ff.GST;
           ele.UnitPrice = 0;
@@ -165,6 +167,8 @@ export class ProductgridComponent implements OnInit {
           index === parseInt(this.levelIndex[this.levelvalue]) &&
           ele.type === 'Product'
         ) {
+          ele.productname = ff.productname;
+          ele.PartNo = ff.PartNo;
           ele.GST = ff.GST;
           ele.HSNCode = ff.HSNCode;
           ele.UnitPrice = ff.UnitPrice;

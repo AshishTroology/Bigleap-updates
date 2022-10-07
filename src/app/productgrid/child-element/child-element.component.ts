@@ -24,24 +24,8 @@ export class ChildElementComponent implements OnInit {
 
   formSetter(item: any) {
     this.registerForm = new FormGroup({
-      productname: new FormControl({
-        value: item.productname,
-        disabled:
-          this.itemdata.dataItem.type === 'Product'
-            ? this.itemdata.dataItem.is_product
-              ? false
-              : true
-            : false,
-      }),
-      PartNo: new FormControl({
-        value: item.PartNo,
-        disabled:
-          this.itemdata.dataItem.type === 'Product'
-            ? this.itemdata.dataItem.is_product
-              ? false
-              : true
-            : false,
-      }),
+      productname: new FormControl(item.productname),
+      PartNo: new FormControl(item.PartNo),
       HSNCode: new FormControl(item.HSNCode),
       GST: new FormControl(item.GST),
       UnitPrice: new FormControl({
@@ -56,14 +40,20 @@ export class ChildElementComponent implements OnInit {
   }
 
   public submitForm(): void {
-    this.registerForm.markAllAsTouched();
-    console.log(this.registerForm.value);
-    this.registerForm.value.amount =
-      (this.registerForm.value.UnitPrice -
-        this.registerForm.value.UnitPrice *
-          (this.registerForm.value.discount / 100)) *
-      this.registerForm.value.quantity;
-    this.formChanged.emit(this.registerForm.value);
+    if(this.registerForm.value.discount<=100){
+        this.registerForm.markAllAsTouched();
+      console.log(this.registerForm.value);
+      this.registerForm.value.amount =
+        (this.registerForm.value.UnitPrice -
+          this.registerForm.value.UnitPrice *
+            (this.registerForm.value.discount / 100)) *
+        this.registerForm.value.quantity;
+      this.formChanged.emit(this.registerForm.value);
+    }
+    else{
+      alert('Invalid Discount')
+    }
+
   }
 
   public clearForm(): void {

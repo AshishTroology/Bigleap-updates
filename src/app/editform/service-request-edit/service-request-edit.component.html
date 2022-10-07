@@ -1,284 +1,319 @@
-<app-header ></app-header>
-<app-sidenav ></app-sidenav>
+<app-header></app-header>
+<app-sidenav></app-sidenav>
 <div id="content" class="app-content" role="main">
-    <div class="app-content-body ">
-      <div class="top">
+  <div class="app-content-body ">
+    <div class="top">
 
-        <div class="row t-main">
-    <div class="col-sm-6 col-xs-12 t-main-1">
-      <h4 class="m-n  t-main1"> Service</h4>
-    </div>
-    <div class="col-sm-6 text-right poppins">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb t-main" style="cursor: pointer;">
-            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;"routerLink="/">Dashboard</li>
-            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Service </li>
-            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;"routerLink="/service-request-list">Service View List</li>
-            <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">Create New Service </li>
-          </ol>
-        </nav>
+      <div class="row t-main">
+        <div class="col-sm-6 col-xs-12 t-main-1">
+          <h4 class="m-n  t-main1"> Service</h4>
+        </div>
+        <div class="col-sm-6 text-right poppins">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb t-main" style="cursor: pointer;">
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard
+              </li>
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Service </li>
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;"
+                routerLink="/service-request-list">Service View List</li>
+              <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color:red;">Create New
+                Service </li>
+            </ol>
+          </nav>
+        </div>
       </div>
-  </div>
-  </div>
+    </div>
 
 
 
 
     <div class="wrapper-md" ng-controller="FormDemoCtr5">
-        <form  [formGroup]="ServiceForm" (ngSubmit)="onFormSubmit()">
+      <form [formGroup]="ServiceForm" (ngSubmit)="onFormSubmit()">
 
 
-            <div class="row">
-                <div class="col-sm-12">
-                  <div class="panel panel-default">
-                    <div class="panel-heading font-bold">Service Information</div>
-                    <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-heading font-bold">Service Information</div>
+              <div class="panel-body">
 
-                        <div class="col-md-4 form-group">
-                        <label >Service ID  </label>
-                        <input type="text" class="form-control" formControlName="service_id" readonly>
-                        </div>
+                <div class="col-md-4 form-group">
+                  <label>Service ID </label>
+                  <input type="text" class="form-control" formControlName="service_id" [value]="this.s_id" readonly>
+                </div>
 
-                        <div class="col-md-4 form-group">
-                        <label >Service Type</label> <br>
-                        <div id="p-div"  [className]="service_amc_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'" (click)="getservice('AMC')" >
-                          <img src="../../assets/img/Group1394.png"><br/>AMC
-                        </div>
-                        <div  id="p-div" style="margin-left:10px;" [className]="service_foc_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'" (click)="getservice('FOC')" >
-                          <img src="../../assets/img/Group1401(1).png"><br/>FOC
-                        </div>
-                        <div  id="p-div" style="margin-left:10px;" [className]="service_paid_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'"  (click)="getservice('Paid')">
-                          <img src="../../assets/img/Group1393.png"><br/>Paid
-                        </div>
-                        <div  id="p-div" style="margin-left:10px;" [className]="service_other_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'"  (click)="getservice('Other')" >
-                          <img src="../../assets/img/Group1392.png"><br/>Other
-                        </div>
-
-
-
-                        </div>
-
-                        <div class="col-md-4 form-group">
-                        <label >Service Location</label>
-                        <br>
-                        <div  [className]="type_on_btn ? 'btn btn-default col-sm-3 redClass' : 'btn btn-default col-sm-3 greyClass'" (click)="getLocationType('On site')">
-                          <img src="../../assets/img/Group1399.png"><br/>On site
-                        </div>
-                        <div style="margin-left:10px;" [className]="type_off_btn ? 'btn btn-default col-sm-3 redClass' : 'btn btn-default col-sm-3 greyClass'" (click)="getLocationType('Of site')">
-                          <img src="../../assets/img/Group1397.png"><br/>off site
-                        </div>
-                        </div>
-                     <div class="clearfix"></div>
-
-                     <div class="col-md-4 form-group">
-                        <label >Priority</label>
-
-                        <br>
-                        <div id="p-div"  [className]="priority_low_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'" (click)="getpriority('Low')" >
-                          <img src="../../assets/img/Group1402.png"><br/>Low
-                        </div>
-                        <div  id="p-div" style="margin-left:10px;font-size: 10px" [className]="priority_medium_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'" (click)="getpriority('Medium')" >
-                          <img src="../../assets/img/Group1384.png"><br/>Medium
-                        </div>
-                        <div  id="p-div" style="margin-left:10px;" [className]="priority_hight_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'"  (click)="getpriority('High')">
-                          <img src="../../assets/img/Group1386(1).png"><br/>High
-                        </div>
-                        <div  id="p-div" style="margin-left:10px;" [className]="priority_urgent_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'"  (click)="getpriority('Urgent')" >
-                          <img src="../../assets/img/Group1388(1).png"><br/>Urgent
-                        </div>
-                        </div>
-
-                        <div class="col-md-4 form-group">
-                            <label >Source Type</label>
-                        <br>
-                        <div id="p-div"  [className]="source_call_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'" (click)="getsource('Call')" >
-                          <img src="../../assets/img/Iconfeather-phone-call(1).png"><br/>Call
-                        </div>
-                        <div  id="p-div" style="margin-left:10px;" [className]="source_mail_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'" (click)="getsource('E Mail')" >
-                          <img src="../../assets/img/Iconsimple-email(1).png"><br/>E Mail
-                        </div>
-                        <div  id="p-div" style="margin-left:10px;font-size: 10px" [className]="source_message_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'"  (click)="getsource('Message')">
-                          <img src="../../assets/img/Iconmaterial-message.png"><br/>Message
-                        </div>
-                            </div>
-
-         <div class="form-group  col-md-4 ">
-          <label >Account </label>
-            <div class="input-group">
-              <span class="input-group-addon  " style="color:gray;font-size:20px;background:white; border-right:0px;"><i class="fa fa-building"></i></span>
-              <ng-multiselect-dropdown
-              [placeholder]="''"
-              [settings]="dropdownSettings"
-              [data]="accountData"
-              formControlName="account"
-              (onSelect)="onItemSelect($event)"
-              [(ngModel)]="selectedAccount"
-              >
-              </ng-multiselect-dropdown>
-          </div>
-          </div>
-
-          <div class="clearfix"></div>
-
-        <div class="form-group  col-md-4 ">
-          <label>Contact  </label>
-
-            <div class="input-group">
-              <span class="input-group-addon  " style="color:gray;font-size:20px;background:white;border-radius: 0px; border-right:0px;"><i class="fa fa-user"></i></span>
-              <ng-multiselect-dropdown
-              [placeholder]="''"
-              [settings]="contactDropdownSettings"
-              [data]="contactTempData"
-              formControlName="account_info"
-              (onSelect)="onContactSelect($event)"
-              [(ngModel)]="selectedCompany"
-              >
-              </ng-multiselect-dropdown>
-
-          </div>
-          </div>
-
-         <div class="col-md-4 form-group">
-        <label >Contact Person Name </label>
-         <input type="text" class="form-control" formControlName="person_name">
-      </div>
-
-
-      <div class="col-md-4 form-group">
-        <label >Assign To</label>
-        <select formControlName="assign_to" class="form-control" >
-          <option value="" selected >Select  </option>
-          <option *ngFor="let objtrans of salesPersonData" value={{objtrans._id}}> {{objtrans.username}} </option>
-        </select>
-</div>
+                <div class="col-md-4 form-group">
+                  <label>Service Type</label> <br>
+                  <div id="p-div"
+                    [className]="service_amc_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'"
+                    (click)="getservice('AMC')">
+                    <img src="../../assets/img/Group1394.png"><br />AMC
+                  </div>
+                  <div id="p-div" style="margin-left:10px;"
+                    [className]="service_foc_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'"
+                    (click)="getservice('FOC')">
+                    <img src="../../assets/img/Group1401(1).png"><br />FOC
+                  </div>
+                  <div id="p-div" style="margin-left:10px;"
+                    [className]="service_paid_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'"
+                    (click)="getservice('Paid')">
+                    <img src="../../assets/img/Group1393.png"><br />Paid
+                  </div>
+                  <div id="p-div" style="margin-left:10px;"
+                    [className]="service_other_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'"
+                    (click)="getservice('Other')">
+                    <img src="../../assets/img/Group1392.png"><br />Other
+                  </div>
 
 
 
+                </div>
+
+                <div class="col-md-4 form-group">
+                  <label>Service Location</label>
+                  <br>
+                  <div
+                    [className]="type_on_btn ? 'btn btn-default col-sm-3 redClass' : 'btn btn-default col-sm-3 greyClass'"
+                    (click)="getLocationType('On site')">
+                    <img src="../../assets/img/Group1399.png"><br />On site
+                  </div>
+                  <div style="margin-left:10px;"
+                    [className]="type_off_btn ? 'btn btn-default col-sm-3 redClass' : 'btn btn-default col-sm-3 greyClass'"
+                    (click)="getLocationType('Of site')">
+                    <img src="../../assets/img/Group1397.png"><br />off site
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="col-md-4 form-group">
+                  <label>Priority</label>
+
+                  <br>
+                  <div id="p-div"
+                    [className]="priority_low_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'"
+                    (click)="getpriority('Low')">
+                    <img src="../../assets/img/Group1402.png"><br />Low
+                  </div>
+                  <div id="p-div" style="margin-left:10px;font-size: 10px"
+                    [className]="priority_medium_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'"
+                    (click)="getpriority('Medium')">
+                    <img src="../../assets/img/Group1384.png"><br />Medium
+                  </div>
+                  <div id="p-div" style="margin-left:10px;"
+                    [className]="priority_hight_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'"
+                    (click)="getpriority('High')">
+                    <img src="../../assets/img/Group1386(1).png"><br />High
+                  </div>
+                  <div id="p-div" style="margin-left:10px;"
+                    [className]="priority_urgent_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'"
+                    (click)="getpriority('Urgent')">
+                    <img src="../../assets/img/Group1388(1).png"><br />Urgent
+                  </div>
+                </div>
+
+                <div class="col-md-4 form-group">
+                  <label>Source Type</label>
+                  <br>
+                  <div id="p-div"
+                    [className]="source_call_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'"
+                    (click)="getsource('Call')">
+                    <img src="../../assets/img/Iconfeather-phone-call(1).png"><br />Call
+                  </div>
+                  <div id="p-div" style="margin-left:10px;"
+                    [className]="source_mail_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'"
+                    (click)="getsource('E Mail')">
+                    <img src="../../assets/img/Iconsimple-email(1).png"><br />E Mail
+                  </div>
+                  <div id="p-div" style="margin-left:10px;font-size: 10px"
+                    [className]="source_message_btn ? 'btn btn-default col-sm-2 redClass' : 'btn btn-default col-sm-2 greyClass'"
+                    (click)="getsource('Message')">
+                    <img src="../../assets/img/Iconmaterial-message.png"><br />Message
+                  </div>
+                </div>
+
+                <div class="form-group  col-md-4 ">
+                  <label>Customer Name </label>
+                  <div class="input-group">
+                    <span class="input-group-addon  "
+                      style="color:gray;font-size:20px;background:white; border-right:0px;"><i
+                        class="fa fa-building"></i></span>
+                    <ng-multiselect-dropdown [placeholder]="''" [settings]="dropdownSettings" [data]="accountData"
+                      formControlName="account" (onSelect)="onItemSelect($event)" [(ngModel)]="selectedAccount">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="form-group  col-md-4 ">
+                  <label>Contact </label>
+
+                  <div class="input-group">
+                    <span class="input-group-addon  "
+                      style="color:gray;font-size:20px;background:white;border-radius: 0px; border-right:0px;"><i
+                        class="fa fa-user"></i></span>
+                    <ng-multiselect-dropdown [placeholder]="''" [settings]="contactDropdownSettings"
+                      [data]="contactTempData" formControlName="account_info" (onSelect)="onContactSelect($event)"
+                      [(ngModel)]="selectedCompany">
+                    </ng-multiselect-dropdown>
+
+                  </div>
+                </div>
+
+                <div class="col-md-4 form-group">
+                  <label>Contact Person Name </label>
+                  <input type="text" class="form-control" formControlName="person_name">
+                </div>
+
+
+                <div class="col-md-4 form-group">
+                  <label>Assign To</label>
+                  <select formControlName="assign_to" class="form-control">
+                    <option value="" selected>Select </option>
+                    <option *ngFor="let objtrans of salesPersonData" value={{objtrans._id}}> {{objtrans.username}}
+                    </option>
+                  </select>
+                </div>
 
 
 
-                                                  <div class="clearfix"> </div>
-                                                <div class="col-md-4 form-group">
-                                                    <label >Visit Schedule</label>
-                                                    <input type="date" class="form-control" formControlName="visit_schedule" min="{{ todayDate |date:'yyyy-MM-dd' }}" max="2050-03-31" >
-                                                    </div>
 
-                                                    <div class="col-md-4 form-group">
-                                                        <label >Stages /
-                                                            Service Status</label>
 
-                                                        <select class="form-control" formControlName="stages">
-                                                            <option value="Completed">Completed</option>
-                                                            <option value="Pending">Pending</option>
-                                                            <option value="Open">Open</option>
 
-                                                            <option value="Repair Estimate Prepare">Repair Estimate Prepare</option>
-                                                        </select>
-                                                        </div>
+                <div class="clearfix"> </div>
+                <div class="col-md-4 form-group">
+                  <label>Visit Schedule</label>
+                  <input type="date" class="form-control" formControlName="visit_schedule"
+                    min="{{ todayDate |date:'yyyy-MM-dd' }}" max="2050-03-31">
+                </div>
+
+                <div class="col-md-4 form-group">
+                  <label>Stages / Service Status</label>
+
+                  <select class="form-control" formControlName="stages">
+                    <option value="Completed">Completed</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Open">Open</option>
+
+                    <option value="Repair Estimate Prepare">Repair Estimate Prepare</option>
+                  </select>
+                </div>
+              </div>
             </div>
-            </div>
-            </div>
-            </div>
-
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="panel panel-default">
-                  <div class="panel-heading font-bold">Add Service </div>
-                  <div class="panel-body">
-
-
-
-                    <div  class="form-group  col-md-12 " style="display: flex;align-items: flex-end;">
-                      <div class="col-md-12" >
-                        <div *ngFor="let  service of addservice; index as i;" style="margin: 5px 0" class="col-md-12 input-group">
-
-                          <input  (blur)="handleBlurservice($event,i)" value={{service.value}} type="text" class="form-control">
-                          <span (click)="handleDeleteservice(i)" style="cursor: pointer;" class="input-group-addon">X</span>
-                        </div>
-                      </div>
-                      <div class="input-group-addon "  (click)="handleAddservice()"   style="margin: 5px 0; color:red;font-size:20px;background:white;border-left: 1px solid #cfdadd; width: 35px;cursor: pointer;">+</div>
-                    </div>
-
-
-
-
-                    </div>
-
-            </div>
-            </div>
-            </div>
-
-
-
-
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="panel panel-default">
-
-                  <div class="panel-body">
-                    <div class="col-md-12">
-                      <div class="col-md-10 ">
-                     <b> Attachment</b>
-                     </div>
-                     <div  style="text-align: right;padding-right:18px;">
-                      <b onclick="$('#file').click()" style="cursor: pointer;">Attach <i class="fa fa-paperclip " aria-hidden="true"></i></b>
-                          <input accept="application/pdf,image/*" type="file" (change)="handleAttachmentUpload($event)" multiple encType="multipart/form-data" class="form-control " placeholder="Uplode your Company Logo" id="file" formControlName="attachments" style="font-size:12px; border-right:0px;display: none;" >
-                      </div>
-                     </div>
-                    <br>
-                    <br>
-                    <div class="row">
-                    <div class="col-md-12"  style="padding:0px;">
-                     <table class="table">
-                     <thead>
-                                      <tr style="background:#FFE5E5; ">
-                                          <th>File Name</th>
-                                          <th>Attach By </th>
-                                          <th>Date added</th>
-                                          <th>Size</th>
-                                          <th></th>
-
-                                      </tr>
-                                      <tr *ngFor="let file of files_url, index as i"><th>
-                                        <a href="{{file.img_url}}" target="_blank" style="color:blue">{{file.name}}</a></th>
-                                        <th>{{file.attached_by}} </th>
-                                          <th>{{file.upload_date}}</th>
-                                          <th>{{file.size}}</th>
-                                          <th>
-                                          <i (click)="removeAttachment(i)"  class="fa fa-trash"  aria-hidden="true"></i></th>
-                                          </tr>
-                                  </thead>
-                     </table>
-                    </div>
-                    </div>
-                    </div>
-          </div>
           </div>
         </div>
 
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="panel panel-default">
-                <div class="panel-heading font-bold">Remark </div>
-                <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-heading font-bold">Add Service </div>
+              <div class="panel-body">
 
-                  <div class="col-md-12 form-group">
 
-                      <input type="text" class="form-control" placeholder="Remark" formControlName="remark">
+
+                <div class="form-group  col-md-12 " style="display: flex;align-items: flex-end;">
+                  <div class="col-md-12">
+                    <div *ngFor="let  service of addservice; index as i;" style="margin: 5px 0"
+                      class="col-md-12 input-group">
+
+                      <input (blur)="handleBlurservice($event,i)" value={{service.value}} type="text"
+                        class="form-control">
+                      <span (click)="handleDeleteservice(i)" style="cursor: pointer;" class="input-group-addon">X</span>
                     </div>
                   </div>
+                  <div class="input-group-addon " (click)="handleAddservice()"
+                    style="margin: 5px 0; color:red;font-size:20px;background:white;border-left: 1px solid #cfdadd; width: 35px;cursor: pointer;">
+                    +</div>
+                </div>
 
-          </div>
-          </div>
-          </div>
 
-          <div  style="text-align: right; margin:10px 0px;margin-right:16px;" >
-            <button class="btn btn-dark"><a routerLink="/service-request-list">Cancel</a></button>
-            <button type="submit"  class="btn btn-danger" [disabled]="isValidbutton" (click)="saveform('save')" >Save</button>
+
+
+              </div>
 
             </div>
-        </form>
+          </div>
+        </div>
 
-          <!-- End content3 -->
+
+
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+
+              <div class="panel-body">
+                <div class="col-md-12">
+                  <div class="col-md-10 ">
+                    <b> Attachment</b>
+                  </div>
+                  <div style="text-align: right;padding-right:18px;">
+                    <b onclick="$('#file').click()" style="cursor: pointer;">Attach <i class="fa fa-paperclip "
+                        aria-hidden="true"></i></b>
+                    <input accept="application/pdf,image/*" type="file" (change)="handleAttachmentUpload($event)"
+                      multiple encType="multipart/form-data" class="form-control "
+                      placeholder="Uplode your Company Logo" id="file" formControlName="attachments"
+                      style="font-size:12px; border-right:0px;display: none;">
+                  </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                  <div class="col-md-12" style="padding:0px;">
+                    <table class="table">
+                      <thead>
+                        <tr style="background:#FFE5E5; ">
+                          <th>File Name</th>
+                          <th>Attach By </th>
+                          <th>Date added</th>
+                          <th>Size</th>
+                          <th></th>
+
+                        </tr>
+                        <tr *ngFor="let file of files_url, index as i">
+                          <th>
+                            <a href="{{file.img_url}}" target="_blank" style="color:blue">{{file.name}}</a>
+                          </th>
+                          <th>{{file.attached_by}} </th>
+                          <th>{{file.upload_date}}</th>
+                          <th>{{file.size}}</th>
+                          <th>
+                            <i (click)="removeAttachment(i)" class="fa fa-trash" aria-hidden="true"></i>
+                          </th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-heading font-bold">Remark </div>
+              <div class="panel-body">
+
+                <div class="col-md-12 form-group">
+
+                  <input type="text" class="form-control" placeholder="Remark" formControlName="remark">
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: right; margin:10px 0px;margin-right:16px;">
+          <button class="btn btn-dark"><a routerLink="/service-request-list">Cancel</a></button>
+          <button type="submit" class="btn btn-danger" [disabled]="isValidbutton"
+            (click)="saveform('save')">Save</button>
+
+        </div>
+      </form>
+
+      <!-- End content3 -->
     </div>
-    </div>
+  </div>

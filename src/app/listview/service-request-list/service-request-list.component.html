@@ -57,10 +57,10 @@
     <kendo-grid-column field="priority" title="Priority" [width]="100"></kendo-grid-column>
     <kendo-grid-column field="source_type" title="Source" [width]="100"></kendo-grid-column>
 
-    <kendo-grid-column  title="Account" [width]="300">
+    <kendo-grid-column  title="Customer Name" [width]="300">
       <ng-template kendoGridCellTemplate let-dataItem>
 
-        <div class="service" >{{dataItem.contactData[0].company_name }}</div>
+        <div class="service" >{{dataItem.accountData[0].company_name }}</div>
 
       </ng-template>
     </kendo-grid-column>
@@ -99,6 +99,8 @@
       <kendo-menu >
         <kendo-menu-item  icon="gear">
        <kendo-menu-item icon="edit"  *ngIf="this.userPermission?.serviceedit"  url="/service-request-edit/{{service._id}}"  text="Edit" > </kendo-menu-item>
+        <kendo-menu-item icon="eye"  url="/services-view/{{service._id}}"
+          text="View"> </kendo-menu-item>
         </kendo-menu-item>
       </kendo-menu>
     </ng-template>

@@ -1,0 +1,554 @@
+@media print {
+    p {
+        margin: 0 0 0px;
+    }
+
+    .table-cls tr td {
+        padding: 2px !important;
+    }
+
+    tr td {
+        border: 1px solid #000 !important;
+    }
+
+    /* .border-new {
+      border-bottom: none !important;
+    }
+    .border-none {
+      border-top: none !important;
+    } */
+    .quation {
+        background: rgb(180, 180, 180) !important;
+        border-top: none !important;
+    }
+
+    .bg-C {
+        background: rgb(180, 180, 180) !important;
+        border: 1px solid #000 !important;
+    }
+
+    .Logo-Img {
+        height: 50px;
+        width: 200px;
+        /* border: 1px solid #000; */
+        border-left: 1px solid #000 !important;
+        border-right: none !important;
+        border-bottom: 1px solid #000 !important;
+        border-top: 1px solid #000 !important;
+    }
+
+    .Logo-Img-1 {
+        border-right: none !important;
+        border-bottom: none !important;
+    }
+
+    .Logo-Img-2 {
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: none !important;
+    }
+
+    .Logo-Img-3 {
+        border-left: none !important;
+        border-right: 1px solid #000 !important;
+        border-bottom: none !important;
+    }
+
+    .Bill-From {
+        border: 1px solid rgb(185, 26, 26) !important;
+    }
+
+    .contact-person {
+        border: 1px solid #000 !important;
+    }
+
+    .mail-id {
+        border: 1px solid #000;
+    }
+
+    .name-border {
+        border: 1px solid #000;
+    }
+
+    .contact-border {
+        border: 1px solid #000 !important;
+    }
+
+
+}
+
+body {
+    color: black !important;
+}
+
+p {
+    margin: 0 0 0px;
+}
+
+.table-cls tr td {
+    padding: 2px !important;
+    font-weight: bold !important;
+
+}
+
+.table-cls-IR img {
+    width: 100%;
+}
+
+.table-cls-xs tr td {
+    padding: 3px;
+}
+
+td {
+    font-size: 11px;
+}
+
+.custom-name td {
+    font-weight: bold
+}
+
+.pnumatic-impact td {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.terms-conditions td {
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+@media print {
+    .pagebreak {
+        page-break-before: always;
+    }
+
+    * {
+        color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    hr {
+        border-top: 1px solid;
+        border-color: #0000;
+        border-width: 1px;
+        margin-bottom: 43px;
+    }
+
+    .print-btn-none {
+        display: none !important;
+    }
+
+    body {
+        font-size: 12px !important;
+    }
+
+    #spacer {
+        height: 18em;
+    }
+
+
+    #footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        /* border: 1px solid #f5f5f5;*/
+        padding: 5px;
+    }
+
+    .table-bordered>tbody>tr>td,
+    .table-bordered>thead>tr>th {
+        border: 1px solid #000 !important;
+    }
+
+    p.head-contact {
+        font-size: 10px;
+    }
+
+    td.rupees-word {
+        font-size: 10px !important;
+        color: #ffffff !important;
+    }
+
+    td.price-gst {
+        font-size: 10px !important;
+    }
+
+    td.computer-generated {
+        font-size: 10px !important;
+    }
+
+    table>tbody>tr>td {
+        font-size: 15px !important;
+    }
+
+    #footer2 {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        /*border: 1px solid #f5f5f5;*/
+        padding: 5px;
+    }
+
+    .no-print {
+        display: none;
+    }
+
+    #wrapper {
+        max-width: 800px;
+        width: 100%;
+        min-width: 200px;
+        margin: 0 auto;
+        border: none;
+    }
+
+    .no-border {
+        border: none !important;
+    }
+
+    .border-bottom {
+        border-bottom: 1px solid #eee !important;
+    }
+
+    .table>tbody>tr>td {
+        border: none;
+    }
+
+    .spacer-print-40 {
+        height: 40px;
+    }
+
+}
+
+@media print {
+    .print-btn-none {
+        display: none !important;
+    }
+}
+
+/* New css */
+body {
+    font-size: 12px;
+}
+
+#dataBox {
+    width: 50%;
+    margin: 10px auto;
+    border: 1.5px solid #434343;
+    ;
+}
+
+ul {
+    margin-bottom: 0;
+}
+
+.bAll {
+    border: 1.5px solid #434343;
+}
+
+.bt {
+    border-top: 1.5px solid #434343;
+}
+
+.br {
+    border-right: 1.5px solid #434343;
+}
+
+.bb {
+    border-bottom: 1.5px solid #434343;
+}
+
+.bl {
+    border-left: 1.5px solid #434343;
+}
+
+.ph1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0px 5px 5px;
+}
+
+.ph1 ul {
+    padding: 0px;
+}
+
+.ph1 ul li {
+    list-style-type: none;
+    font-size: 12px;
+    font-weight: 600;
+    color: #434343;
+}
+
+.ph2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-left: 5px;
+}
+
+.ph2 ul {
+    padding: 0px;
+}
+
+.ph2 ul li {
+    list-style-type: none;
+    font-size: 12px;
+    font-weight: 600;
+    color: #434343;
+    line-height: 18px;
+}
+
+.ph2 div:first-child {
+    width: 60%;
+}
+
+.ph2 div:last-child {
+    width: 40%;
+}
+
+.cpDetail h2 {
+    font-size: 12px;
+    margin: 0;
+    background-color: #bfbfbf;
+    font-weight: 600;
+    padding: 0px 0px 0px 5px;
+}
+
+.RD{
+    padding: 0px 5px 0px 5px;
+}
+
+.cpDetail ul {
+    padding: 5px;
+}
+
+#quoteHeader h2 {
+    font-size: 12px;
+    margin: 0;
+    background-color: #bfbfbf;
+    font-weight: 600;
+    padding: 0px 0px 0px 0px;
+}
+
+#quoteHeader .w100 div {
+    padding: 5px;
+    font-size: 11px;
+    line-height: 14px;
+}
+
+.w100 {
+    width: 100%;
+    display: flex;
+    font-size: 12px;
+}
+
+.w90 {
+    width: 90%;
+    display: inline-block;
+}
+
+.w80 {
+    width: 80%;
+    display: inline-block;
+}
+
+.w70 {
+    width: 70%;
+    display: inline-block;
+}
+
+.w60 {
+    width: 60%;
+    display: inline-block;
+}
+
+.w50 {
+    width: 50%;
+    display: inline-block;
+}
+
+.w40 {
+    width: 40%;
+    display: inline-block;
+}
+
+.w30 {
+    width: 30%;
+    display: inline-block;
+}
+
+.w20 {
+    width: 20%;
+    display: inline-block;
+}
+
+.w10 {
+    width: 10%;
+    display: inline-block;
+}
+
+.ptc1 {
+    width: 5%;
+}
+
+.ptc2 {
+    width: 25%;
+}
+
+.ptc3 {
+    width: 10%;
+}
+
+.ptc4 {
+    width: 10%;
+}
+
+.ptc5 {
+    width: 10%;
+}
+
+.ptc6 {
+    width: 10%;
+}
+
+.ptc7 {
+    width: 10%;
+}
+
+.ptc8 {
+    width: 10%;
+}
+
+.ptc9 {
+    width: 10%;
+}
+
+#productList .w100 div {
+    float: left;
+    font-size: 11px;
+}
+
+.listHeader div {
+    background-color: #bfbfbf;
+    color: #000;
+    font-weight: 600;
+    padding: 2px;
+    border-right: 1.5px solid #434343;
+    text-align: center;
+}
+
+.pListData {
+    display: flex;
+    border-bottom: 1.5px solid #434343;
+}
+
+.listHeader div:last-child,
+.pListData div:last-child {
+    border-right: none;
+}
+
+.pListData div {
+    color: #000;
+    padding: 2px;
+    text-align: center;
+    border-right: 1.5px solid #434343;
+}
+
+.pListData div:nth-child(2) {
+    text-align: left;
+}
+
+#productList ul {
+    padding: 0px;
+}
+
+#productList ul li {
+    list-style-type: none;
+    font-size: 11px;
+    color: #434343;
+    line-height: 18px;
+}
+
+.totalAmtTx {
+    text-align: right;
+    /* padding: 3px 10px; */
+    line-height: 20px;
+    justify-content: end;
+}
+
+#tCondition h2,
+#authorizedD h2 {
+    font-size: 14px;
+    margin: 0;
+    background-color: #bfbfbf;
+    font-weight: 600;
+    padding: 0px 0px 0px 0px;
+}
+
+#tCondition .w100 div {
+    float: left;
+    font-weight: 600;
+    padding: 5px;
+    border-bottom: 1.5px solid #434343;
+    font-size: 10px;
+    line-height: 10px;
+}
+
+#tCondition .w100 div:nth-child(1) {
+    width: 3%;
+    text-align: center;
+    border-right: 1.5px solid #434343;
+}
+
+#tCondition .w100 div:nth-child(2) {
+    width: 22%;
+    text-align: left;
+}
+
+#tCondition .w100 div:nth-child(3) {
+    width: 75%;
+    text-align: left;
+    border-left: 1.5px solid #434343;
+}
+
+#noteeSec {
+    font-weight: 600;
+}
+
+#noteeSec div:first-child {
+    padding-top: 40px;
+    padding-left: 5px;
+    display: block;
+}
+
+#noteeSec div:last-child {
+    display: block;
+}
+
+#authorizedD .w100 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.ptcName {
+    font-weight: 600;
+}
+
+/* kendo-pdf-export {
+  font-family: "DejaVu Sans", "Arial", sans-serif;
+  font-size: 5px !important;
+} */
+
+@media print {
+    * {
+        overflow: visible !important;
+    }
+
+    #dataBox {
+        width: 100%;
+    }
+
+}

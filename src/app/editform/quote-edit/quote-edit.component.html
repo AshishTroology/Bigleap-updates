@@ -32,8 +32,8 @@
 
       <div class="col-sm-12">
         <div class="panel panel-default">
-        <div class="panel-heading"><b>Quote Information</b>  </div>
-          <!-- <div class="panel-heading font-bold">Add Slider</div> -->
+        <div class="panel-heading"><b>Quote Information</b> <label class="label label-success pull-right">v{{ this.logsData.length+1 }}.0</label></div>
+
           <div class="panel-body">
                     <div class="col-md-4 form-group">
                       <label>Quote ID <span class="text-danger">*</span> </label>
@@ -195,9 +195,9 @@
 
                         <select (change)="handleChange($event,'quote_status')" value={{this.quoteData?.quote_status}} formControlName="quote_status" id=" quote_status" class="form-control"  >
                           <option value="" selected disabled>Quote Status </option>
-                          <option value="Information Required">Information Required</option>
+                          <option value="Under Negotiation">Under Negotiation</option>
+                          <option value="Under Technical Discussion">Under Technical Discussion</option>
                           <option value="Deal to be Prepared">Deal to be Prepared</option>
-                          <option value="Lost">Lost</option>
                         </select>
                         <div *ngIf="f.quote_status.errors && f.quote_status.errors.required && isValidFormSubmitted"
                             class="text-danger text-left mb-1 errorcontrols">
@@ -1067,8 +1067,10 @@
     <div class="panel panel-default">
       <div class="panel-heading font-bold">Quote History View</div>
       <div class="panel-body">
-        <div *ngFor="let data of logsData" >
+        <div *ngFor="let data of logsData;let i=index" >
+
           <div *ngIf="data.modified_date_time"   (click)="handleHistoryView(data._id)" style="cursor: pointer; border: 1px solid grey; margin: 5px 0; padding: 5px;">
+            <label class="label label-success">v{{ i+1 }}.0</label>
             <span>{{data?.modified_by}}</span>
             <br>
             <span >{{data?.modified_date_time?.split('T')[0]}}</span>

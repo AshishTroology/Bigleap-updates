@@ -12,165 +12,70 @@
             <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard</li>
             <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Account</li>
             <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color: red;"> Account View List</li>
-            
+
           </ol>
         </nav>
       </div>
     </div></div>
- 
-
- <kendo-grid
-    [kendoGridBinding]="gridView"
-    kendoGridSelectBy="id"
-    [selectedKeys]="mySelection"
-    [pageSize]="20"
-    [pageable]="true"
-    [sortable]="true"
-    [reorderable]="true"
-    [resizable]="true"
-    [height]="500"
-    [columnMenu]="{ filter: true }"
-  >
-    <ng-template kendoGridToolbarTemplate>
-      <input
-        placeholder="Search in all columns..."
-        kendoTextBox
-        (input)="onFilter($event)"
-        />
-      <kendo-grid-spacer></kendo-grid-spacer>
-      <button *ngIf="this.userPermission.accountcreate" class="button" > <a routerLink="/create-account">Create New Account</a></button>
-      <!-- <button kendoGridPDFCommand icon="file-pdf">Export to PDF</button> -->
-      <!-- <button kendoGridExcelCommand type="button" icon="file-excel">
-        Export to Excel
-      </button> -->
-    </ng-template>
-    <!-- <kendo-grid-checkbox-column
-      [width]="45"
-      [headerClass]="{ 'text-center': true }"
-      [class]="{ 'text-center': true }"
-      [resizable]="false"
-      [columnMenu]="false"
-      [showSelectAll]="true"
-    ></kendo-grid-checkbox-column> -->
-    
-      <kendo-grid-column field="account_owner" title="Created by" [width]="100">
-        <ng-template kendoGridCellTemplate let-dataItem>
-          <!-- <div
-            class="customer-photo"
-            [ngStyle]="{ 'background-image': photoURL(dataItem) }"
-          ></div> -->
-          <div class="customer-name" style="color: red;">{{ dataItem.account_owner.toUpperCase() }}</div>
-          <div class="customer-name" >{{ dataItem.created_at.split('T')[0]}}</div>
-        </ng-template>
-      </kendo-grid-column>
-      <kendo-grid-column field="company_name" title="Company" [width]="100">
-        <ng-template kendoGridCellTemplate let-dataItem>
-          <div>{{dataItem.company_name.toUpperCase()}}</div>
-        </ng-template>
-      </kendo-grid-column>
-
-      <kendo-grid-column
-        field="mobile_no"
-        title="Mobile No"
-        [width]="100"
-        [class]="{ 'text-center': true }"
-        [resizable]="false"
-      >
-        <!-- <ng-template kendoGridCellTemplate let-dataItem>
-          <img class="flag" [src]="flagURL(dataItem)" width="30" />
-        </ng-template> -->
-      </kendo-grid-column>
-      <kendo-grid-column
-        field="email"
-        title="Email"
-        [width]="100"
-        [class]="{ 'text-center': true }"
-        [resizable]="false"
-      >
-        <!-- <ng-template kendoGridCellTemplate let-dataItem>
-          <img class="flag" [src]="flagURL(dataItem)" width="30" />
-        </ng-template> -->
-      </kendo-grid-column>
 
 
-      <kendo-grid-column title="Action" [width]="100" [class]="{ 'text-center': true }" [resizable]="false"
-      [filterable]="false">
-      <ng-template kendoGridCellTemplate let-account>
-        <kendo-menu>
-          <kendo-menu-item icon="gear">
-            <kendo-menu-item *ngIf="this.userPermission.accountedit"  url="/edit-account/{{account.account_id}}" text="Edit" icon="edit"> </kendo-menu-item>
-            <!-- <kendo-menu-item  (select)="handleDelete(account.account_id)" text="Delete" icon="delete"></kendo-menu-item> -->
-          </kendo-menu-item>
-        </kendo-menu>
-      </ng-template>
-    </kendo-grid-column>
 
-
-    <!-- <kendo-grid-column-group title="Performance" [columnMenu]="false">
-      <kendo-grid-column
-        field="rating"
-        title="Rating"
-        [width]="110"
-        [resizable]="false"
-        filter="numeric"
-      >
-        <!-- <ng-template kendoGridCellTemplate let-dataItem>
-          <kendo-rating [value]="dataItem.rating" [max]="5"></kendo-rating>
-        </ng-template> 
-      </kendo-grid-column>
-      <kendo-grid-column
-        field="target"
-        title="Engagement"
-        [width]="230"
-        [resizable]="false"
-        filter="numeric"
-      >
-        <ng-template kendoGridCellTemplate let-dataItem>
-          <kendo-sparkline
-            type="bar"
-            [data]="dataItem.target"
-            [tooltip]="{ visible: false }"
-            [transitions]="true"
-            [seriesDefaults]="{
-              labels: { background: 'none', visible: true, format: '{0}%' }
-            }"
-          >
-            <kendo-chart-area [opacity]="0" [width]="200"></kendo-chart-area>
-            <!-- <kendo-chart-value-axis>
-              <kendo-chart-value-axis-item [min]="0" [max]="130">
-              </kendo-chart-value-axis-item>
-            </kendo-chart-value-axis> 
-          </kendo-sparkline>
-        </ng-template>
-      </kendo-grid-column>
-      <kendo-grid-column
-        field="budget"
-        title="Budget"
-        [width]="100"
-        filter="numeric"
-      >
-        <ng-template kendoGridCellTemplate let-dataItem>
-          <span [ngClass]="{ 'red text-bold': dataItem.budget < 0 }">{{
-            dataItem.budget | currency
-          }}</span>
-        </ng-template>
-      </kendo-grid-column>
-    </kendo-grid-column-group>
-    <kendo-grid-column-group title="Contacts" [columnMenu]="false">
-      <kendo-grid-column field="phone" title="Phone" [width]="130">
-      </kendo-grid-column>
-      <kendo-grid-column field="address" title="Address" [width]="200">
-      </kendo-grid-column>
-    </kendo-grid-column-group> -->
-
-    
-    <!-- <kendo-grid-pdf
-      fileName="Employees.pdf"
-      [repeatHeaders]="true"
-    ></kendo-grid-pdf>
-    <kendo-grid-excel fileName="Employees.xlsx"></kendo-grid-excel> -->
-
-
-  </kendo-grid>
   </div>
+  <div class="col-sm-12">
+    <button *ngIf="this.userPermission.accountcreate" class="button text-right"> <a routerLink="/create-account">Create New
+        Account</a></button>
+
+      <div class="table-responsive panel pd">
+        <kendo-grid [kendoGridBinding]="accData" [pageSize]="15" [pageable]="true" [sortable]="true" [sort]="sort"
+          [reorderable]="true" [resizable]="true" [height]="620" [filterable]="true">
+          <kendo-grid-column field="account_id" title="ID" [width]="200">
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+              <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+                <div class="customer-name">{{ column.account_id }}</div>
+              </kendo-grid-string-filter-cell>
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="account_owner" title="A/c Owner" [width]="200">
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+              <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+                <div class="customer-name">{{ column.account_owner }}</div>
+              </kendo-grid-string-filter-cell>
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="company_name" title="Company Name" [width]="200">
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+              <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+                <div class="customer-name">{{ column.company_name }}</div>
+              </kendo-grid-string-filter-cell>
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="email" title="E-Mail" [width]="200">
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+              <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+                <div class="customer-name">{{ column.email }}</div>
+              </kendo-grid-string-filter-cell>
+            </ng-template>
+          </kendo-grid-column>
+        <kendo-grid-column field="mobile_no" title="Mobile" [width]="200">
+          <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+            <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+              <div class="customer-name">{{ column.mobile_no }}</div>
+            </kendo-grid-string-filter-cell>
+          </ng-template>
+        </kendo-grid-column>
+
+          <kendo-grid-column field="company_name" title="Action" [width]="200" [filterable]="false" >
+            <ng-template kendoGridCellTemplate let-dataItem>
+              <div class="customer-name">
+                <a *ngIf="this.userPermission.accountedit" class="btn btn-xs btn-info" href="/edit-account/{{dataItem.account_id}}"><i
+                  class="fa fa-edit"></i></a></div>
+            </ng-template>
+          </kendo-grid-column>
+
+        </kendo-grid>
+
+
+      </div>
+
+</div>
   </div>

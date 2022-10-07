@@ -208,9 +208,11 @@
 
                         <select value={{this.dealData?.deal_status_stage}} formControlName="deal_status_stage" id="deal_status_stage" class="form-control"  >
                           <option value="" selected disabled>Deal Status </option>
-                          <option value="Information Required">Information Required</option>
+                          <option value="Won">Won</option>
                           <!-- <option value="Deal to be Prepared">Deal to be Prepared</option> -->
-                          <option value="Lost">Lost</option>
+                          <option value="PO Received (Text box required for PO No & Date)">PO Received (Text box required for PO No & Date)</option>
+                          <option value="Pending Acknowledgement">Pending Acknowledgement</option>
+                          <option value="">Acknowledged (Text box for SO No. & Date)</option>
                         </select>
                         <div *ngIf="f.deal_status_stage.errors && f.deal_status_stage.errors.required && isValidFormSubmitted"
                             class="text-danger text-left mb-1 errorcontrols">

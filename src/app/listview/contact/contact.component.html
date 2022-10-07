@@ -12,111 +12,69 @@
             <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;" routerLink="/">Dashboard</li>
             <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;">Contact</li>
             <li class="breadcrumb-item active" aria-current="page" style="font-size:11px;color: red;">Contact View List</li>
-            
+
           </ol>
         </nav>
       </div>
     </div></div>
-<kendo-grid
-   [kendoGridBinding]="gridView"
-   kendoGridSelectBy="id"
-   [selectedKeys]="mySelection"
-   [pageSize]="20"
-   [pageable]="true"
-   [sortable]="true"
-   [reorderable]="true"
-   [resizable]="true"
-   [height]="500"
-   [columnMenu]="{ filter: true }"
- >
-   <ng-template kendoGridToolbarTemplate>
-     <input
-       placeholder="Search in all columns..."
-       kendoTextBox
-       (input)="onFilter($event)"
-       />
-     <kendo-grid-spacer></kendo-grid-spacer>
-     <button class="button" *ngIf="this.userPermission.contactcreate"> <a routerLink="/create-contact">Create New Contact</a></button>
-     <!-- <button kendoGridPDFCommand icon="file-pdf">Export to PDF</button> -->
-     <!-- <button kendoGridExcelCommand type="button" icon="file-excel">
-       Export to Excel
-     </button> -->
-   </ng-template>
-   <!-- <kendo-grid-checkbox-column
-     [width]="45"
-     [headerClass]="{ 'text-center': true }"
-     [class]="{ 'text-center': true }"
-     [resizable]="false"
-     [columnMenu]="false"
-     [showSelectAll]="true"
-   ></kendo-grid-checkbox-column> -->
-   
-     <kendo-grid-column field="contact_name" title="Contact Name" [width]="100">
-       <ng-template kendoGridCellTemplate let-dataItem>
-         <!-- <div
-           class="customer-photo"
-           [ngStyle]="{ 'background-image': photoURL(dataItem) }"
-         ></div> -->
-         <div class="customer-name" style="color: red;">{{ dataItem.contact_name.toUpperCase() }}</div>
-       </ng-template>
-     </kendo-grid-column>
-     <kendo-grid-column field="company_name" title="Company" [width]="100">
-       <ng-template kendoGridCellTemplate let-dataItem>
-         <div>{{dataItem.company_name.toUpperCase()}}</div>
-       </ng-template>
-     </kendo-grid-column>
 
-     <kendo-grid-column
-       field="mobile_no"
-       title="Mobile No"
-       [width]="100"
-       [class]="{ 'text-center': true }"
-       [resizable]="false"
-     >
-       <!-- <ng-template kendoGridCellTemplate let-dataItem>
-         <img class="flag" [src]="flagURL(dataItem)" width="30" />
-       </ng-template> -->
-     </kendo-grid-column>
-     <kendo-grid-column
-       field="email"
-       title="Email"
-       [width]="100"
-       [class]="{ 'text-center': true }"
-       [resizable]="false"
-     >
-       <!-- <ng-template kendoGridCellTemplate let-dataItem>
-         <img class="flag" [src]="flagURL(dataItem)" width="30" />
-       </ng-template> -->
-     </kendo-grid-column>
-     <kendo-grid-column
-       title="Action"
-       [width]="100"
-       [class]="{ 'text-center': true }"
-       [resizable]="false"
-       [filterable]="false"
-       
-     >
-       <ng-template kendoGridCellTemplate let-account>
-
-        
-            <kendo-menu>
-              <kendo-menu-item icon="gear">
-                <kendo-menu-item *ngIf="this.userPermission.contactedit"  url="/edit-contact/{{account.contact_id}}" text="Edit" icon="edit"> </kendo-menu-item>
-                <!-- <kendo-menu-item  (select)="handleDelete(account.account_id)" text="Delete" icon="delete"></kendo-menu-item> -->
-              </kendo-menu-item>
-            </kendo-menu>
-            <!-- <li><p [routerLink]="['/edit-contact',account.contact_id ]" ><i class="fa fa-edit"></i>Edit</p></li>
-             (click)="handleEdit(account.contact_id)" 
-            <li><p (click)="handleDelete(account.contact_id)"><i class="fa fa-ban" ></i>Delete</p></li> -->
-          
-        
-
-
-         <!-- <button (click)="handleEdit(account.contact_id)">Edit</button>{{" "}}
-         <button (click)="handleDelete(account.contact_id)">Delete</button> -->
-       </ng-template>
-       
-     </kendo-grid-column>
- </kendo-grid>
  </div>
+
+
+<div class="col-sm-12">
+  <button class="button" *ngIf="this.userPermission.contactcreate"> <a routerLink="/create-contact">Create New
+      Contact</a></button>
+
+  <div class="table-responsive panel pd">
+
+
+    <kendo-grid [kendoGridBinding]="conData" [pageSize]="15" [pageable]="true" [sortable]="true" [sort]="sort"
+      [reorderable]="true" [resizable]="true" [height]="620" [filterable]="true">
+      <kendo-grid-column field="account_id" title="ID" [width]="200">
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+            <div class="customer-name">{{ column.account_id }}</div>
+          </kendo-grid-string-filter-cell>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="contact_name" title="Contact Name" [width]="200">
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+            <div class="customer-name">{{ column.contact_name }}</div>
+          </kendo-grid-string-filter-cell>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="company_name" title="Company Name" [width]="200">
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+            <div class="customer-name">{{ column.company_name }}</div>
+          </kendo-grid-string-filter-cell>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="mobile_no" title="Mobile" [width]="200">
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+            <div class="customer-name">{{ column.mobile_no }}</div>
+          </kendo-grid-string-filter-cell>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="company_name" title="Action" [width]="200" [filterable]="false">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="customer-name">
+            <a *ngIf="this.userPermission.accountedit" class="btn btn-xs btn-info"
+              href="/edit-account/{{dataItem.contact_id}}"><i class="fa fa-edit"></i></a>
+          </div>
+        </ng-template>
+      </kendo-grid-column>
+
+    </kendo-grid>
+
+
+
+
+  </div>
+
+</div>
  </div>

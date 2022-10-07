@@ -60,7 +60,7 @@
 
 
                       <div class="form-group  col-md-4 ">
-                        <label  >Comapny Name <span class="text-danger">*</span></label>
+                        <label  >Company Name <span class="text-danger">*</span></label>
 
                           <div class="input-group">
                             <span class="input-group-addon  " style="color:gray;font-size:20px;background:white; border-right:0px;"><i class="fa fa-building"></i></span>
@@ -72,7 +72,7 @@
                                 (onSelect)="onItemSelect($event)"
                                 >
                                 </ng-multiselect-dropdown>
-                            <span class="input-group-addon " style="color:red;font-size:20px;background:white;border-radius: 0px;"><a routerLink="/create-account">+</a></span>
+                            <span class="input-group-addon " style="color:red;font-size:20px;background:white;border-radius: 0px;"><a routerLink="/create-account" target="_blank">+</a></span>
                         </div>
                         <div *ngIf="f.account.errors && f.account.errors.required && isValidFormSubmitted"
                             class="text-danger text-left mb-1 errorcontrols">
@@ -94,7 +94,7 @@
                             (onSelect)="onContactSelect($event)"
                             >
                             </ng-multiselect-dropdown>
-                            <span class="input-group-addon " style="color:red;font-size:20px;background:white;border-radius: 0px;"><a routerLink="/create-contact">+</a></span>
+                            <span class="input-group-addon " style="color:red;font-size:20px;background:white;border-radius: 0px;"><a routerLink="/create-contact" target="_blank">+</a></span>
                         </div>
                         <div *ngIf="f.contact.errors && f.contact.errors.required && isValidFormSubmitted"
                             class="text-danger text-left mb-1 errorcontrols">
@@ -199,9 +199,9 @@
 
                         <select formControlName="quote_status" id=" quote_status" class="form-control"  >
                           <option value="" selected disabled>Quote Status </option>
-                          <option value="Information Required">Information Required</option>
+                          <option value="Under Negotiation">Under Negotiation</option>
+                          <option value="Under Technical Discussion">Under Technical Discussion</option>
                           <option value="Deal to be Prepared">Deal to be Prepared</option>
-                          <option value="Lost">Lost</option>
                         </select>
                           <div *ngIf="f.quote_status.errors && f.quote_status.errors.required && isValidFormSubmitted"
                             class="text-danger text-left mb-1 errorcontrols">
@@ -1019,7 +1019,7 @@
           <div  style="text-align: right; margin:10px 0px;" >
           <button (click)="handleBack()" class="btn btn-dark" >Cancel</button>
           <button class="btn btn-danger" (click)="SubmitForm()">Save</button>
-          <button (click)="handleDealConvert()" class="btn btn-primary">Convert To Deal</button>
+          <!--<button (click)="handleDealConvert()" class="btn btn-primary">Convert To Deal</button>-->
 
           </div>
         </div>

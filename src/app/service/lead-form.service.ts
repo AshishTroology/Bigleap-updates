@@ -8,7 +8,7 @@ export class LeadFormService {
   constructor(private http: HttpClient) {}
 
   // base_url = 'https://epr.troology.com/dt/leads';
-  base_url=url+'/leads'
+  base_url = url + '/leads';
   api_key = api_key;
 
   submitForm(data: any) {
@@ -46,6 +46,17 @@ export class LeadFormService {
     return this.http.get(api_url, httpOptions);
   }
 
+  getAllLeadLogs() {
+    let api_url = this.base_url + '/logs';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+        apikey: this.api_key,
+      }),
+    };
+    return this.http.get(api_url, httpOptions);
+  }
+
   getAllLogsById(id: any) {
     let api_url = this.base_url + '/getleadlogs/' + id;
     const httpOptions = {
@@ -70,6 +81,28 @@ export class LeadFormService {
 
   deleteLead(id: any) {
     let api_url = this.base_url + '/deletelead/' + id;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+        apikey: this.api_key,
+      }),
+    };
+    return this.http.get(api_url, httpOptions);
+  }
+
+  getAll() {
+    let api_url = this.base_url + '/getAll';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+        apikey: this.api_key,
+      }),
+    };
+    return this.http.get(api_url, httpOptions);
+  }
+
+  getAllDashboard() {
+    let api_url = this.base_url + '/getAllDashboard';
     const httpOptions = {
       headers: new HttpHeaders({
         'content-type': 'application/json;charset=UTF-8',

@@ -55,70 +55,75 @@ import { ProductSectionComponent } from './product-section/product-section.compo
 import { ProductgridComponent } from './productgrid/productgrid.component';
 import { QuoteInvoiceComponent } from './quote-invoice/quote-invoice.component';
 
+import { ServicesViewComponent } from './listview/services-view/services-view.component'
+import { ReportComponent } from './report/report.component';
+
 const routes: Routes = [
-  {path:'login',component:LoginComponent},
-  {path:'dashboard',component:DashboardComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent },
 
-  {path:'lead',component:LeadListComponent},
-  {path:'create-lead',component:CreateLeadComponent},
-  {path:'edit-lead/:id',component:LeadEditComponent},
+  { path: 'lead', component: LeadListComponent },
+  { path: 'create-lead', component: CreateLeadComponent },
+  { path: 'edit-lead/:id', component: LeadEditComponent },
 
+  { path: 'quote', component: QuoteListComponent },
+  { path: 'create-quote', component: CreateQuoteComponent },
+  { path: 'edit-quote/:id', component: QuoteEditComponent },
 
-  {path:'quote',component:QuoteListComponent},
-  {path:'create-quote',component:CreateQuoteComponent},
-  {path:'edit-quote/:id',component:QuoteEditComponent},
+  { path: 'deal', component: DealListviewComponent },
+  { path: 'create-deal', component: CreateDealComponent },
+  { path: 'edit-deal/:id', component: DealEditComponent },
 
-  {path:'deal',component:DealListviewComponent},
-  {path:'create-deal',component:CreateDealComponent},
-  {path:'edit-deal/:id',component:DealEditComponent},
+  { path: 'account', component: AccountComponentList },
+  { path: 'create-account', component: AccountComponent },
+  { path: 'edit-account/:id', component: AccountEditComponent },
 
-  {path:'account',component:AccountComponentList},
-  {path:'create-account',component:AccountComponent},
-  {path:'edit-account/:id',component:AccountEditComponent},
+  { path: 'contact', component: ContactComponentList },
+  { path: 'create-contact', component: ContactComponent },
+  { path: 'edit-contact/:id', component: ContactEditComponent },
 
-  {path:'contact',component:ContactComponentList},
-  {path:'create-contact',component:ContactComponent},
-  {path:'edit-contact/:id',component:ContactEditComponent},
+  { path: 'company', component: CompanyComponent },
+  { path: 'add-user', component: AdduserComponent },
+  { path: 'role-permission', component: AddrolepermissionComponent },
+  { path: 'view-quote/:id', component: SendquoteComponent },
+  { path: 'view-quote1/:id', component: QuoteInvoiceComponent },
+  { path: 'view-deal/:id', component: SenddealComponent },
+  { path: 'role-list', component: RoleListComponent },
 
-  {path:'company',component:CompanyComponent},
-  {path:'add-user',component:AdduserComponent},
-  {path:'role-permission',component:AddrolepermissionComponent},
-  {path:'view-quote/:id',component:SendquoteComponent},
-  {path:'view-quote1/:id',component:QuoteInvoiceComponent},
-  {path:'view-deal/:id',component:SenddealComponent},
-  {path:'role-list',component:RoleListComponent},
+  { path: 'add-products', component: ProductsComponent },
+  { path: 'products-list', component: ProductsListComponent },
+  { path: 'new-products', component: NewProductsListComponent },
+  { path: 'new-groups', component: NewGroupListComponent },
 
-  {path:'add-products',component:ProductsComponent},
-  {path:'products-list',component:ProductsListComponent},
-  {path:'new-products',component:NewProductsListComponent},
-  {path:'new-groups',component:NewGroupListComponent},
+  { path: 'lead-view', component: LeadViewComponent },
+  { path: 't-deal', component: DealViewComponent },
+  { path: 't-quote', component: QuoteViewComponent },
+  { path: 'services-view/:id', component: ServicesViewComponent },
 
-  {path:'lead-view',component:LeadViewComponent},
-  {path:'t-deal',component:DealViewComponent},
-  {path:'t-quote',component:QuoteViewComponent},
-
-  {path:'service-request',component:ServiceRequestComponent},
-  {path:'service-request-list',component:ServiceRequestListComponent},
-  {path:'performance',component:PerformanceComponent},
-  {path:'performance-list',component:PerformanceListComponent},
-  {path:'service-request-edit/:id',component:ServiceRequestEditComponent},
-  {path:'performance-edit/:id',component:PerformanceEditComponent},
-  {path:'new-products-edit/:id',component:NewProductEditComponent},
-  {path:'role-edit/:id',component:RoleEditComponent},
-  {path:'forget-password',component:ForgetpassComponent},
-  {path:'product-edit/:id',component:ProductEditComponent},
-  {path:'product-view',component:ProductViewComponent},
+  { path: 'service-request', component: ServiceRequestComponent },
+  { path: 'service-request-list', component: ServiceRequestListComponent },
+  { path: 'performance', component: PerformanceComponent },
+  { path: 'performance-list', component: PerformanceListComponent },
+  { path: 'service-request-edit/:id', component: ServiceRequestEditComponent },
+  { path: 'performance-edit/:id', component: PerformanceEditComponent },
+  { path: 'new-products-edit/:id', component: NewProductEditComponent },
+  { path: 'role-edit/:id', component: RoleEditComponent },
+  { path: 'forget-password', component: ForgetpassComponent },
+  { path: 'product-edit/:id', component: ProductEditComponent },
+  { path: 'product-view', component: ProductViewComponent },
   {
-    path:'master', children:[
-      {path:'brand',component:BrandComponent},
-      {path:'category',component:CategoryComponent},
-      {path:'sub-category',component:SubCategoryComponent},
-      {path:'unit',component:UnitComponent},
-      {path:'tax',component:TaxComponent},
-      {path:'hsncode',component:HsncodeComponent}
-    ]
+    path: 'master',
+    children: [
+      { path: 'brand', component: BrandComponent },
+      { path: 'category', component: CategoryComponent },
+      { path: 'sub-category', component: SubCategoryComponent },
+      { path: 'unit', component: UnitComponent },
+      { path: 'tax', component: TaxComponent },
+      { path: 'hsncode', component: HsncodeComponent },
+    ],
   },
-  {path:'product-fetch',component:ProductgridComponent},
+  { path: 'product-fetch', component: ProductgridComponent },
+  { path: 'report', component: ReportComponent },
   { path: '**', redirectTo: 'login' },
 ];
 

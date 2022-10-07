@@ -197,7 +197,7 @@ export class QuoteEditComponent implements OnInit {
     }else{
       let obj=await{
         deal_owner_id:this.userID,
-        deal_id:this.quoteId,
+        deal_id:this.quoteId+'-C',
         sales_person:this.quoteForm.value.sales_person,
       deal_owner:this.quoteForm.value.quote_owner,
       company_name:'',

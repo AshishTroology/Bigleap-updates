@@ -103,6 +103,10 @@ import { ChildElementComponent } from './productgrid/child-element/child-element
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { MyHttpInterceptor } from './my-http-interceptor.service';
 import { QuoteInvoiceComponent } from './quote-invoice/quote-invoice.component';
+import { ServicesViewComponent } from './listview/services-view/services-view.component';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { ReportComponent } from './report/report.component';
+import { DropDownListModule } from '@progress/kendo-angular-dropdowns';
 
 @NgModule({
   declarations: [
@@ -166,6 +170,8 @@ import { QuoteInvoiceComponent } from './quote-invoice/quote-invoice.component';
     ProductgridComponent,
     ChildElementComponent,
     QuoteInvoiceComponent,
+    ServicesViewComponent,
+    ReportComponent,
   ],
   imports: [
     DataTablesModule,
@@ -203,6 +209,8 @@ import { QuoteInvoiceComponent } from './quote-invoice/quote-invoice.component';
     DateInputsModule,
     LayoutModule,
     PDFExportModule,
+    RecaptchaModule,
+    DropDownListModule,
   ],
   providers: [
     EmployeeEditService,

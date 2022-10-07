@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService } from '../service/account.service';
+import { AuthService } from '../service/auth.service';
 import { CompanyService } from '../service/company.service';
 import { ContactService } from '../service/contact.service';
+import { DealFormService } from '../service/deal-form.service';
 import { ProductService } from '../service/product.service';
 import { QuoteFormService } from '../service/quote-form.service';
 
@@ -36,6 +38,15 @@ export class QuoteInvoiceComponent implements OnInit {
     private titleService: Title,
     private salesperson: ProductService
   ) {}
+
+  generatePDF() {
+    let docDefinition = {
+      header: 'C#Corner PDF Header',
+      content:
+        'Sample PDF generated with Angular and PDFMake for C#Corner Blog',
+    };
+
+  }
 
   public setTitle() {
     this.titleService.setTitle('omshakti');

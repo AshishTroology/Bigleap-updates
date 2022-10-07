@@ -140,7 +140,7 @@ export class LeadEditComponent implements OnInit {
    async convertToQuote(){
     let obj=await{
 
-   quote_id:this.lead_id,
+   quote_id:this.lead_id+'-C',
    quote_owner:this.leadForm.value.lead_owner,
    account_id:this.account_id,
    contact_id:this.contact_id,

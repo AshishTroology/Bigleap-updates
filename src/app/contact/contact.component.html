@@ -217,10 +217,10 @@
                 <span class="input-group-addon">+{{this.country_code}}</span>
                 <input type="number" class="form-control" aria-describedby="inputGroupSuccess2Status" placeholder="Enter Your Mobile Number " formControlName="mobile_no">
               </div>
-              <div *ngIf="f.mobile_no.errors && f.mobile_no.errors.required && isValidFormSubmitted"
-              class="text-danger text-left mb-1 errorcontrols">
-              <div *ngIf="f.mobile_no.errors.required"><small>Mobile No is required.</small></div>
-            </div>
+              <div *ngIf="f.mobile_no.touched && f.mobile_no.invalid" class="text-danger text-left mb-1 errorcontrols">
+                <div *ngIf="f.mobile_no.errors?.required"><small>Please enter mobile number</small></div>
+                <div *ngIf="f.mobile_no.errors?.pattern"><small>Mobile number is not 10 digit</small></div>
+              </div>
             </div>
           <div class="clearfix"></div>
         <div class="col-md-4 form-group">

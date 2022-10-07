@@ -49,6 +49,18 @@ export class DealListviewComponent implements OnInit {
     private contact: ContactService
   ) {}
 
+  displayStyle = 'none';
+  basicDetails: any = {};
+
+  openPopup(dataItem: any) {
+    this.displayStyle = 'block';
+    this.basicDetails = dataItem;
+  }
+  closePopup() {
+    this.displayStyle = 'none';
+    this.basicDetails = null;
+  }
+
   ngOnInit(): void {
     this.auth.userLoggedIn().subscribe((user: any) => {
       console.log(user);
@@ -167,10 +179,12 @@ export class DealListviewComponent implements OnInit {
 
         this.contact.getContactData(dt.contact_id).subscribe((cntdata: any) => {
           console.log(cntdata);
-          data.results[index].contact_name =
-            cntdata[0]?.contact_name.toUpperCase();
-          data.results[index].company_name =
-            cntdata[0]?.company_name.toUpperCase();
+          // data.results[index].contact_name =
+          //   cntdata[0]?.contact_name.toUpperCase();
+          // data.results[index].company_name =
+          //   cntdata[0]?.company_name.toUpperCase();
+          data[index].contact_name = cntdata[0].contact_name;
+          data[index].company_name = cntdata[0].company_name;
         });
         if (dt.modified_date_time) {
           let modify_date = new Date(dt?.modified_date_time);
