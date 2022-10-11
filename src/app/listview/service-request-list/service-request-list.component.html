@@ -43,6 +43,7 @@
     <kendo-grid-column field="service_id" title="ID" [width]="110" [locked]="true">
       <ng-template kendoGridCellTemplate let-dataItem>
         <div class="service" style="color: red;">{{ dataItem.service_id }}</div>
+        <span *ngIf="this.userPermission?.servicedelete" (click)="handleDelete(dataItem._id)"><i class="fa fa-trash"></i></span>
       </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="created_at" title="Created" [width]="120">

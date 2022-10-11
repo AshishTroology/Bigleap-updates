@@ -2,49 +2,76 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
+import { DealFormService } from '../service/deal-form.service';
+import { QuoteFormService } from '../service/quote-form.service';
 import { TosterService } from '../service/toster.service';
 import { UserService } from '../service/user.service';
+import { ServiceRequestService } from '../service/service-request.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private router: Router,private userAuth:AuthService,private fb: FormBuilder, private toast: TosterService, private UserS:UserService) { }
-  username:any
+  quoteData: any;
+  dealData: any;
+  serviceData: any;
+  constructor(
+    private router: Router,
+    private userAuth: AuthService,
+    private fb: FormBuilder,
+    private toast: TosterService,
+    private UserS: UserService,
+    private quote: QuoteFormService,
+    private deals: DealFormService,
+    private ServiceRequestService: ServiceRequestService
+  ) {}
+  username: any;
   changeform!: FormGroup;
   saveas: any = true;
   isValidbutton: any;
-  isPasswordSame:any;
+  isPasswordSame: any;
   isValidFormSubmitted: any;
   buttondisabled: any = true;
-  login_id:any;
+  login_id: any;
   ngOnInit(): void {
-    this.userAuth.userLoggedIn().subscribe((user:any)=>{
-      console.log(user.result._id)
-      this.login_id=user.result._id;
-      this.username=user.result.username?user.result.username:this.router.navigate(['/login'])
+    this.userAuth.userLoggedIn().subscribe((user: any) => {
+      console.log(user.result._id);
+      this.login_id = user.result._id;
+      this.username = user.result.username
+        ? user.result.username
+        : this.router.navigate(['/login']);
       // this.username?null:
-    })
+    });
     this.initform();
+    this.quote.getQuote().subscribe((resdata: any) => {
+      // this.quoteData = resdata.result;
+      this.quoteData = resdata.result.filter((item: any) => {
+        if (item.approved_by == '' && item.verified_by == '') return item;
+      });
+    });
+    this.deals.getAllDeals().subscribe((data: any) => {
+       this.dealData = data.results.filter((item: any) => {
+         if (item.approved_by == '' && item.verified_by == '') return item;
+       });
+    });
+     this.ServiceRequestService.getallservice().subscribe((data: any) => {
+       this.serviceData = data.result;
+     });
   }
 
-  handleLogOut(){
-    localStorage.removeItem('user')
-    localStorage.removeItem('username')
+  handleLogOut() {
+    localStorage.removeItem('user');
+    localStorage.removeItem('username');
   }
-
-
 
   initform() {
     this.changeform = this.fb.group(
       {
-
         old_pass: ['', Validators.required],
         new_pass: ['', Validators.compose([Validators.required])],
         c_pass: ['', Validators.compose([Validators.required])],
-
       },
       { validator: this.checkPassword('new_pass', 'c_pass') }
     );
@@ -64,7 +91,6 @@ export class HeaderComponent implements OnInit {
       const control = formGroup.controls[controlName];
       const matchingControl = formGroup.controls[matchingControlName];
       if (matchingControl.errors && !matchingControl.errors.mustMatch) {
-
         return;
       }
 
@@ -80,30 +106,27 @@ export class HeaderComponent implements OnInit {
   onFormSubmit() {
     this.isValidFormSubmitted = false;
     if (this.changeform.invalid) {
-      console.log(this.changeform,'error');
+      console.log(this.changeform, 'error');
       this.isValidFormSubmitted = true;
       this.isValidbutton = false;
       this.toast.showError('Sorry!, Fields are mandatory.');
-    }else {
+    } else {
       console.log(this.changeform.value, 'true');
-      this.UserS.changePassword(this.changeform.value,this.login_id).subscribe((data: any) => {
-        this.buttondisabled = "false";
-        console.log(data)
-        if (data.status == 200) {
-          this.toast.showSuccess(data.message)
-          window.location.reload();
-          document.getElementById('closemodal')?.click()
-          this.handleLogOut()
-          window.location.href='/login'
-
-        } else {
-          this.toast.showError(data.message)
+      this.UserS.changePassword(this.changeform.value, this.login_id).subscribe(
+        (data: any) => {
+          this.buttondisabled = 'false';
+          console.log(data);
+          if (data.status == 200) {
+            this.toast.showSuccess(data.message);
+            window.location.reload();
+            document.getElementById('closemodal')?.click();
+            this.handleLogOut();
+            window.location.href = '/login';
+          } else {
+            this.toast.showError(data.message);
+          }
         }
-
-      })
+      );
     }
   }
-
-
-
 }

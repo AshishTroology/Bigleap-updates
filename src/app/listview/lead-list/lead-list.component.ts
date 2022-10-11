@@ -181,14 +181,6 @@ export class LeadListComponent implements OnInit, AfterViewInit {
           else if (data.status === 500) Swal.fire(data.message, '', 'error');
           this.getLeads();
         });
-
-        // this.lead.deleteAccount(id).subscribe((data:any)=>{
-        //   if(data.status===200)
-        //     Swal.fire(data.message, '', 'success')
-        //   else if(data.status===500)
-        //     Swal.fire(data.message, '', 'error')
-        //     this.getAccounts()
-        // })
       }
     });
   }

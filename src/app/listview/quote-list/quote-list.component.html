@@ -106,6 +106,7 @@
       <kendo-grid-column field="quote_id" title="ID" [width]="120" [locked]="true" [sticky]="true">
         <ng-template kendoGridCellTemplate let-dataItem>
           <div class="customer-name" style="color: red;" (click)="openPopup(dataItem)">{{ dataItem.quote_id }}</div>
+          <span *ngIf="this.userPermission?.quotedelete" (click)="handleDelete(dataItem._id)"><i class="fa fa-trash"></i></span>
         </ng-template>
       </kendo-grid-column>
       <kendo-grid-column field="created_date_time" title="Created" [width]="150">

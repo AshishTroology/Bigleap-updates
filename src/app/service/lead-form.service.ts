@@ -111,4 +111,15 @@ export class LeadFormService {
     };
     return this.http.get(api_url, httpOptions);
   }
+
+  deleteService(id:any) {
+    let api_url = this.base_url + '/deleteService/'+id;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+        apikey: this.api_key,
+      }),
+    };
+    return this.http.get(api_url, httpOptions);
+  }
 }
