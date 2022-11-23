@@ -19,3 +19,9 @@ export class product{
     type:String= "";
     main_id:String='null';
 }
+
+export class getProduct {
+  PartNo: Number = 0;
+  discount: Number = 0;
+  quantity: Number = 0;
+}

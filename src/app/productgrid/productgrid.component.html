@@ -30,7 +30,12 @@
             <button class="AddNewGroupBtn" (click)="addProduct()"><i class="fa fa-plus"></i> New Product</button>
             <button kendoButton (click)="addGroup()" class="AddNewGroupBtn"><i class="fa fa-plus"></i>Add New
               Group</button>
-
+              <button onclick="$('#file').click()" class="AddNewGroupBtn" title="Import Products"> <i class="fa fa-upload " aria-hidden="true"
+                  style="margin: 3px;"></i>  </button>
+              <input accept=".csv,.xls,.xlsx" type="file" encType="multipart/form-data" class="form-control "
+                (change)="onFileChange($event)" placeholder="Uplode your Company Logo" id="file" formControlName="attach_file"
+                style="font-size:12px; border-right:0px;display: none;">
+                <a class="btn btn-success btn-sm" href="/asset/sample.xlsx" download="sample.xlsx" target="_blank" style="margin: 3px;" title="Sample Product file"><i class="fa fa-file-excel-o"></i> Sample</a>
           </div>
         </div>
 

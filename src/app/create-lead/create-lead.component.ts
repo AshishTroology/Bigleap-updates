@@ -233,28 +233,28 @@ export class CreateLeadComponent implements OnInit {
     // this.leadForm.valid?
     // console.log(this.leadForm.value.attachments);
 
-    console.log(this.leadForm);
-    // if (this.leadForm.invalid) {
-    //   window.scrollTo({ top: 0, behavior: 'smooth' });
-    //   this.isValidFormSubmitted = true;
-    // } else {
-    //   this.leadService
-    //     .submitForm(this.leadForm.value)
-    //     .subscribe((data: any) => {
-    //       console.log(data);
-    //       if (data.status === 200) {
-    //         this.toast.showSuccess('Successfully Submitted');
-    //         setTimeout(() => {
-    //           this.router.navigate(['/lead']);
-    //         }, 1500);
-    //       } else if (data.status === 404) {
-    //         this.toast.showError('Error');
-    //       }
-    //       if (data.status === 401) {
-    //         this.toast.showError('Error');
-    //       }
-    //     });
-    // }
+    // console.log(this.leadForm);
+    if (this.leadForm.invalid) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      this.isValidFormSubmitted = true;
+    } else {
+      this.leadService
+        .submitForm(this.leadForm.value)
+        .subscribe((data: any) => {
+          console.log(data);
+          if (data.status === 200) {
+            this.toast.showSuccess('Successfully Submitted');
+            setTimeout(() => {
+              this.router.navigate(['/lead']);
+            }, 1500);
+          } else if (data.status === 404) {
+            this.toast.showError('Error');
+          }
+          if (data.status === 401) {
+            this.toast.showError('Error');
+          }
+        });
+    }
     // :this.toast.showError("Incorrect Data")
   }
 

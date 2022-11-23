@@ -20,6 +20,8 @@ import { DocumentModel } from './document.interface';
 import { Product } from './product.model';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { DialogAction, ActionsLayout } from '@progress/kendo-angular-dialog';
+import { UploadAttachmentService } from '../service/upload-attachment.service';
+import { getProduct } from '../Product.model';
 
 
 
@@ -44,9 +46,11 @@ export class ProductgridComponent implements OnInit {
   public selectedKeys: any[] = [];
   public checkedKeys: any[] = ['1'];
   @Output() dataChanged: EventEmitter<any> = new EventEmitter();
+  importContacts: any;
   constructor(
     @Inject(ProductserviceService) private proservice: ProductserviceService,
-    private product: ProductService
+    private product: ProductService,
+    private upload: UploadAttachmentService,
   ) {}
   ngOnInit(): void {
     this.view = this.proservice.query().subscribe((dataitem: any) => {
@@ -268,12 +272,11 @@ export class ProductgridComponent implements OnInit {
   public onNodeDblClick(event: NodeClickEvent): void {
     this.log('nodeDblClick', event);
     this.isSingleClicked = false;
-
   }
 
-  deleteProductHandler(id:any){
+  deleteProductHandler(id: any) {
     this.deleteData(this.data, id);
-    this.childShow=false
+    this.childShow = false;
   }
 
   deleteData(data: any, id: any) {
@@ -429,5 +432,38 @@ export class ProductgridComponent implements OnInit {
 
   deleteHandler(e: any) {
     console.log(e);
+  }
+
+  onFileChange(evt: any) {
+    const target: DataTransfer = <DataTransfer>evt.target;
+    if (target.files.length !== 1) throw new Error('Cannot use multiple files');
+
+    const reader: FileReader = new FileReader();
+    reader.onload = (e: any) => {
+      const bstr: string = e.target.result;
+      const data = <any[]>this.upload.importFromFile(bstr);
+
+      const header: string[] = Object.getOwnPropertyNames(new getProduct());
+      const importedData = data.slice(1);
+
+      this.importContacts = importedData.map((arr) => {
+        const obj: any = {};
+        for (let i = 0; i < header.length; i++) {
+          const k = header[i];
+          obj[k] = arr[i];
+        }
+        return <getProduct>obj;
+      });
+      console.log(this.importContacts);
+      this.importContacts.map((item:any)=>{
+        console.log(item.PartNo);
+        this.proservice.searchByPartNo({PartNo:item.PartNo}).subscribe((dataitem1: any) => {
+          dataitem1.result[0].discount = item.discount;
+          dataitem1.result[0].quantity = item.quantity;
+          this.data.push(dataitem1.result[0]);
+        });
+      })
+    };
+    reader.readAsBinaryString(target.files[0]);
   }
 }

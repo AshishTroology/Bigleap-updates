@@ -159,7 +159,7 @@ export class AccountEditComponent implements OnInit {
       tan:this.Data?.tan?this.Data?.tan:'',
       cin:this.Data?.cin?this.Data?.cin:'',
       phone_no:this.Data?.phone_no?this.Data?.phone_no:'',
-      mobile_no:[this.Data?.mobile_no?this.Data?.mobile_no:'',Validators.required],
+      mobile_no:[this.Data?.mobile_no?this.Data?.mobile_no:''],
       email:[this.Data?.email?this.Data?.email:''],
       secondary_email:[this.Data?.secondary_email?this.Data?.secondary_email:''],
       address1:this.Data?.address1?this.Data?.address1:'',

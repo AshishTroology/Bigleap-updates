@@ -158,7 +158,7 @@ export class AccountComponent implements OnInit {
       tan: '',
       cin: '',
       phone_no: '',
-      mobile_no: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+      mobile_no: [''],
       email: [''],
 
       secondary_email: [''],
